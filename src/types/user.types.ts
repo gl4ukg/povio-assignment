@@ -4,12 +4,15 @@ export interface LoginType {
     password: string,
 }
 
-export interface SignUpType {
+export interface ProfileType {
+    id?: number,
     first_name: string,
     last_name: string,
     date_of_birth: string,
     email: string,
-    password: string
+    profile_picture?: string,
+    password?: string
+    password_confirmation?: string,
 }
 
 export interface AuthResponse {

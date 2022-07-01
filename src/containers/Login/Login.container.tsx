@@ -3,12 +3,12 @@ import { Form, Formik, FormikValues } from "formik"
 import Button from "../../components/Button/Button"
 import PasswordInput from "../../components/Inputs/PasswordInput/PasswordInput"
 import TextInput from "../../components/Inputs/TextInput/TextInput"
-import { LoginType } from "../../types/auth.types"
+import { LoginType } from "../../types/user.types"
 import { validationSchemeLogin } from "../../utils/validations"
 import { loginInitialValues } from "./constants"
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";
-import { loadLogin } from "../../store/auth/actions";
+import { loadLogin } from "../../store/user/actions";
 import { setLoginModal as setLoginModalAction } from "../../store/app/action"
 
 interface Props {

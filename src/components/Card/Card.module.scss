@@ -5,7 +5,11 @@
     position: relative;
     width: 280px;
     height: 350px;
-    margin: 0 10px 20px;
+    margin: 0 auto 25px;
+    cursor: pointer;
+    @media only screen and (max-width: 1280px) {
+        margin: 0 auto 20px;
+    }
     &__wrapper {
         position: absolute;
         display: flex;

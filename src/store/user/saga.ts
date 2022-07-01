@@ -1,9 +1,9 @@
 import { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { call, put, takeLatest } from "redux-saga/effects";
-import { login as loginService, register as registerService } from "../../services/auth.service";
+import { login as loginService, register as registerService } from "../../services/user.service";
 import { IAction } from "../../types/action.types";
-import { AuthResponse } from "../../types/auth.types";
+import { AuthResponse } from "../../types/user.types";
 import { setLoading, setLogin } from "./actions";
 import * as constants from "./constants";
 
@@ -43,7 +43,7 @@ function* loadSignUp(action: IAction){
     }
 }
 
-export default function* authSage() {
+export default function* userSage() {
     yield takeLatest(constants.LOAD_LOGIN, loadLogin);
     yield takeLatest(constants.LOAD_SIGNUP, loadSignUp);
 }

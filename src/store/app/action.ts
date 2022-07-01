@@ -20,3 +20,10 @@ export const setSignupModal = (payload: boolean) => {
         payload
     }
 }
+
+export const setProfileModal = (payload: boolean) => {
+    return {
+        type: constants.SET_PROFILE_MODAL,
+        payload
+    }
+}

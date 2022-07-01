@@ -2,7 +2,7 @@ import { IAction } from "../../types/action.types"
 import produce from "immer"
 import * as constants from "./constants"
 
-export interface IAuthReducer {
+export interface IUserReducer {
     isLoading: boolean,
     isLogin: boolean,
 }
@@ -10,9 +10,9 @@ export interface IAuthReducer {
 const initialState = {
     isLoading: false,
     isLogin: false,
-} as IAuthReducer
+} as IUserReducer
 
-export const authReducer = (state = initialState, action: IAction) => 
+export const userReducer = (state = initialState, action: IAction) => 
     produce(state, draft => {
         switch(action.type) {
             case constants.SET_LOADING:

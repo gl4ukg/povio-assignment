@@ -1,14 +1,14 @@
 import {all, fork} from 'redux-saga/effects';
 import appSaga from './app/saga';
-import authSage from './auth/saga';
 import flowersSaga from './flowers/saga';
+import userSage from './user/saga';
 
 
 
 export default function* rootSaga(){
     yield all([
         fork(appSaga),
-        fork(authSage),
+        fork(userSage),
         fork(flowersSaga),
     ])
 }

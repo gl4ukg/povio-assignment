@@ -21,3 +21,10 @@ export const setFlowers = (payload: IFlowers) => {
         payload
     }
 }
+
+export const searchFlowers = (payload: string) => {
+    return {
+        type: constants.LOAD_SEARCH_FLOWERS,
+        payload
+    }
+}

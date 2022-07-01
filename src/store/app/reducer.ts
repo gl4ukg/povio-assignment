@@ -7,6 +7,7 @@ export interface IAppReducer {
     isLoading: boolean,
     isLoginModal: boolean,
     isSignUpModal: boolean,
+    isProfileModal: boolean,
 }
 
 
@@ -14,6 +15,7 @@ const initialState = {
     isLoading: false,
     isLoginModal: false,
     isSignUpModal: false,
+    isProfileModal: false,
 } as IAppReducer
 
 export const appReducer = (state = initialState, action: IAction) => 
@@ -27,6 +29,9 @@ export const appReducer = (state = initialState, action: IAction) =>
                 break;
             case constants.SET_SIGN_UP_MODAL:
                 draft.isSignUpModal = action.payload;
+                break;
+            case constants.SET_PROFILE_MODAL:
+                draft.isProfileModal = action.payload;
                 break;
         }
     })

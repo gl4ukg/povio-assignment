@@ -1,4 +1,4 @@
-const scope = 'auth'
+const scope = 'user'
 
 export const SET_LOADING = `${scope}/SET_LOADING`;
 export const LOAD_SIGNUP = `${scope}/LOAD_SIGNUP`;

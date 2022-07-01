@@ -1,4 +1,6 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchFlowers as searchFlowersAction } from "../../store/flowers/actions";
 import SearchInput from "../Inputs/SearchInput/SearchInput";
 import "./MainBanner.scss"
 
@@ -8,8 +10,11 @@ interface Props {
 
 const MainBanner:React.FC<Props> = (props: Props) => {
 
+    const dispatch = useDispatch();
+    const searchFlowers = useCallback((state: string) => dispatch(searchFlowersAction(state)), [dispatch])
     const [searchInput, setSearchInput] = useState<string>("");
 
+    
     return (
         <div className="main-banner">
             
@@ -19,7 +24,8 @@ const MainBanner:React.FC<Props> = (props: Props) => {
             <SearchInput
                 searchValue={searchInput}
                 onChangeSearchValue={(e: ChangeEvent<HTMLInputElement>) => setSearchInput(e.target.value)}
-                search={()=> console.log("test")}
+                onKeyDown={() => searchFlowers(searchInput)}
+                search={() => searchFlowers(searchInput)}
             />
         </div>
     )

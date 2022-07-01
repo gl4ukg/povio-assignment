@@ -29,16 +29,26 @@ const Home:React.FC<Props> = (props: Props) => {
     return (
         <div className="home-page">   
             <MainBanner />
-            <div className="container-fluid">
+            <div className="container-fluid defaul-container">
                 <div className="flowers-container">
-                    {isLoading 
-                        ? <Skeleton count={1} />
-                        :   (flowers && flowers?.length > 0) && flowers?.map((flower: ICard) => {
-                            return <Card 
-                                key={flower.id}
-                                item={flower} />
-                        })
+                    <div className="row">
+                    {(flowers && flowers?.length > 0) && (
+                        flowers?.length > 0
+                            ? flowers?.map((flower: ICard) => {
+                                return (
+                                    <div 
+                                        key={flower.id}
+                                        className="col-lg-3 col-md-4 col-sm-6"> 
+                                        <Card 
+                                            className={"w-100"}
+                                            isLoading={isLoading}
+                                            item={flower} />
+                                    </div>
+                                )})
+                            : (<p>0 Flowers</p>)
+                            )
                     }
+                    </div>
                 </div>
             </div>
         </div>

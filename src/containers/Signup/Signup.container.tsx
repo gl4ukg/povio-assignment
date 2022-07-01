@@ -5,8 +5,8 @@ import Button from "../../components/Button/Button"
 import PasswordInput from "../../components/Inputs/PasswordInput/PasswordInput"
 import TextInput from "../../components/Inputs/TextInput/TextInput"
 import { setSignupModal as setSignUpModalAction } from "../../store/app/action"
-import { loadSignUp } from "../../store/auth/actions"
-import { SignUpType } from "../../types/auth.types"
+import { loadSignUp } from "../../store/user/actions"
+import { ProfileType } from "../../types/user.types"
 import { validationSchemeSignup } from "../../utils/validations"
 import { signUpInitialValues } from "./constants"
 import "./Signup.scss"
@@ -18,10 +18,10 @@ interface Props {
 const Signup:React.FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
-    const signup = useCallback((state: SignUpType) => dispatch(loadSignUp(state)), [dispatch])
+    const signup = useCallback((state: ProfileType) => dispatch(loadSignUp(state)), [dispatch])
     const setSignUpModal = useCallback((state: boolean) => dispatch(setSignUpModalAction(state)), [dispatch])
 
-    const handleSubmit = (values: SignUpType, formikApi: FormikValues) => {
+    const handleSubmit = (values: ProfileType, formikApi: FormikValues) => {
         signup(values)
         formikApi.resetForm()
         setSignUpModal(false)

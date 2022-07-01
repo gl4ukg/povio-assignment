@@ -3,18 +3,25 @@ import {ReactComponent as StarIcon} from "../../assets/icons/star.svg"
 import {ReactComponent as BackgroundedStarIcon} from "../../assets/icons/backgrounded-star.svg"
 import { ICard } from "../../types/card.types"
 import Button from "../Button/Button"
+import Skeleton from "react-loading-skeleton"
+import classNames from "classnames"
 
 
 interface Props {
-    item?: ICard
+    item?: ICard,
+    isLoading: boolean,
+    className?: string
 }
 
 const Card:React.FC<Props> = (props: Props) => {
 
-    const { item } = props;
+    const { item, isLoading, className } = props;
 
+    if(isLoading) return <Skeleton count={1} />
     return (
-        <div className={styles.card}>
+        <div className={classNames(styles.card, {
+            [props.className as string]: className
+        })}>
             <img 
                 src={item?.profile_picture} 
                 alt={item?.profile_picture}

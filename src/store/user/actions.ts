@@ -1,4 +1,4 @@
-import { LoginType, SignUpType } from "../../types/auth.types"
+import { LoginType, ProfileType } from "../../types/user.types"
 import * as constants from "./constants"
 
 export const setLoading = (payload: boolean) => {
@@ -15,7 +15,7 @@ export const loadLogin = (payload: LoginType) => {
     }
 }
 
-export const loadSignUp = (payload: SignUpType) => {
+export const loadSignUp = (payload: ProfileType) => {
     return {
         type: constants.LOAD_SIGNUP,
         payload
