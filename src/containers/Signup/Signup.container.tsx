@@ -63,6 +63,7 @@ const Signup:React.FC<Props> = (props: Props) => {
                                 labelKey={'Email'}/>
                             <PasswordInput
                                 name={'password'}
+                                className="mb-4"
                                 bordered
                                 labelKey={'Password'}/>
                             <Button

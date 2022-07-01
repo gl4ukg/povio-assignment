@@ -42,6 +42,7 @@ const Login:React.FC<Props> = (props: Props) => {
                                 bordered
                                 labelKey={'Email'}/>
                             <PasswordInput
+                                className="mb-4"
                                 name={'password'}
                                 bordered
                                 labelKey={'Password'}/>
@@ -49,6 +50,7 @@ const Login:React.FC<Props> = (props: Props) => {
                                 isDisabled={!formikProps.dirty}
                                 isSubmit
                                 isColored
+                                className="w-100"
                                 text={'Login to your Account'}
                             />
                         </Form>

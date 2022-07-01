@@ -20,11 +20,10 @@
         font-size: 13px;
         color: var(--grey);
         padding:19px 15px 9px;
-		border: 1px solid var(--light-grey);
+		border: 1px solid #DFE5EA;
 		font-weight: 400;
 		border-radius: 3px;
-		background: linear-gradient(0deg, #DFE5EA, #DFE5EA),
-				linear-gradient(0deg, #F5F6F7, #F5F6F7);
+		background: #F5F6F7;
         &:focus{
         	outline: none;
         }
