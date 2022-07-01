@@ -1,0 +1,27 @@
+.search-input-container {
+    background-color: white;
+    border-radius: 3px;
+    max-width: 600px;
+    height: 70px;
+    display: flex;
+    .search-input {
+        width: 600px;
+        color: var(--light-grey);
+        font-family: "Ubuntu";
+        font-weight: 300;
+        padding-left: 20px;
+        outline: none;
+        border: 0;
+        &::placeholder,
+        &::-moz-placeholder,
+        &::-webkit-input-placeholder {
+            padding-left: 20px;
+            color: var(--grey);
+        }
+    }
+    button {
+        width: 50px;
+        border: 0;
+        background: transparent;
+    }
+}

@@ -1,0 +1,27 @@
+.main-banner {
+    background: url("../../assets/images/home-banner.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &::after {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+    }
+    .main-title-banner {
+        font-family: "Montserrat";
+        font-weight: 600;
+        color: #fff;
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+    .main-subtitle-banner {
+        font-family: "Ubuntu";
+        font-weight: 300;
+        font-size: 17px;
+        color: #fff;
+        margin-bottom: 45px;
+    }
+}

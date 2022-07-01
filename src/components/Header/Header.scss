@@ -1,0 +1,25 @@
+.header {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .page-list {
+        display: flex;
+        align-items: center;
+        ul  {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            li {
+                font-family: "Montserrat";
+                font-weight: 500;
+                margin: 0 25px;
+                color: var(--light-grey);
+                cursor: pointer;
+                &:last-child {
+                    color: #DF9186;
+                }
+            }
+        }
+    }
+}
