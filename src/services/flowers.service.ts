@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IFavorite, IFlower, IFlowerPayload, IFlowers, IFlowersFavoriteResponse, IFlowersResponse } from "../types/flowers.types";
+import { IFavorite, IFlower, IFlowerPayload, IFlowerResponse, IFlowers, IFlowersFavoriteResponse, IFlowersResponse } from "../types/flowers.types";
 import { ISightingsResponse } from "../types/sigting.type";
 
 
@@ -28,7 +28,7 @@ export const searchFlowers = (query: string): Promise<IFlowersResponse> => {
     })
 }
 
-export const getFlowerDetail = (id: number): Promise<IFlower> => {
+export const getFlowerDetail = (id: number): Promise<IFlowerResponse> => {
     const token = localStorage.getItem('bearerToken')
     return axios.get(`/api/v1/flowers/${id}`, {
         headers: {

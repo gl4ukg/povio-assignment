@@ -39,7 +39,9 @@ const Header:React.FC<Props> = (props: Props) => {
         <div>
             <nav className="container-fluid defaul-container">
                 <div className="header">
-                    <div className="logo-nav">
+                    <div 
+                        onClick={() => navigate("/")}
+                        className="logo-nav">
                         <Logo />
                     </div>
                     <div className="page-list">

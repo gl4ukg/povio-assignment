@@ -1,0 +1,49 @@
+.flower-detail {
+    .image-slider {
+        img {
+            width: 100%;
+        }
+    }
+    .flower-detail-container {
+        margin-top: -300px;
+    }
+    &__image {
+        width: 280px;
+        height: 350px;
+        border-radius: 3px;
+    }
+    &__names {
+        img {
+            margin-left: -15px;
+        }
+    }
+    &__name {
+        font-family: "Ubuntu";
+        font-weight: 300;
+        font-size: 35px;
+        color: var(--white);
+        margin-bottom: 0px;
+    }
+    &__latin_name {
+        font-family: "Ubuntu";
+        font-weight: 300;
+        font-size: 14px;
+        color: var(--white);
+        margin-bottom: 0px;
+    }
+    &__list {
+        font-family: "Ubuntu";
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--light-grey);
+        list-style: none;
+        margin-top: 50px;
+        padding-left: 0;
+    }
+    &__description-content {
+        font-family: "Ubuntu";
+        font-weight: 400;
+        font-size: 13px;
+        color: var(--light-grey);
+    }
+}

@@ -14,6 +14,8 @@ import { CombinedReducersState } from './store/combinedReducers';
 import { useDispatch } from 'react-redux';
 import { loadFavoriteFlowers as loadFavoriteFlowersAction } from './store/flowers/actions';
 import User from './containers/User/User';
+import { loadFlowers as loadFlowersAction } from "./store/flowers/actions"
+import FlowerDetail from './containers/Flowers/FlowerDetail/FlowerDetail';
 
 interface Props {
 
@@ -23,9 +25,11 @@ const App:React.FC<Props> = (props: Props) => {
 
 	const dispatch = useDispatch();
 	const isLogin: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLogin)
+    const loadFlowers = useCallback(() => dispatch(loadFlowersAction()), [dispatch])
 	const loadFavoriteFlowers = useCallback(() => dispatch(loadFavoriteFlowersAction()), [])
 
 	useEffect(() => {
+		loadFlowers()
 		if(isLogin) {
 			loadFavoriteFlowers()
 		}
@@ -54,7 +58,7 @@ const App:React.FC<Props> = (props: Props) => {
 					/>
 					<Route
 						path="/flower/:id"
-						element={<Home />}
+						element={<FlowerDetail />}
 					/>
 					<Route
 						path="/sighlist"

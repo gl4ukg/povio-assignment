@@ -23,6 +23,10 @@ export interface IFlowerPayload {
     profile_picture: boolean
 }
 
+export interface IFlowerResponse {
+    flower: IFlower,
+}
+
 export interface IFlowersResponse {
     flowers: IFlower[],
     meta: IPagination

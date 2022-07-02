@@ -1,11 +1,8 @@
 import "./Home.scss"
-import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux"
 import Card from "../../components/Card/Card";
 import MainBanner from "../../components/MainBanner/MainBanner";
 import { CombinedReducersState } from "../../store/combinedReducers";
-import { loadFlowers as loadFlowersAction } from "../../store/flowers/actions";
 import { ICard } from "../../types/card.types";
 
 interface Props {
@@ -14,14 +11,8 @@ interface Props {
 
 const Home:React.FC<Props> = (props: Props) => {
 
-    const dispatch = useDispatch();
     const isLoading: boolean | undefined = useSelector((state: CombinedReducersState) => state.flowers?.isLoading);
     const flowers: ICard[] | undefined = useSelector((state: CombinedReducersState) => state.flowers?.flowers?.flowers);
-    const loadFlowers = useCallback(() => dispatch(loadFlowersAction()), [dispatch])
-
-    useEffect(() => {
-        loadFlowers()
-    }, [])
 
     return (
         <div className="home-page">   

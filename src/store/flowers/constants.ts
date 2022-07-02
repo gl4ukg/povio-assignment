@@ -11,3 +11,6 @@ export const SET_FAVORITE_FLOWERS = `${scope}/SET_FAVORITE_FLOWERS`
 
 export const LOAD_FAVORITE_FLOWER = `${scope}/LOAD_FAVORITE_FLOWER`;
 export const SET_FAVORITE_FLOWER = `${scope}/SET_FAVORITE_FLOWER`;
+
+export const LOAD_FLOWER_DETAIL = `${scope}/LOAD_FLOWER_DETAIL`;
+export const SET_FLOWER_DETAIL = `${scope}/SET_FLOWER_DETAIL`;

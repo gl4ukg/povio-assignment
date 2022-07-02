@@ -5,21 +5,26 @@ import { ICard } from "../../types/card.types"
 import Button from "../Button/Button"
 import Skeleton from "react-loading-skeleton"
 import classNames from "classnames"
+import { useNavigate } from "react-router-dom"
 
 
 interface Props {
     item?: ICard,
     isLoading: boolean,
     className?: string
+    goTo?: () => void;
 }
 
 const Card:React.FC<Props> = (props: Props) => {
 
+    const navigate = useNavigate()
     const { item, isLoading, className } = props;
 
     if(isLoading) return <Skeleton count={1} />
     return (
-        <div className={classNames(styles.card, {
+        <div
+            onClick={() => navigate(`/flower/${item?.id}`)} 
+            className={classNames(styles.card, {
             [props.className as string]: className
         })}>
             <img 
@@ -40,7 +45,7 @@ const Card:React.FC<Props> = (props: Props) => {
                     <Button 
                         isSmall
                         isRounded
-                        isBllack
+                        isBlack
                         text={`${item?.sightings} sightings`}
                         />
                 </div>
