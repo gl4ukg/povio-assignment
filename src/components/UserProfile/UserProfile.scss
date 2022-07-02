@@ -1,0 +1,24 @@
+.user-profile {
+    padding: 30px;
+    margin: 50px 0;
+    &__image {
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+        margin-right: 30px;
+    }
+    &__name {
+        font-family: "Ubuntu";
+        font-weight: 300;
+        font-size: 25px;
+        color: var(--grey);
+        margin-bottom: 0;
+    }
+    &__sightings {
+        font-family: "Ubuntu";
+        font-weight: 400;
+        font-size: 13px;
+        color: var(--light-grey);
+        margin-bottom: 0;
+    }
+}

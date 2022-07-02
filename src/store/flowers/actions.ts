@@ -1,4 +1,4 @@
-import { IFlowers } from "../../types/flowers.types"
+import { IFlowers, IFlowersFavoriteResponse } from "../../types/flowers.types"
 import * as constants from "./constants"
 
 
@@ -25,6 +25,19 @@ export const setFlowers = (payload: IFlowers) => {
 export const searchFlowers = (payload: string) => {
     return {
         type: constants.LOAD_SEARCH_FLOWERS,
+        payload
+    }
+}
+
+export const loadFavoriteFlowers = () => {
+    return {
+        type: constants.LOAD_FAVORITE_FLOWERS
+    }
+}
+
+export const setFavoriteFlowers = (payload: IFlowersFavoriteResponse) => {
+    return {
+        type: constants.SET_FAVORITE_FLOWERS,
         payload
     }
 }

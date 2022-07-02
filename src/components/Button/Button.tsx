@@ -11,10 +11,11 @@ interface Props {
     isSubmit?: boolean,
     onClick?: () => void,
     className?: string,
+    isIcon?: string
 }
 
 const Button:React.FC<Props> = (props: Props) => {
-    const { isRounded, isColored, isSmall, text, isBllack, isSubmit, isDisabled, onClick, className } = props;
+    const { isRounded, isColored, isSmall, text, isBllack, isSubmit, isDisabled, onClick, className, isIcon } = props;
     return (
         <button 
             disabled={isDisabled}
@@ -24,10 +25,12 @@ const Button:React.FC<Props> = (props: Props) => {
                 [styles.button__isRounded]: isRounded,
                 [styles.button__isSmall]: isSmall,
                 [styles.button__isBllack]: isBllack,
-                [props.className as string]: className
+                [props.className as string]: className,
+                [styles.button__isIcon]: isIcon
             })}
             onClick={onClick}
             >
+            <img src={isIcon} alt={isIcon} />
             {text}
         </button>
     )

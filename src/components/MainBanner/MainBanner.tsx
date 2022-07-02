@@ -11,8 +11,9 @@ interface Props {
 const MainBanner:React.FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
-    const searchFlowers = useCallback((state: string) => dispatch(searchFlowersAction(state)), [dispatch])
+    
     const [searchInput, setSearchInput] = useState<string>("");
+    const searchFlowers = useCallback((state: string) => dispatch(searchFlowersAction(state)), [dispatch])
 
     
     return (

@@ -8,7 +8,12 @@ export const getFlowers = (): Promise<IFlowers> => {
 }
 
 export const createFlower = (payload: IFlowerPayload): Promise<IFlower> => {
-    return axios.post('/api/v1/flowers', payload)
+    const token = localStorage.getItem('bearerToken')
+    return axios.post('/api/v1/flowers', payload, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }
 
 export const getRandomFlowers = (): Promise<IFlowersResponse> => {
@@ -24,25 +29,55 @@ export const searchFlowers = (query: string): Promise<IFlowersResponse> => {
 }
 
 export const getFlowerDetail = (id: number): Promise<IFlower> => {
-    return axios.get(`/api/v1/flowers/${id}`)
+    const token = localStorage.getItem('bearerToken')
+    return axios.get(`/api/v1/flowers/${id}`, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }
 
 export const getFlowerSettings = (id: number): Promise<ISightingsResponse> => {
-    return axios.get(`​/api​/v1​/flowers​/${id}​/sightings`)
+    const token = localStorage.getItem('bearerToken')
+    return axios.get(`​/api​/v1​/flowers​/${id}​/sightings`, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }
 
 export const getFavoriteFlowers = ():Promise<IFlowersFavoriteResponse> => {
-    return axios.get('/api/v1/flowers/favorites')
+    const token = localStorage.getItem('bearerToken')
+    return axios.get('/api/v1/flowers/favorites', {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }
 
 export const makeFlowerAsMyFavorite = (flower_id: number):Promise<IFavorite> => {
-    return axios.post(`/api​/v1​/flowers​/${flower_id}​/favorites`)
+    const token = localStorage.getItem('bearerToken')
+    return axios.post(`/api​/v1​/flowers​/${flower_id}​/favorites`, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }
 
 export const deleteFlowerAsMyFavorite = (flower_id: number, id:number):Promise<IFavorite> => {
-    return axios.delete(`/api​/v1​/flowers​/${flower_id}​/favorites/${id}`)
+    const token = localStorage.getItem('bearerToken')
+    return axios.delete(`/api​/v1​/flowers​/${flower_id}​/favorites/${id}`, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }
 
 export const getFlowersPerSighnigs = (id: number):Promise<ISightingsResponse> => {
-    return axios.get(`/api/v1/flowers/${id}/sightings`)
+    const token = localStorage.getItem('bearerToken')
+    return axios.get(`/api/v1/flowers/${id}/sightings`, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }

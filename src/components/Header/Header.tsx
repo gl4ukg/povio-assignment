@@ -14,6 +14,9 @@ import {
 import Login from "../../containers/Login/Login.container";
 import Signup from "../../containers/Signup/Signup.container";
 import Profile from "../../containers/Profile/Profile.container";
+import { ProfileType } from "../../types/user.types";
+import NoImage from "../../assets/icons/no-image.webp"
+import { useNavigate } from "react-router-dom";
 
 interface Props {
 
@@ -22,10 +25,12 @@ interface Props {
 const Header:React.FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const isLoginModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isLoginModal)
     const isSignUpModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isSignUpModal)
     const isProfileModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isProfileModal);
     const isLogin: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLogin);
+    const user: ProfileType | undefined = useSelector((state: CombinedReducersState) => state.user?.user)
     const setLoginModal = useCallback((state: boolean) => dispatch(setLoginModalAction(state)), [dispatch])
     const setSignUpModal = useCallback((state: boolean) => dispatch(setSignUpModalAction(state)), [dispatch])
     const setProfileModal = useCallback((state: boolean) => dispatch(setProfileModalAction(state)), [dispatch])
@@ -39,23 +44,40 @@ const Header:React.FC<Props> = (props: Props) => {
                     </div>
                     <div className="page-list">
                         <ul>
-                            <li>
+                            <li 
+                                onClick={() => navigate("flowers")}
+                                className="header-link">
                                 Flowers
                             </li>
-                            <li>
+                            <li 
+                                onClick={() => navigate("latest-sightings")}
+                                className="header-link">
                                 Latest Sightings
                             </li>
-                            <li>
+                            <li 
+                                onClick={() => navigate("favorite-flowers")}
+                                className="header-link">
                                 Favorites
                             </li>
-                            {!isLogin && <li onClick={() => setLoginModal(true)}>
+                            {!isLogin && <li
+                                className="header-link" 
+                                onClick={() => setLoginModal(true)}>
                                 Login
                             </li>}
                         </ul>
                         {
                             isLogin 
-                                ? <div>
-                                    
+                                ? <div className="d-flex align-items-center">
+                                    <p className="header-link" >{`${user.first_name} ${user.last_name}`} </p>
+                                    <img 
+                                        onClick={() => setProfileModal(true)}
+                                        className="header-profile-picture" 
+                                        src={user?.profile_picture 
+                                                ? user?.profile_picture 
+                                                : NoImage
+                                        } 
+                                        alt="profile-picture"
+                                     />
                                 </div>
                                 : <Button 
                                     isSmall

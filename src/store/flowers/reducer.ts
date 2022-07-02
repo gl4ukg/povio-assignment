@@ -1,5 +1,5 @@
 import { IAction } from "../../types/action.types";
-import { IFlowers } from "../../types/flowers.types";
+import { IFlowers, IFlowersFavoriteResponse, IFlowersResponse } from "../../types/flowers.types";
 import * as constants from "./constants"
 import produce from "immer"
 import { ICard } from "../../types/card.types";
@@ -8,8 +8,8 @@ import { IPagination } from "../../types/app.types";
 
 export interface IFlowersReducer {
     isLoading: boolean,
-    flowers: ICard[],
-    meta: IPagination,
+    flowers: IFlowersResponse,
+    favoriteFlowers: IFlowersFavoriteResponse,
 }
 
 const initialState = {
@@ -24,8 +24,10 @@ export const flowersReducer = (state = initialState, action: IAction) =>
                 draft.isLoading = action.payload
                 break;
             case constants.SET_FLOWERS:
-                draft.flowers = action.payload.flowers
-                draft.meta = action.payload.meta
+                draft.flowers = action.payload
+                break;
+            case constants.SET_FAVORITE_FLOWERS:
+                draft.favoriteFlowers = action.payload
                 break;
         }
     })

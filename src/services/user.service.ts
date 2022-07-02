@@ -11,17 +11,37 @@ export const login = (payload: LoginType): Promise<AuthResponse> => {
 }
 
 export const getUserProfile = (): Promise<ProfileType> => {
-    return axios.get('/api/v1/users/me')
+    const token = localStorage.getItem('bearerToken')
+    return axios.get('/api/v1/users/me', {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }
 
 export const updateUserProfile = (payload: ProfileType): Promise<ProfileType> => {
-    return axios.put('/api/v1/users/me', payload)
+    const token = localStorage.getItem('bearerToken')
+    return axios.put('/api/v1/users/me', payload, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }
 
 export const refreshToken = (): Promise<AuthResponse> => {
-    return axios.get('/api/v1/users/me/refresh')
+    const token = localStorage.getItem('bearerToken')
+    return axios.get('/api/v1/users/me/refresh', {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }
 
 export const showUserInfo = (id: number): Promise<ProfileType> => {
-    return axios.get(`/api/v1/users/${id}`)
+    const token = localStorage.getItem('bearerToken')
+    return axios.get(`/api/v1/users/${id}`, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
 }

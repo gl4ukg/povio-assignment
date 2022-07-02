@@ -1,31 +1,33 @@
-import "./Home.scss"
-import { useCallback, useEffect } from "react";
+import { ChangeEvent, useCallback, useState } from "react"
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux"
-import Card from "../../components/Card/Card";
-import MainBanner from "../../components/MainBanner/MainBanner";
-import { CombinedReducersState } from "../../store/combinedReducers";
-import { loadFlowers as loadFlowersAction } from "../../store/flowers/actions";
-import { ICard } from "../../types/card.types";
+import Card from "../../../components/Card/Card";
+import SearchInput from "../../../components/Inputs/SearchInput/SearchInput"
+import { CombinedReducersState } from "../../../store/combinedReducers";
+import { searchFlowers as searchFlowersAction } from "../../../store/flowers/actions";
+import { ICard } from "../../../types/card.types";
 
 interface Props {
 
 }
 
-const Home:React.FC<Props> = (props: Props) => {
+const FlowerList:React.FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
+    const [searchVal, setSearchVal] = useState<string>("");
     const isLoading: boolean | undefined = useSelector((state: CombinedReducersState) => state.flowers?.isLoading);
     const flowers: ICard[] | undefined = useSelector((state: CombinedReducersState) => state.flowers?.flowers?.flowers);
-    const loadFlowers = useCallback(() => dispatch(loadFlowersAction()), [dispatch])
-
-    useEffect(() => {
-        loadFlowers()
-    }, [])
+    const searchFlowers = useCallback((state: string) => dispatch(searchFlowersAction(state)), [dispatch])
 
     return (
-        <div className="home-page">   
-            <MainBanner />
+        <div>
+            <SearchInput 
+                searchValue={searchVal}
+                onChangeSearchValue={(e: ChangeEvent<HTMLInputElement>) => setSearchVal(e.target.value)}
+                onKeyDown={() => searchFlowers(searchVal)}
+                search={() => searchFlowers(searchVal)}
+                className="my-5"
+            />
             <div className="container-fluid defaul-container">
                 <div className="flowers-container">
                     <div className="row">
@@ -52,4 +54,4 @@ const Home:React.FC<Props> = (props: Props) => {
     )
 }
 
-export default Home
+export default FlowerList

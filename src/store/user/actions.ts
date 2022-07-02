@@ -28,3 +28,16 @@ export const setLogin = (payload: boolean) => {
         payload
     }
 }
+
+export const loadUser = () => {
+    return {
+        type: constants.LOAD_USER
+    }
+}
+
+export const setUser = (payload: ProfileType) => {
+    return {
+        type: constants.SET_USER,
+        payload
+    }
+}

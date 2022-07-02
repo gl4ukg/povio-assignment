@@ -6,9 +6,12 @@ import Button from "../../components/Button/Button"
 import TextInput from "../../components/Inputs/TextInput/TextInput"
 import { setProfileModal as setProfileModalAction } from "../../store/app/action"
 import { CombinedReducersState } from "../../store/combinedReducers"
+import { ICard } from "../../types/card.types"
 import { ProfileType } from "../../types/user.types"
 import { validationSchemeProfile } from "../../utils/validations"
 import { profileInitialValues } from "./constants"
+import "./Profile.scss"
+
 
 interface Props {
 
@@ -19,6 +22,7 @@ const Profile:React.FC<Props> = (props: Props) => {
     const dispatch = useDispatch();
     const isProfileModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isProfileModal);
     const setProfileModal = useCallback((state: boolean) => dispatch(setProfileModalAction(state)), [dispatch])
+    const flowers: ICard[] | undefined = useSelector((state: CombinedReducersState) => state.flowers?.flowers?.flowers);
 
     const handleSubmit = (payload: ProfileType) => {
         setProfileModal(false)
@@ -61,7 +65,6 @@ const Profile:React.FC<Props> = (props: Props) => {
                                 isColored
                                 isSmall
                                 text={'Create Account'}
-                                className={"w-100"}
                             />
                         </Form>
                     </div>

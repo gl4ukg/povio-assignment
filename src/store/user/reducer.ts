@@ -1,15 +1,18 @@
 import { IAction } from "../../types/action.types"
 import produce from "immer"
 import * as constants from "./constants"
+import { ProfileType } from "../../types/user.types"
 
 export interface IUserReducer {
     isLoading: boolean,
     isLogin: boolean,
+    user: ProfileType,
 }
 
 const initialState = {
     isLoading: false,
     isLogin: false,
+    user: {}
 } as IUserReducer
 
 export const userReducer = (state = initialState, action: IAction) => 
@@ -20,6 +23,9 @@ export const userReducer = (state = initialState, action: IAction) =>
                 break;
             case constants.IS_LOGIN:
                 draft.isLogin = action.payload
+                break;
+            case constants.SET_USER:
+                draft.user = action.payload
                 break;
         }
     })

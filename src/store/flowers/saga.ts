@@ -2,12 +2,13 @@ import { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { 
+    getFavoriteFlowers as getFavoriteFlowersService,
     getFlowers as getFlowersService, 
     searchFlowers as searchFlowersService
 } from "../../services/flowers.service";
 import { IAction } from "../../types/action.types";
-import { IFlowers, IFlowersResponse } from "../../types/flowers.types";
-import { setFlowers, setLoading } from "./actions";
+import { IFlowers, IFlowersFavoriteResponse, IFlowersResponse } from "../../types/flowers.types";
+import { setFavoriteFlowers, setFlowers, setLoading } from "./actions";
 import * as constants from "./constants"
 
 function* loadFlowers() {
@@ -25,9 +26,9 @@ function* loadFlowers() {
 
 function* loadSearchFlower(action: IAction) {
     yield put(setLoading(true))
+    try {
         const response: AxiosResponse<IFlowersResponse> = yield call(searchFlowersService, action.payload)
         yield put(setFlowers(response.data))
-    try {
         yield put(setLoading(false))
     } catch {
         toast.error("Something went wrong!")
@@ -35,7 +36,19 @@ function* loadSearchFlower(action: IAction) {
     }
 }
 
+function* loadFavoriteFlowers() {
+    yield put(setLoading(true))
+    try {
+        const response: AxiosResponse<IFlowersFavoriteResponse> = yield call(getFavoriteFlowersService)
+        yield put(setFavoriteFlowers(response.data))
+        yield put(setLoading(false))
+    } catch{
+        yield put(setLoading(false))
+    }
+}
+
 export default function* flowersSaga() {
     yield takeLatest(constants.LOAD_FLOWERS, loadFlowers)
     yield takeLatest(constants.LOAD_SEARCH_FLOWERS, loadSearchFlower)
+    yield takeLatest(constants.LOAD_FAVORITE_FLOWERS, loadFavoriteFlowers)
 }
