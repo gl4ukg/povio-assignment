@@ -16,6 +16,7 @@ import { loadFavoriteFlowers as loadFavoriteFlowersAction } from './store/flower
 import User from './containers/User/User';
 import { loadFlowers as loadFlowersAction } from "./store/flowers/actions"
 import FlowerDetail from './containers/Flowers/FlowerDetail/FlowerDetail';
+import SightingList from './containers/Sighting/List/SightingList';
 
 interface Props {
 
@@ -61,8 +62,8 @@ const App:React.FC<Props> = (props: Props) => {
 						element={<FlowerDetail />}
 					/>
 					<Route
-						path="/sighlist"
-						element={<Home />}
+						path="/sighting-list"
+						element={<SightingList />}
 					/>
 					<Route
 						path="/sighlist/:id"
