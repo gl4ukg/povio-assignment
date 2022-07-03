@@ -30,7 +30,7 @@ const Button:React.FC<Props> = (props: Props) => {
             })}
             onClick={onClick}
             >
-            <img src={isIcon} alt={isIcon} />
+            {isIcon && <img src={isIcon} alt={isIcon} />}
             {text}
         </button>
     )

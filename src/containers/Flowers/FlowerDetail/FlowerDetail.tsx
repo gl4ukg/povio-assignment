@@ -10,6 +10,7 @@ import { IFlower } from "../../../types/flowers.types";
 import StarIcon from "../../../assets/icons/star.svg"
 import BackgroundedStarIcon from "../../../assets/icons/backgrounded-star.svg"
 import "./FlowerDetail.scss"
+import SightingBox from "../../../components/SightingBox/SightingBox";
 
 interface Props {
 
@@ -80,7 +81,23 @@ const FlowerDetail:React.FC<Props> = (props: Props) => {
 Growing to 60 cm (24 in) tall by 30 cm (12 in) wide, it is an herbaceous perennial with dark green leaves and blue flowers in late summer. A notable feature of the plant is the flower bud which swells like a balloon before fully opening.[4] The five petals are fused together into a bell shape at the base, like its relatives, the campanulas. There are varieties with white, pink and purple blooms in cultivation.[5] In Korea, white flowers are more common. This plant[6] together with its cultivars 'Apoyama group'[7] and 'Mariesii'[8] have gained the Royal Horticultural Society's Award of Garden Merit.</p>
                             </div>
                         </div>
-                        <hr className="my-4" />
+                        <div className="col-12">
+                            <hr className="my-5" />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-3 col-md-4 col-sm-6">
+                            <SightingBox />
+                        </div>
+                        <div className="col-lg-3 col-md-4 col-sm-6">
+                            <SightingBox />
+                        </div>
+                        <div className="col-lg-3 col-md-4 col-sm-6">
+                            <SightingBox />
+                        </div>
+                        <div className="col-lg-3 col-md-4 col-sm-6">
+                            <SightingBox />
+                        </div>
                     </div>
                 </div>
             </div>
