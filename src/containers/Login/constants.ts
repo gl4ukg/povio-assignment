@@ -1,6 +1,6 @@
 import { LoginType } from "../../types/user.types";
 
 export const loginInitialValues = {
-    username: '',
+    email: '',
     password: ''
 } as LoginType

@@ -1,0 +1,36 @@
+.textAreaWrapper{
+    min-height: 50px;
+    margin-bottom: 10px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+    label{
+		font-family: "Ubuntu";
+		color: var(--light-grey);
+		font-size: 10px;
+		font-weight: 400;
+		margin: 0;
+		position: absolute;
+		left: 15px;
+		top: 8px;
+    }
+    textarea{
+		font-family: "Ubuntu";
+        width: 100%;
+        font-size: 13px;
+        color: var(--grey);
+        padding:19px 15px 9px;
+		border: 1px solid #DFE5EA;
+		font-weight: 400;
+		border-radius: 3px;
+		background: #F5F6F7;
+        &:focus{
+            outline: none;
+        }
+    }
+	.errorMessage {
+		color: var(--red);
+		font-size: 14px;
+		margin: 0;
+	}
+  }

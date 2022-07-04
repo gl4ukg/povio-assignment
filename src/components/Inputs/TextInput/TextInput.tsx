@@ -19,6 +19,7 @@ interface Props{
   children?: JSX.Element | JSX.Element[];
   onChange?: (value: string) => void;
   isBirthdayLimit?: boolean;
+  onClick?: () => void,
 }
 
 const TextInput: React.FC<Props> = (props: Props) => {
@@ -47,6 +48,7 @@ const TextInput: React.FC<Props> = (props: Props) => {
     { props.labelKey && <label> {props.labelKey}</label> }
     { props.value !== undefined ?
         <input 
+            onClick={props.onClick}
             value={(props.type == "date" ? formatDate(props?.value) : props?.value) || ''}
             onChange={(inputElement: React.ChangeEvent<HTMLInputElement>)=> onChangeEvent(inputElement.target.value)} placeholder={props.placeholder} 
             name={props.name} 
@@ -55,6 +57,7 @@ const TextInput: React.FC<Props> = (props: Props) => {
     :
         <>
           <Field 
+            onClick={props.onClick}
             placeholder={props.placeholder} 
             name={props.name} 
             type={props.type ? props.type : "text"}

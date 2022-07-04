@@ -17,6 +17,9 @@ import User from './containers/User/User';
 import { loadFlowers as loadFlowersAction } from "./store/flowers/actions"
 import FlowerDetail from './containers/Flowers/FlowerDetail/FlowerDetail';
 import SightingList from './containers/Sighting/List/SightingList';
+import SightingDetail from './containers/Sighting/SightingDetail/SightingDetail';
+import NewSighting from './containers/Sighting/NewSighting/NewSighting';
+import { loadAboutMeInfo as loadAboutMeInfoAction } from './store/user/actions';
 
 interface Props {
 
@@ -25,13 +28,16 @@ interface Props {
 const App:React.FC<Props> = (props: Props) => {
 
 	const dispatch = useDispatch();
+	const token = localStorage.getItem('bearerToken')
 	const isLogin: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLogin)
     const loadFlowers = useCallback(() => dispatch(loadFlowersAction()), [dispatch])
+	const loadAboutMeInfo = useCallback(() => dispatch(loadAboutMeInfoAction()), [])
 	const loadFavoriteFlowers = useCallback(() => dispatch(loadFavoriteFlowersAction()), [])
 
 	useEffect(() => {
 		loadFlowers()
-		if(isLogin) {
+		if(isLogin || token) {
+			loadAboutMeInfo()
 			loadFavoriteFlowers()
 		}
 	}, [])
@@ -66,8 +72,12 @@ const App:React.FC<Props> = (props: Props) => {
 						element={<SightingList />}
 					/>
 					<Route
-						path="/sighlist/:id"
-						element={<Home />}
+						path="/sighting/:id"
+						element={<SightingDetail />}
+					/>
+					<Route
+						path="/new-sighting"
+						element={<NewSighting />}
 					/>
 				</Routes>
 			</Fragment>

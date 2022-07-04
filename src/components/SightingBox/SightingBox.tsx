@@ -29,7 +29,14 @@ const SightingBox:React.FC<Props> = (props: Props) => {
                 className="sighting-box__button" />
             <div className="sighting-box__about">
                 <div className="sighting-box__about__icon">
-                    <img className="sighting-box__about__icon__img" src={Image} alt={Image} />
+                    <img 
+                        className="sighting-box__about__icon__img" 
+                        src={Image
+                            ? Image
+                            : NoImage
+                        } 
+                        alt={Image}
+                    />
                     <div className="d-flex flex-column">
                         <p className="sighting-box__about__name">Balcony Flower</p>
                         <p className="sighting-box__about__username">by Adam Moore</p>
@@ -39,7 +46,7 @@ const SightingBox:React.FC<Props> = (props: Props) => {
                     Platycodon grandiflorus (from Ancient Greek πλατύς "wide" and κώδων "bell") is a species of herbaceous flowering perennial plant of the …
                 </p>
                 <hr />
-                <div className="d-flex align-items-center sighting-box__about__buttons">
+                <div className="d-flex align-items-center justify-content-between sighting-box__about__buttons">
                     <button className="comment">
                         <img src={ChatIcon} alt={ChatIcon} />
                         <p>18 Comments</p>

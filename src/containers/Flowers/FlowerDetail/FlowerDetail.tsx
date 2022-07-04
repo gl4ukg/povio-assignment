@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FlowerDetailBackground from "../../../assets/images/flower-detail.jpg"
 import Button from "../../../components/Button/Button";
 import { CombinedReducersState } from "../../../store/combinedReducers";
@@ -19,6 +19,7 @@ interface Props {
 const FlowerDetail:React.FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { id } = useParams();
     const loadFlowerDetail = useCallback((state: number) => dispatch(loadFlowerDetailAction(state)), [dispatch])
     const flower: IFlower | undefined = useSelector((state: CombinedReducersState) => state.flowers?.flowerDetail)
@@ -32,7 +33,7 @@ const FlowerDetail:React.FC<Props> = (props: Props) => {
             <div className="image-slider">
                 <img src={FlowerDetailBackground} alt={FlowerDetailBackground} />
             </div>
-            <div className="container-fluid defaul-container">
+            <div className="container-fluid default-container">
                 <div className="flower-detail-container">
                     <div className="row">
                         <div className="col-md-3">
@@ -60,7 +61,8 @@ const FlowerDetail:React.FC<Props> = (props: Props) => {
                                     <Button
                                         isColored
                                         isSmall
-                                        text="+ Add New Sighting" />
+                                        text="+ Add New Sighting"
+                                        onClick={() => navigate("/new-sighting")} />
                                 </div>
                             </div>
                         </div>

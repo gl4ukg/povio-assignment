@@ -1,0 +1,29 @@
+.new-sighting {
+    .form-container {
+        margin-top: -80px;
+        background-color: #fff;
+        position: relative;
+        z-index: 9999;
+        padding: 30px;
+        padding-bottom: 50px;
+        border-radius: 3px;
+        box-shadow: 0px 15px 30px 0px #0000000D;
+        margin-bottom: 80px;
+    }
+    &__title {
+        font-family: "Ubuntu";
+        font-size: 40px;
+        font-weight: 300;
+        color: var(--light-grey);
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    &__subtitle {
+        font-family: "Ubuntu";
+        font-size: 17px;
+        font-weight: 300;
+        color: var(--light-grey);
+        text-align: center;
+        margin-bottom: 50px;
+    }
+}

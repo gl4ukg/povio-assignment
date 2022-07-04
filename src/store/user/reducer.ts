@@ -24,8 +24,8 @@ export const userReducer = (state = initialState, action: IAction) =>
             case constants.IS_LOGIN:
                 draft.isLogin = action.payload
                 break;
-            case constants.SET_USER:
-                draft.user = action.payload
+            case constants.SET_ABOUT_ME_INFO:
+                draft.user = action.payload.user
                 break;
         }
     })

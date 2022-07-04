@@ -8,7 +8,7 @@ interface Props {
 
 const User:React.FC<Props> = (props: Props) => {
     return (
-        <div className="container-fluid defaul-container">
+        <div className="container-fluid default-container">
             <UserProfile 
                 name="Adam Moore"
                 sightings="47 sightings"

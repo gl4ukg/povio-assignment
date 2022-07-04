@@ -17,7 +17,7 @@ const Home:React.FC<Props> = (props: Props) => {
     return (
         <div className="home-page">   
             <MainBanner />
-            <div className="container-fluid defaul-container">
+            <div className="container-fluid default-container">
                 <div className="flowers-container">
                     <div className="row">
                     {(flowers && flowers?.length > 0) && (

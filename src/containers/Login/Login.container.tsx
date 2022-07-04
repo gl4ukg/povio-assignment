@@ -38,7 +38,7 @@ const Login:React.FC<Props> = (props: Props) => {
                         <Form className="">
                             <TextInput
                                 className={"username-input"}
-                                name={'username'}
+                                name={'email'}
                                 bordered
                                 labelKey={'Email'}/>
                             <PasswordInput

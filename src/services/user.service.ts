@@ -1,5 +1,5 @@
 import axios from "axios"
-import { AuthResponse, LoginType, ProfileType } from "../types/user.types"
+import { AuthResponse, IUserInfoResponse, LoginType, ProfileType } from "../types/user.types"
 
 
 export const register = (payload: ProfileType): Promise<AuthResponse> => {
@@ -10,7 +10,7 @@ export const login = (payload: LoginType): Promise<AuthResponse> => {
     return axios.post('/api/v1/users/login', payload)
 }
 
-export const getUserProfile = (): Promise<ProfileType> => {
+export const getUserProfile = (): Promise<IUserInfoResponse> => {
     const token = localStorage.getItem('bearerToken')
     return axios.get('/api/v1/users/me', {
         headers: {

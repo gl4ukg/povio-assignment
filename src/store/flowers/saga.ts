@@ -16,7 +16,6 @@ function* loadFlowers() {
     yield put(setLoading(true))
     try {
         const response: AxiosResponse<IFlowers> = yield call(getFlowersService)
-        console.log(response)
         yield put(setFlowers(response.data))
         yield put(setLoading(false))
     } catch {

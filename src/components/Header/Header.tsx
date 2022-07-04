@@ -26,10 +26,11 @@ const Header:React.FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+	const token = localStorage.getItem('bearerToken')
+	const isLogin: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLogin)
     const isLoginModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isLoginModal)
     const isSignUpModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isSignUpModal)
     const isProfileModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isProfileModal);
-    const isLogin: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLogin);
     const user: ProfileType | undefined = useSelector((state: CombinedReducersState) => state.user?.user)
     const setLoginModal = useCallback((state: boolean) => dispatch(setLoginModalAction(state)), [dispatch])
     const setSignUpModal = useCallback((state: boolean) => dispatch(setSignUpModalAction(state)), [dispatch])
@@ -37,7 +38,7 @@ const Header:React.FC<Props> = (props: Props) => {
 
     return (
         <div>
-            <nav className="container-fluid defaul-container">
+            <nav className="container-fluid default-container">
                 <div className="header">
                     <div 
                         onClick={() => navigate("/")}
@@ -52,7 +53,7 @@ const Header:React.FC<Props> = (props: Props) => {
                                 Flowers
                             </li>
                             <li 
-                                onClick={() => navigate("latest-sightings")}
+                                onClick={() => navigate("sighting-list")}
                                 className="header-link">
                                 Latest Sightings
                             </li>
@@ -61,16 +62,18 @@ const Header:React.FC<Props> = (props: Props) => {
                                 className="header-link">
                                 Favorites
                             </li>
-                            {!isLogin && <li
+                            {!(isLogin || token) && <li
                                 className="header-link" 
                                 onClick={() => setLoginModal(true)}>
                                 Login
                             </li>}
                         </ul>
                         {
-                            isLogin 
+                            (isLogin || token) 
                                 ? <div className="d-flex align-items-center">
-                                    <p className="header-link" >{`${user.first_name} ${user.last_name}`} </p>
+                                    <p className="header-link" >{user.first_name ?
+                                        `${user.first_name} ${user.last_name}`
+                                        : user.email} </p>
                                     <img 
                                         onClick={() => setProfileModal(true)}
                                         className="header-profile-picture" 

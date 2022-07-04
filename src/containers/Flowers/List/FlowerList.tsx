@@ -28,7 +28,7 @@ const FlowerList:React.FC<Props> = (props: Props) => {
                 search={() => searchFlowers(searchVal)}
                 className="my-5"
             />
-            <div className="container-fluid defaul-container">
+            <div className="container-fluid default-container">
                 <div className="flowers-container">
                     <div className="row">
                     {(flowers && flowers?.length > 0) && (

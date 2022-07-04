@@ -15,7 +15,7 @@ const FlowerFavorites:React.FC<Props> = (props: Props) => {
     // const flowers: IFavorite[] | undefined = useSelector((state: CombinedReducersState) => state.flowers?.favoriteFlowers?.sightings);
 
     return (
-        <div className="container-fluid defaul-container">
+        <div className="container-fluid default-container">
             <div className="flowers-favorite-container">
                 <div className="row">
                 {/* {(flowers && flowers?.length > 0) && (

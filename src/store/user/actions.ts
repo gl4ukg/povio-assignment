@@ -1,4 +1,4 @@
-import { LoginType, ProfileType } from "../../types/user.types"
+import { IUserInfoResponse, LoginType, ProfileType } from "../../types/user.types"
 import * as constants from "./constants"
 
 export const setLoading = (payload: boolean) => {
@@ -29,15 +29,15 @@ export const setLogin = (payload: boolean) => {
     }
 }
 
-export const loadUser = () => {
+export const loadAboutMeInfo = () => {
     return {
-        type: constants.LOAD_USER
+        type: constants.LOAD_ABOUT_ME_INFO
     }
 }
 
-export const setUser = (payload: ProfileType) => {
+export const setAboutMeInfo = (payload: IUserInfoResponse) => {
     return {
-        type: constants.SET_USER,
+        type: constants.SET_ABOUT_ME_INFO,
         payload
     }
 }
