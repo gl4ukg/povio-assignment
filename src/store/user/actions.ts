@@ -41,3 +41,18 @@ export const setAboutMeInfo = (payload: IUserInfoResponse) => {
         payload
     }
 }
+
+
+export const loadUserInfo = (payload: number) => {
+    return {
+        type: constants.LOAD_USER_INFO,
+        payload
+    }
+}
+
+export const setUserInfo = (payload: ProfileType) => {
+    return {
+        type: constants.SET_USER_INFO,
+        payload
+    }
+}

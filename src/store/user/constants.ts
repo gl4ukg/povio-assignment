@@ -7,3 +7,6 @@ export const IS_LOGIN = `${scope}/IS_LOGIN`;
 
 export const LOAD_ABOUT_ME_INFO = `${scope}/LOAD_ABOUT_ME_INFO`
 export const SET_ABOUT_ME_INFO = `${scope}/SET_ABOUT_ME_INFO`
+
+export const LOAD_USER_INFO = `${scope}/LOAD_USER_INFO`
+export const SET_USER_INFO = `${scope}/SET_USER_INFO`

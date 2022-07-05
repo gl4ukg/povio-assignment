@@ -1,4 +1,6 @@
 import { IPagination } from "./app.types"
+import { IFlower } from "./flowers.types"
+import { ProfileType } from "./user.types"
 
 export interface ISighting {
     id:	number
@@ -7,6 +9,12 @@ export interface ISighting {
     description:	string
     latitude:	number
     longitude:	number
+    comments_count?: number
+    created_at?: string
+    flower?: IFlower
+    likes_count?: number
+    picture?: string
+    user?: ProfileType
 }
 
 export interface ISightingsResponse {

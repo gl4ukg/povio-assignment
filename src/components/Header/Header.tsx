@@ -31,7 +31,7 @@ const Header:React.FC<Props> = (props: Props) => {
     const isLoginModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isLoginModal)
     const isSignUpModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isSignUpModal)
     const isProfileModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isProfileModal);
-    const user: ProfileType | undefined = useSelector((state: CombinedReducersState) => state.user?.user)
+    const user: ProfileType | undefined = useSelector((state: CombinedReducersState) => state.user?.userAboutMe)
     const setLoginModal = useCallback((state: boolean) => dispatch(setLoginModalAction(state)), [dispatch])
     const setSignUpModal = useCallback((state: boolean) => dispatch(setSignUpModalAction(state)), [dispatch])
     const setProfileModal = useCallback((state: boolean) => dispatch(setProfileModalAction(state)), [dispatch])
@@ -71,9 +71,9 @@ const Header:React.FC<Props> = (props: Props) => {
                         {
                             (isLogin || token) 
                                 ? <div className="d-flex align-items-center">
-                                    <p className="header-link" >{user.first_name ?
-                                        `${user.first_name} ${user.last_name}`
-                                        : user.email} </p>
+                                    <p className="header-link" >{user?.first_name ?
+                                        `${user?.first_name} ${user?.last_name}`
+                                        : user?.email} </p>
                                     <img 
                                         onClick={() => setProfileModal(true)}
                                         className="header-profile-picture" 

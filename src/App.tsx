@@ -20,6 +20,7 @@ import SightingList from './containers/Sighting/List/SightingList';
 import SightingDetail from './containers/Sighting/SightingDetail/SightingDetail';
 import NewSighting from './containers/Sighting/NewSighting/NewSighting';
 import { loadAboutMeInfo as loadAboutMeInfoAction } from './store/user/actions';
+import { ProfileType } from './types/user.types';
 
 interface Props {
 
@@ -52,7 +53,7 @@ const App:React.FC<Props> = (props: Props) => {
 						element={<Home />}
 					/>
 					<Route
-						path="/user"
+						path="/user/:id"
 						element={<User />}
 					/>
 					<Route

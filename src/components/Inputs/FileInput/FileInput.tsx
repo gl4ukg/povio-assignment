@@ -15,7 +15,6 @@ interface Props{
     multiple?: boolean
     setFiles: (file: FileUpload) => void;
     onChange?: () => void;
-    intl: any,
     accept?: string,
 }
 
@@ -42,7 +41,7 @@ const FileInput: React.FC<Props> = (props: Props) => {
                         fileName: files[i].name
                     })
                 }
-                setFileLabel(`${allFiles.length} ${props.intl.formatMessage({id:"app.filesSelected", defaultMessage:"file te selektuara"})}`)
+                setFileLabel(`${allFiles.length} file te selektuara `)
                 // props.setFiles(allFiles as Array<any>)
             }else{
                 setFileLabel(files[0].name)
@@ -52,7 +51,7 @@ const FileInput: React.FC<Props> = (props: Props) => {
                 })
             }
         }else{
-            setFileLabel(props.labelKey ? props.labelKey : props.intl.formatMessage({id:"app.noChosenFile", defaultMessage:"Asnje file i selektuar"}))
+            setFileLabel(props.labelKey ? props.labelKey : "Asnje file i selektuar")
         }
     }
 

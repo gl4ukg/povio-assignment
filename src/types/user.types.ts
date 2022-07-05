@@ -13,6 +13,7 @@ export interface ProfileType {
     profile_picture?: string,
     password?: string
     password_confirmation?: string,
+    full_name?: string,
 }
 
 export interface AuthResponse {

@@ -3,7 +3,7 @@ import "./UserProfile.scss"
 import NoImage from "../../assets/icons/no-image.webp"
 
 interface Props {
-    image: string,
+    image?: string,
     name: string,
     sightings: string
 }
@@ -20,7 +20,10 @@ const UserProfile:React.FC<Props> = (props: Props) => {
                         ? image
                         : NoImage
                     } 
-                    alt={image} />
+                    alt={image 
+                        ? image
+                        : NoImage
+                    } />
                 <div className="d-flex flex-column justify-content-center">
                     <p className="user-profile__name">{name}</p>
                     <p className="user-profile__sightings">{sightings}</p>

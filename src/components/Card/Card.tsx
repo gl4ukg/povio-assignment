@@ -6,6 +6,8 @@ import Button from "../Button/Button"
 import Skeleton from "react-loading-skeleton"
 import classNames from "classnames"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { CombinedReducersState } from "../../store/combinedReducers"
 
 
 interface Props {
@@ -18,9 +20,12 @@ interface Props {
 const Card:React.FC<Props> = (props: Props) => {
 
     const navigate = useNavigate()
+	const token = localStorage.getItem('bearerToken')
+	const isLogin: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLogin)
     const { item, isLoading, className } = props;
 
     if(isLoading) return <Skeleton count={1} />
+
     return (
         <div
             onClick={() => navigate(`/flower/${item?.id}`)} 
@@ -33,12 +38,14 @@ const Card:React.FC<Props> = (props: Props) => {
                 className={styles.card__image}
             />
             <div className={styles.card__wrapper}>
-                <button className={styles.card__favoriteButton}>
-                    {item?.favorite
-                        ? <BackgroundedStarIcon />
-                        : <StarIcon />
-                    }
-                </button>
+                {(token || isLoading) &&
+                    <button className={styles.card__favoriteButton}>
+                        {item?.favorite
+                            ? <BackgroundedStarIcon />
+                            : <StarIcon />
+                        }
+                    </button>
+                }
                 <div className={styles.card__description}>
                     <p className={styles.card__title}>{item?.name}</p>
                     <p className={styles.card__subTitle}>{item?.latin_name}</p>

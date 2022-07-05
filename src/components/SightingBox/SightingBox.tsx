@@ -3,23 +3,39 @@ import Button from "../Button/Button";
 import LocationIcon from "../../assets/icons/location.svg"
 import ChatIcon from "../../assets/icons/chat.svg"
 import HeartIcon from "../../assets/icons/heart.svg"
-import Image from "../../assets/images/home-banner.jpg"
 import NoImage from "../../assets/icons/no-image.webp"
+import { ISighting } from "../../types/sigting.type";
+import Skeleton from "react-loading-skeleton";
+import classNames from "classnames";
 
 interface Props {
-    // item:
+    isLoading?: boolean,
+    item?: ISighting,
+    goToItem?: () => void,
+    className?: string,
 }
 
 const SightingBox:React.FC<Props> = (props: Props) => {
+
+    const { item, isLoading, goToItem, className } = props;
+
+    if(isLoading) return <Skeleton count={1} />
+   
     return (
-        <div className="sighting-box">
+        <div 
+            className={classNames("sighting-box", {
+                [className as string]: classNames
+            })}>
             <img 
+                onClick={goToItem}
                 className="sighting-box__image" 
-                src={Image 
-                    ? Image
+                src={item?.picture 
+                    ? `https://${item?.picture}`
                     : NoImage
                 }
-                alt={Image}
+                alt={item?.picture 
+                    ? item?.picture
+                    : NoImage}
             />
             <Button
                 isSmall
@@ -31,29 +47,32 @@ const SightingBox:React.FC<Props> = (props: Props) => {
                 <div className="sighting-box__about__icon">
                     <img 
                         className="sighting-box__about__icon__img" 
-                        src={Image
-                            ? Image
+                        src={item?.user?.profile_picture
+                            ? item?.user?.profile_picture
                             : NoImage
                         } 
-                        alt={Image}
+                        alt={item?.user?.profile_picture
+                            ? item?.user?.profile_picture
+                            : NoImage
+                        }
                     />
                     <div className="d-flex flex-column">
-                        <p className="sighting-box__about__name">Balcony Flower</p>
-                        <p className="sighting-box__about__username">by Adam Moore</p>
+                        <p className="sighting-box__about__name">{item?.name}</p>
+                        <p className="sighting-box__about__username">by {item?.user?.full_name}</p>
                     </div>
                 </div>
                 <p className="sighting-box__about__description">
-                    Platycodon grandiflorus (from Ancient Greek πλατύς "wide" and κώδων "bell") is a species of herbaceous flowering perennial plant of the …
+                    {item?.description}
                 </p>
                 <hr />
                 <div className="d-flex align-items-center justify-content-between sighting-box__about__buttons">
                     <button className="comment">
                         <img src={ChatIcon} alt={ChatIcon} />
-                        <p>18 Comments</p>
+                        <p>{item?.comments_count} Comments</p>
                     </button>
                     <button className="like">
                         <img src={HeartIcon} alt={HeartIcon} />
-                        <p>12 Favorites</p>
+                        <p>{item?.likes_count} Favorites</p>
                     </button>
                 </div>
             </div>

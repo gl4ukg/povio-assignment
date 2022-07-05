@@ -2,5 +2,14 @@
     width: 100%;
     form {
         width: 100%;
+        .avatar {
+            margin-bottom: 40px;
+            div,
+            canvas {
+                width: 250px!important;
+                height: 250px !important;
+                border-radius: 100%!important;
+            }
+        }
     }
 }
