@@ -5,10 +5,11 @@ import {
     getFavoriteFlowers as getFavoriteFlowersService,
     getFlowerDetail as getFlowerDetailService,
     getFlowers as getFlowersService, 
+    makeFlowerAsMyFavorite as makeFlowerAsMyFavoriteService, 
     searchFlowers as searchFlowersService
 } from "../../services/flowers.service";
 import { IAction } from "../../types/action.types";
-import { IFlower, IFlowerResponse, IFlowers, IFlowersFavoriteResponse, IFlowersResponse } from "../../types/flowers.types";
+import { IFavorite, IFlower, IFlowerResponse, IFlowers, IFlowersFavoriteResponse, IFlowersResponse } from "../../types/flowers.types";
 import { setFavoriteFlowers, setFlowerDetail, setFlowers, setLoading } from "./actions";
 import * as constants from "./constants"
 
@@ -47,6 +48,19 @@ function* loadFavoriteFlowers() {
     }
 }
 
+function* addFlowerAsFavorite(action: IAction) {
+    yield put(setLoading(true))
+    try {
+        const response: AxiosResponse<IFavorite> = yield call(makeFlowerAsMyFavoriteService, action.payload)
+        // yield put(setFavoriteFlowers(response.data))
+        console.log(response, "add reponse")
+        toast.info("Flower has been added as your favorite!")
+        yield put(setLoading(false))
+    } catch{
+        yield put(setLoading(false))
+    }
+}
+
 function* loadFlowerDetail(action: IAction){
     yield put(setLoading(true))
     try {
@@ -63,4 +77,5 @@ export default function* flowersSaga() {
     yield takeLatest(constants.LOAD_SEARCH_FLOWERS, loadSearchFlower)
     yield takeLatest(constants.LOAD_FAVORITE_FLOWERS, loadFavoriteFlowers)
     yield takeLatest(constants.LOAD_FLOWER_DETAIL, loadFlowerDetail)
+    yield takeLatest(constants.LOAD_FAVORITE_FLOWER, addFlowerAsFavorite)
 }

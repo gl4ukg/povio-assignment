@@ -21,3 +21,16 @@ export const setUserSightings = (payload: ISightingsResponse) => {
         payload
     }
 }
+
+export const loadAllSightings = () => {
+    return {
+        type: constants.LOAD_ALL_SIGHTINGS
+    }
+}
+
+export const setAllSightings = (payload: ISightingsResponse) => {
+    return {
+        type: constants.SET_ALL_SIGHTINGS,
+        payload
+    }
+}

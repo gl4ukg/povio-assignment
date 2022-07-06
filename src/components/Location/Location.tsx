@@ -1,7 +1,6 @@
 import "./Location.scss"
 import { LatLngExpression } from "leaflet"
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
-import Button from "../../components/Button/Button";
 
 interface Props {
     position: LatLngExpression

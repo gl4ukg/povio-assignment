@@ -13,18 +13,10 @@ import { useState } from "react";
 import Location from "../../../components/Location/Location";
 import { LatLngExpression } from "leaflet";
 
-interface Props {
-
-}
-
-const SightingDetail:React.FC<Props> = (props: Props) => {
+const SightingDetail:React.FC = () => {
 
     const [isAddCommentView, addCommentView] = useState<boolean>(false);
     const position = [42.389017, 20.432032];
-
-    const handleSubmit = () => {
-
-    }
 
     return (
         <div className="sighting-detail">
@@ -129,7 +121,7 @@ const SightingDetail:React.FC<Props> = (props: Props) => {
                         <Formik
                             initialValues={commentInitialValue}
                             validationScheme={validationSchemeComment}
-                            onSubmit={handleSubmit as () => void}>
+                            onSubmit={{} as () => void}>
                             {(formikProps) => (
                                 <Form className="">
                                     <TextAreaInput

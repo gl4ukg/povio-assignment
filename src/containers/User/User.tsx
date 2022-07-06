@@ -11,11 +11,7 @@ import { CombinedReducersState } from "../../store/combinedReducers"
 import { loadUserSightings as loadUserSightingsAction } from "../../store/sighting/actions"
 import { ISighting, ISightingsResponse } from "../../types/sigting.type"
 
-interface Props {
-
-}
-
-const User:React.FC<Props> = (props: Props) => {
+const User:React.FC = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -42,18 +38,21 @@ const User:React.FC<Props> = (props: Props) => {
                     image={userInfo?.profile_picture} />
                 <div className="user-page__container">
                     <div className="row">
-                        {sightings?.sightings?.map((sighting: ISighting) => {
-                            return (
-                                <div className="col-lg-3 col-md-4 col-sm-6" >    
-                                    <SightingBox 
-                                        key={sighting.id} 
-                                        item={sighting} 
-                                        isLoading={isLoadingSightings}
-                                        goToItem={() => navigate(`/sighting/${sighting.id}`)}
-                                    />
-                                </div>
-                            )
-                        })}
+                        {sightings?.sightings?.length > 0
+                            ? sightings?.sightings?.map((sighting: ISighting) => {
+                                return (
+                                    <div className="col-lg-3 col-md-4 col-sm-6" >    
+                                        <SightingBox 
+                                            key={sighting.id} 
+                                            item={sighting} 
+                                            isLoading={isLoadingSightings}
+                                            goToItem={() => navigate(`/sighting/${sighting.id}`)}
+                                        />
+                                    </div>
+                                )
+                            })
+                            : <p className="text-center"><b>This user doesn't have any Sighting</b></p>
+                        }
                     </div>
                 </div>
             </div>

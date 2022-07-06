@@ -1,25 +1,26 @@
 import { Form, Formik, FormikValues } from "formik";
 import { LatLngExpression } from "leaflet"
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import Button from "../../../components/Button/Button";
+import FileInput from "../../../components/Inputs/FileInput/FileInput";
 import TextAreaInput from "../../../components/Inputs/TextAreaInput/TextAreaInput";
 import TextInput from "../../../components/Inputs/TextInput/TextInput";
 import Location from "../../../components/Location/Location"
+import { CombinedReducersState } from "../../../store/combinedReducers";
+import { FileUpload } from "../../../types/fileUpload.types";
+import { ISighting } from "../../../types/sigting.type";
 import { validationSchemeNewSighting } from "../../../utils/validations";
 import { newSightingInitalValues } from "./constants";
 import "./NewSighting.scss"
 
-interface Props {
-
-}
-
-const NewSighting:React.FC<Props> = (props: Props) => {
+const NewSighting:React.FC = () => {
 
     const position = [42.389017, 20.432032];
     const [cordinates, setCordinates] = useState<string>("");
-    const handleSubmit = (values: any, formikApi: FormikValues) => {
+    const [image, setImage] = useState<FileUpload>({} as FileUpload);
+    const allSightings: ISighting[] | undefined = useSelector((state: CombinedReducersState) => state.sightings?.sightings?.sightings)
 
-    }
 
     function getCurrentPosition() {
         let currentLocation = ''
@@ -49,11 +50,11 @@ const NewSighting:React.FC<Props> = (props: Props) => {
             <div className="container-fluid default-container">
                 <div className="form-container">
                     <p className="new-sighting__title">Add New Sighting</p>
-                    <p className="new-sighting__subtitle">Explore between more than 8.427 sightings</p>
+                    <p className="new-sighting__subtitle">Explore between more than {allSightings?.length} sightings</p>
                     <Formik
                         initialValues={newSightingInitalValues}
                         validationScheme={validationSchemeNewSighting}
-                        onSubmit={handleSubmit as () => void}>
+                        onSubmit={{} as () => void}>
                         {(formikProps) => (
                             <Form className="row">
                                 <div className="col-md-6">
@@ -72,7 +73,14 @@ const NewSighting:React.FC<Props> = (props: Props) => {
                                         value={cordinates}
                                         labelKey={'Coordinates of the sighting'}/>
                                 </div>
-                                <div className="col-md-3"></div>
+                                <div className="col-md-3">
+                                    <FileInput 
+                                        value={image}
+                                        className="change-avatar-input"
+                                        labelKey={"Add a Photo"}
+                                        setFiles={setImage}
+                                    />
+                                </div>
                                 <div className="col-md-12">
                                     <TextAreaInput
                                         cols="100"

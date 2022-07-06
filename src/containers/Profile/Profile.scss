@@ -1,5 +1,50 @@
 .profile {
     width: 100%;
+    padding: 20px 70px;
+    .about-profile {
+        display: flex;
+        flex-direction: column;
+        &__profile_picture {
+            width: 80px;
+            height: 80px;
+            border-radius: 100%;
+            margin-right: 20px;
+        }
+        &__name {
+            font-family: "Ubuntu";
+            font-weight: 300;
+            font-size: 25px;
+            color: var(--grey);
+            margin-bottom: 0;
+            text-transform: capitalize;
+        }
+        &__user_sightings {
+            font-family: "Ubuntu";
+            font-weight: 400;
+            font-size: 13px;
+            color: var(--light-grey);
+            margin-bottom: 0;
+        }
+        &__info {
+            margin-top: 40px;
+            &__label {
+                font-family: "Ubuntu";
+                font-weight: 400;
+                font-size: 10px;
+                color: var(--light-grey);
+                margin-bottom: 0;
+            }
+            &__value {
+                font-family: "Ubuntu";
+                font-weight: 400;
+                font-size: 18px;
+                color: var(--grey);
+            }
+            &__button {
+                margin-top: 50px;
+            }
+        }
+    }
     form {
         width: 100%;
         .avatar {

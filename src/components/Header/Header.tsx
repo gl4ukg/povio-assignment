@@ -18,11 +18,7 @@ import { ProfileType } from "../../types/user.types";
 import NoImage from "../../assets/icons/no-image.webp"
 import { useNavigate } from "react-router-dom";
 
-interface Props {
-
-}
-
-const Header:React.FC<Props> = (props: Props) => {
+const Header:React.FC = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -71,7 +67,9 @@ const Header:React.FC<Props> = (props: Props) => {
                         {
                             (isLogin || token) 
                                 ? <div className="d-flex align-items-center">
-                                    <p className="header-link" >{user?.first_name ?
+                                    <p 
+                                        onClick={() => navigate(`/user/${user?.id}`)}
+                                        className="header-link" >{user?.first_name ?
                                         `${user?.first_name} ${user?.last_name}`
                                         : user?.email} </p>
                                     <img 
@@ -99,7 +97,6 @@ const Header:React.FC<Props> = (props: Props) => {
 				isModalHeader
 				isOpen={isLoginModal}
 				close={() => setLoginModal(false)}
-				// classNames={styles.loginWidth}
 				>
 				<Login />
 			</ModalComponent>
@@ -107,7 +104,6 @@ const Header:React.FC<Props> = (props: Props) => {
 				isModalHeader
 				isOpen={isSignUpModal}
 				close={() => setSignUpModal(false)}
-				// classNames={styles.loginWidth}
 				>
 				<Signup />
 			</ModalComponent>
@@ -115,7 +111,7 @@ const Header:React.FC<Props> = (props: Props) => {
 				isModalHeader
 				isOpen={isProfileModal}
 				close={() => setProfileModal(false)}
-				// classNames={styles.loginWidth}
+				classNames={"profile-modal"}
 				>
 				<Profile />
 			</ModalComponent>

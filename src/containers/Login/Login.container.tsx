@@ -11,11 +11,8 @@ import { useCallback } from "react";
 import { loadLogin } from "../../store/user/actions";
 import { setLoginModal as setLoginModalAction } from "../../store/app/action"
 
-interface Props {
 
-}
-
-const Login:React.FC<Props> = (props: Props) => {
+const Login:React.FC = () => {
 
     const dispatch = useDispatch();
     const login = useCallback((state: LoginType) => dispatch(loadLogin(state)), [dispatch])

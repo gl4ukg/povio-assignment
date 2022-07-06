@@ -11,11 +11,8 @@ import { validationSchemeSignup } from "../../utils/validations"
 import { signUpInitialValues } from "./constants"
 import "./Signup.scss"
 
-interface Props {
-    
-}
 
-const Signup:React.FC<Props> = (props: Props) => {
+const Signup:React.FC = () => {
 
     const dispatch = useDispatch();
     const signup = useCallback((state: ProfileType) => dispatch(loadSignUp(state)), [dispatch])

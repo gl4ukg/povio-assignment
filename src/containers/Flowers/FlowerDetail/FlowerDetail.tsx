@@ -11,6 +11,7 @@ import StarIcon from "../../../assets/icons/star.svg"
 import BackgroundedStarIcon from "../../../assets/icons/backgrounded-star.svg"
 import "./FlowerDetail.scss"
 import SightingBox from "../../../components/SightingBox/SightingBox";
+import { ISighting } from "../../../types/sigting.type";
 
 interface Props {
 
@@ -23,6 +24,8 @@ const FlowerDetail:React.FC<Props> = (props: Props) => {
     const { id } = useParams();
     const loadFlowerDetail = useCallback((state: number) => dispatch(loadFlowerDetailAction(state)), [dispatch])
     const flower: IFlower | undefined = useSelector((state: CombinedReducersState) => state.flowers?.flowerDetail)
+    const allSightings: ISighting[] | undefined = useSelector((state: CombinedReducersState) => state.sightings?.sightings?.sightings)
+    const isLoading: boolean | undefined = useSelector((state: CombinedReducersState) => state.sightings?.isLoading)
 
     useEffect(() => {
         loadFlowerDetail(Number(id))
@@ -70,17 +73,14 @@ const FlowerDetail:React.FC<Props> = (props: Props) => {
                     <div className="row">
                         <div className="col-md-3">
                             <ul className="flower-detail__list">
-                                <li>Kingdom: Plantae</li>
-                                <li>Order: Asterales</li>
-                                <li>Family: Campanulaceae</li>
-                                <li>Species: P. grandiflorus</li>
+                                {flower?.features?.map((item) => {
+                                    return <li>{item}</li>
+                                })}
                             </ul>
                         </div>
                         <div className="col-md-9">
                             <div className="d-flex ms-4">
-                                <p className="flower-detail__description-content">Platycodon grandiflorus (from Ancient Greek πλατύς "wide" and κώδων "bell") is a species of herbaceous flowering perennial plant of the family Campanulaceae, and the only member of the genus Platycodon. It is native to East Asia (China, Korea, Japan, and the Russian Far East).[1] It is commonly known as balloon flower[2][3] (referring to the balloon-shaped flower buds), Chinese bellflower,[2] or platycodon.[2]
-
-Growing to 60 cm (24 in) tall by 30 cm (12 in) wide, it is an herbaceous perennial with dark green leaves and blue flowers in late summer. A notable feature of the plant is the flower bud which swells like a balloon before fully opening.[4] The five petals are fused together into a bell shape at the base, like its relatives, the campanulas. There are varieties with white, pink and purple blooms in cultivation.[5] In Korea, white flowers are more common. This plant[6] together with its cultivars 'Apoyama group'[7] and 'Mariesii'[8] have gained the Royal Horticultural Society's Award of Garden Merit.</p>
+                                <p className="flower-detail__description-content">{flower?.content}</p>
                             </div>
                         </div>
                         <div className="col-12">
@@ -88,18 +88,16 @@ Growing to 60 cm (24 in) tall by 30 cm (12 in) wide, it is an herbaceous perenni
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-3 col-md-4 col-sm-6">
-                            <SightingBox />
-                        </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6">
-                            <SightingBox />
-                        </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6">
-                            <SightingBox />
-                        </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6">
-                            <SightingBox />
-                        </div>
+                    {allSightings?.map((item: ISighting) => {
+                        return (
+                            <div className="col-lg-3 col-md-4 col-sm-6">
+                                <SightingBox 
+                                    isLoading={isLoading}
+                                    goToItem={() => navigate(`/sighting/${item.id}`)}
+                                    item={item} />
+                            </div>
+                        )
+                    })}
                     </div>
                 </div>
             </div>

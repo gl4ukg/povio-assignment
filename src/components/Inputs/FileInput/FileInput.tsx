@@ -1,7 +1,6 @@
 import React, {ChangeEvent, CSSProperties, useEffect, useState} from 'react';
 import './FileInput.scss'
-import PlusIconLink from '../../../assets/icons/plus.svg'
-import {connect} from "react-redux";
+import PicIcon from '../../../assets/icons/pl-icon-photo.svg'
 import { FileUpload } from '../../../types/fileUpload.types';
 
 interface Props{
@@ -42,7 +41,6 @@ const FileInput: React.FC<Props> = (props: Props) => {
                     })
                 }
                 setFileLabel(`${allFiles.length} file te selektuara `)
-                // props.setFiles(allFiles as Array<any>)
             }else{
                 setFileLabel(files[0].name)
                 props.setFiles({
@@ -55,7 +53,7 @@ const FileInput: React.FC<Props> = (props: Props) => {
         }
     }
 
-    return <div className={`mikaInputFileWrapper ${props.className}`}>
+    return <div className={`inputFileWrapper ${props.className}`}>
         <input 
             type="file" 
             id={'fileInput'} 
@@ -63,8 +61,8 @@ const FileInput: React.FC<Props> = (props: Props) => {
             accept={props?.accept} 
             onChange={(e:ChangeEvent<HTMLInputElement>) => {setFileOnChange(e.target.files)}} 
             multiple={props.multiple} />
+        <img src={PicIcon} alt="plus-icon" />
         <p className={'m-0'}>{ fileLabel }</p>
-        <img src={PlusIconLink} alt="plus-icon" />
     </div>
 }
 

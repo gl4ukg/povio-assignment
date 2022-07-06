@@ -1,6 +1,6 @@
 import {CSSProperties, useState} from 'react';
 import {ErrorMessage, Field} from 'formik';
-// import EyeIcon from '../../../assets/icons/view.png'
+import EyeIcon from '../../../assets/icons/view.png'
 import './PasswordInput.scss'
 import classNames from "classnames";
 
@@ -34,7 +34,7 @@ const PasswordInput: React.FC<Props> = (props: Props) => {
     })}>
         { props.labelKey && <label> {props.labelKey}</label> }
         <Field placeholder={props.placeholder} name={props.name} validate={props.validate} type={visiblePassword ? "text" : "password"}/>
-        {/* <img src={EyeIcon} alt="" onClick={()=> setVisiblePassword(!visiblePassword) } className={`togglePasswordIcon ${visiblePassword && "notHidden"}`} /> */}
+        <img src={EyeIcon} alt="" onClick={()=> setVisiblePassword(!visiblePassword) } className={`togglePasswordIcon ${visiblePassword && "notHidden"}`} />
         <ErrorMessage name={props.name as string}>{(message: string) => returnErrorMessage(message)}</ErrorMessage>
     </div>
 }

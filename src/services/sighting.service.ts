@@ -2,12 +2,9 @@ import axios from "axios"
 import { IComment, IContent, ILike, ISighting, ISightingCommentResponse, ISightingLikeResponse, ISightingsResponse } from "../types/sigting.type"
 
 
-export const getSightings = (page: number): Promise<ISightingsResponse> => {
+export const getSightings = (): Promise<ISightingsResponse> => {
     const token = localStorage.getItem('bearerToken')
     return axios.get('/api/v1/sightings', {
-        params: {
-            page
-        },
         headers: {
             "Authorization": "Bearer " + JSON.parse(token as string)
         }

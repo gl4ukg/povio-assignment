@@ -57,6 +57,10 @@
             font-size: 12px;
             color: var(--light-grey);
             margin: 20px 0;
+            text-overflow: ellipsis;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 60px;
         }
         &__buttons {
             button {

@@ -57,7 +57,7 @@ export const getFavoriteFlowers = ():Promise<IFlowersFavoriteResponse> => {
 
 export const makeFlowerAsMyFavorite = (flower_id: number):Promise<IFavorite> => {
     const token = localStorage.getItem('bearerToken')
-    return axios.post(`/api​/v1​/flowers​/${flower_id}​/favorites`, {
+    return axios.post(`/api/v1/flowers/${flower_id}/favorites`, null, {
         headers: {
             "Authorization": "Bearer " + JSON.parse(token as string)
         }

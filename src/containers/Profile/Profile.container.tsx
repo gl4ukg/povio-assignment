@@ -1,106 +1,112 @@
-import { Form, Formik } from "formik"
-import { ChangeEvent, useCallback, useState } from "react"
+import { useCallback, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import Button from "../../components/Button/Button"
-import FileInput from "../../components/Inputs/FileInput/FileInput"
-import TextInput from "../../components/Inputs/TextInput/TextInput"
 import { setProfileModal as setProfileModalAction } from "../../store/app/action"
 import { CombinedReducersState } from "../../store/combinedReducers"
-import { ICard } from "../../types/card.types"
-import { FileUpload } from "../../types/fileUpload.types"
 import { ProfileType } from "../../types/user.types"
-import { validationSchemeProfile } from "../../utils/validations"
-import { profileInitialValues } from "./constants"
 import "./Profile.scss"
-import Avatar from 'react-avatar-edit'
 import NoImage from "../../assets/icons/no-image.webp"
+import { setLogin as setLoginAction } from "../../store/user/actions"
+import { useNavigate } from "react-router-dom"
+import { loadUserSightings as loadUserSightingsAction } from "../../store/sighting/actions"
+import { ISighting } from "../../types/sigting.type"
 
 
-interface Props {
-
-}
-
-const Profile:React.FC<Props> = (props: Props) => {
+const Profile:React.FC = () => {
 
     const dispatch = useDispatch();
-    const [userAvatar, setUserAvatar] = useState<ChangeEvent<HTMLInputElement> | File>({} as ChangeEvent<HTMLInputElement> | File)
-    const [preview, setPreview] = useState(null)
-    const isProfileModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isProfileModal);
+    const navigate = useNavigate();
     const user: ProfileType | undefined = useSelector((state: CombinedReducersState) => state.user?.userAboutMe);
+    const userSighting: ISighting[] | undefined = useSelector((state: CombinedReducersState) => state.sightings?.userSighting?.sightings)
+
     const setProfileModal = useCallback((state: boolean) => dispatch(setProfileModalAction(state)), [dispatch])
-    const flowers: ICard[] | undefined = useSelector((state: CombinedReducersState) => state.flowers?.flowers?.flowers);
+    const setLogin = useCallback((state: boolean) => dispatch(setLoginAction(state)), [dispatch])
+    const loadUserSightings = useCallback((state: number) => dispatch(loadUserSightingsAction(state)), [dispatch])
 
+    useEffect(() => {
+        if(user?.id){
+            loadUserSightings(user.id)
+        }
+    }, [])
 
-    const handleSubmit = (payload: ProfileType) => {
+    function logOut() {
+        localStorage.removeItem('bearerToken')
+        setLogin(false)
         setProfileModal(false)
+        navigate("/")
     }
-    
 
     return (
         <div className="profile">
-            <Formik
-                initialValues={{
-                    first_name: user?.first_name || "",
-                    last_name: user?.last_name || "",
-                    date_of_birth: user?.date_of_birth || "",
-                    email: user?.email || ""
-                }}
-                validationScheme={validationSchemeProfile}
-                onSubmit={handleSubmit as () => void}>
-                {(formikProps) => (
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
-                        <Form className="">
-                        <div className="avatar">
-                            {/* <Avatar
-                                width={390}
-                                // height={295}
-                                // onCrop={onCrop}
-                                // onClose={onClose}
-                                src={""}
-                                onFileLoad={(e: ChangeEvent<HTMLInputElement> | File) => setUserAvatar(e)}
-                            /> */}
-                        </div>
-                        
-                            <TextInput
-                                disabled
-                                className={"username-input"}
-                                name={'first_name'}
-                                bordered
-                                labelKey={'First Name'}/>
-                            <TextInput
-                                disabled
-                                className={"username-input"}
-                                name={'last_name'}
-                                bordered
-                                labelKey={'Last Name'}/>
-                            <TextInput
-                                disabled
-                                className={"username-input"}
-                                name={'date_of_birth'}
-                                bordered
-                                labelKey={'Date of Birth'}
-                                type="date"
-                            />
-                            <TextInput
-                                disabled
-                                className={"username-input"}
-                                name={'email'}
-                                bordered
-                                labelKey={'Email'}/>
-                            <div className="d-flex justify-content-center">
-                                <Button
-                                    isDisabled={!formikProps.dirty}
-                                    isSubmit
-                                    isColored
-                                    isSmall
-                                    text={'LogOut'}
-                                />
-                            </div>
-                        </Form>
+            <div className="about-profile">
+                <div className="d-flex">
+                    <img 
+                        className="about-profile__profile_picture"
+                        src={user?.profile_picture
+                            ? user?.profile_picture
+                            : NoImage
+                        }  
+                        alt={user?.profile_picture
+                            ? user?.profile_picture
+                            : NoImage
+                        } />
+                    <div className="d-flex flex-column justify-content-center">
+                        <p className="about-profile__name">{user?.first_name} {user?.last_name}</p>
+                        <p className="about-profile__user_sightings">{userSighting?.length} sightings</p>
                     </div>
-                )}
-            </Formik>
+                </div>
+                <div className="about-profile__info">
+                    <div className="d-flex flex-column">
+                        <p className="about-profile__info__label">
+                            First Name
+                        </p>
+                        <p className="about-profile__info__value">
+                            {user?.first_name}
+                        </p>
+                    </div>
+                    <div className="d-flex flex-column">
+                        <p className="about-profile__info__label">
+                            Last Name
+                        </p>
+                        <p className="about-profile__info__value">
+                            {user?.last_name}
+                        </p>
+                    </div>
+                    <div className="d-flex flex-column">
+                        <p className="about-profile__info__label">
+                            Date of birth
+                        </p>
+                        <p className="about-profile__info__value">
+                            {user?.date_of_birth 
+                                ? user?.date_of_birth 
+                                : "May 20, 1980"
+                            }
+                        </p>
+                    </div>
+                    <div className="d-flex flex-column">
+                        <p className="about-profile__info__label">
+                            Email Address
+                        </p>
+                        <p className="about-profile__info__value">
+                            {user?.email
+                                ? user?.email
+                                : "johdoe@testemail.com"
+                            }
+                        </p>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <Button
+                            isSubmit
+                            isColored
+                            isSmall
+                            text={'LogOut'}
+                            onClick={logOut}
+                            className={"about-profile__info__button"}
+                        />
+                    </div>
+                </div>
+            </div>    
         </div>
     )
 }

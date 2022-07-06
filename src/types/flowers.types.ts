@@ -13,6 +13,8 @@ export interface IFlower {
     sightings:number
     profile_picture: string
     favorite: boolean
+    features?: string[]
+    content?: string,
 }
 
 export interface IFlowerPayload {
@@ -35,10 +37,10 @@ export interface IFlowersResponse {
 export interface IFavorite {
     id:	number
     user_id:number
-    flower: IFlower[]
+    flower: IFlower | ICard
 }
 
 export interface IFlowersFavoriteResponse {
-    sightings: IFavorite[]
+    fav_flowers: IFavorite[]
     meta: IPagination
 }

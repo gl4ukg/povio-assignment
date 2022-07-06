@@ -1,15 +1,27 @@
+import { useCallback, useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import Button from "../../../components/Button/Button"
 import SightingBox from "../../../components/SightingBox/SightingBox"
+import { CombinedReducersState } from "../../../store/combinedReducers"
+import { ISighting } from "../../../types/sigting.type"
 import "./SightingList.scss"
+import { loadAllSightings as loadAllSightingsAction } from '../../../store/sighting/actions';
 
-interface Props {
-
-}
-
-const SightingList:React.FC<Props> = (props: Props) => {
+const SightingList:React.FC = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const allSightings: ISighting[] | undefined = useSelector((state: CombinedReducersState) => state.sightings?.sightings?.sightings)
+    const isLoading: boolean | undefined = useSelector((state: CombinedReducersState) => state.sightings?.isLoading)
+    
+	const loadAllSightings = useCallback(() => dispatch(loadAllSightingsAction()), [dispatch])
+
+    useEffect(() => {
+        loadAllSightings()
+        console.log(allSightings,"allSightings")
+    }, [])
 
     return (
         <div className="sighting-list">
@@ -18,7 +30,7 @@ const SightingList:React.FC<Props> = (props: Props) => {
                     <div className="d-flex align-items-start justify-content-center position-relative">
                         <div className="sighting-list__text">
                             <p className="sighting-list__text__title">Sighting List</p>
-                            <p className="sighting-list__text__subtitle">Explore between more than 8.427 sightings</p>
+                            <p className="sighting-list__text__subtitle">Explore between more than {allSightings?.length} sightings</p>
                         </div>
                         <Button
                             isSmall
@@ -30,18 +42,16 @@ const SightingList:React.FC<Props> = (props: Props) => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-lg-3 col-md-4 col-sm-6">
-                        <SightingBox />
-                    </div>
-                    <div className="col-lg-3 col-md-4 col-sm-6">
-                        <SightingBox />
-                    </div>
-                    <div className="col-lg-3 col-md-4 col-sm-6">
-                        <SightingBox />
-                    </div>
-                    <div className="col-lg-3 col-md-4 col-sm-6">
-                        <SightingBox />
-                    </div>
+                    {allSightings?.map((item: ISighting) => {
+                        return (
+                            <div className="col-lg-3 col-md-4 col-sm-6">
+                                <SightingBox 
+                                    isLoading={isLoading}
+                                    goToItem={() => navigate(`/sighting/${item.id}`)}
+                                    item={item} />
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>

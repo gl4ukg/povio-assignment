@@ -17,6 +17,7 @@ export interface IFlowersReducer {
 const initialState = {
     isLoading: false,
     flowers: {},
+    favoriteFlowers: {},
     flowerDetail: {}
 } as IFlowersReducer;
 

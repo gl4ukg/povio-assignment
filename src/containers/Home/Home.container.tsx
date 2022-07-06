@@ -4,15 +4,16 @@ import Card from "../../components/Card/Card";
 import MainBanner from "../../components/MainBanner/MainBanner";
 import { CombinedReducersState } from "../../store/combinedReducers";
 import { ICard } from "../../types/card.types";
+import { useDispatch } from "react-redux";
+import { useCallback } from "react";
+import { loadFavoriteFlower } from "../../store/flowers/actions";
 
-interface Props {
+const Home:React.FC = () => {
 
-}
-
-const Home:React.FC<Props> = (props: Props) => {
-
+    const dispatch = useDispatch();
     const isLoading: boolean | undefined = useSelector((state: CombinedReducersState) => state.flowers?.isLoading);
     const flowers: ICard[] | undefined = useSelector((state: CombinedReducersState) => state.flowers?.flowers?.flowers);
+    const setFavoriteFlower = useCallback((state: number) => dispatch(loadFavoriteFlower(state)), [dispatch])
 
     return (
         <div className="home-page">   
@@ -30,7 +31,9 @@ const Home:React.FC<Props> = (props: Props) => {
                                         <Card 
                                             className={"w-100"}
                                             isLoading={isLoading}
-                                            item={flower} />
+                                            item={flower}
+                                            setFavoriteFlower={() => setFavoriteFlower(flower.id)}
+                                             />
                                     </div>
                                 )})
                             : (<p className="no-flowers text-center">0 Flowers</p>)

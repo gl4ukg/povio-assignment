@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
+import React from 'react';
 import styles from './Modal.module.scss'
 import ModalFooterComponent from './ModalFooterComponent';
 import ModalHeaderComponent from './ModalHeaderComponent';

@@ -21,6 +21,7 @@ import SightingDetail from './containers/Sighting/SightingDetail/SightingDetail'
 import NewSighting from './containers/Sighting/NewSighting/NewSighting';
 import { loadAboutMeInfo as loadAboutMeInfoAction } from './store/user/actions';
 import { ProfileType } from './types/user.types';
+import { loadAllSightings as loadAllSightingsAction } from './store/sighting/actions';
 
 interface Props {
 
@@ -34,9 +35,11 @@ const App:React.FC<Props> = (props: Props) => {
     const loadFlowers = useCallback(() => dispatch(loadFlowersAction()), [dispatch])
 	const loadAboutMeInfo = useCallback(() => dispatch(loadAboutMeInfoAction()), [])
 	const loadFavoriteFlowers = useCallback(() => dispatch(loadFavoriteFlowersAction()), [])
+	const loadAllSightings = useCallback(() => dispatch(loadAllSightingsAction()), [dispatch])
 
 	useEffect(() => {
 		loadFlowers()
+		loadAllSightings()
 		if(isLogin || token) {
 			loadAboutMeInfo()
 			loadFavoriteFlowers()

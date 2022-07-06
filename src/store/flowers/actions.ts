@@ -42,6 +42,21 @@ export const setFavoriteFlowers = (payload: IFlowersFavoriteResponse) => {
     }
 }
 
+
+export const loadFavoriteFlower = (payload: number) => {
+    return {
+        type: constants.LOAD_FAVORITE_FLOWER,
+        payload
+    }
+}
+
+export const setFavoriteFlower = (payload: IFlower) => {
+    return {
+        type: constants.SET_FAVORITE_FLOWER,
+        payload
+    }
+}
+
 export const loadFlowerDetail = (payload: number) => {
     return  {
         type: constants.LOAD_FLOWER_DETAIL,
