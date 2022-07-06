@@ -3,12 +3,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .logo-nav {
+    .navbar-brand {
         cursor: pointer;
     }
+    .navbar-toggler {
+        &:focus {
+            box-shadow: 0;
+            outline: none;
+            border: 0;
+        }
+    }
     .page-list {
-        display: flex;
-        align-items: center;
         ul  {
             display: flex;
             list-style: none;
@@ -22,6 +27,16 @@
                 cursor: pointer;
                 &:last-child {
                     color: #DF9186;
+                }
+            }
+            &.is-mobile {
+                @media only screen and (max-width: 992px) {
+                    position: absolute;
+                    width: 100%;
+                    background-color: #fff;
+                    li {
+                        margin-bottom: 10px;
+                    }
                 }
             }
         }

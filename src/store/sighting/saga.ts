@@ -28,7 +28,6 @@ function* loadAllSightings() {
     yield put(setLoading(true))
     try {
         const response: AxiosResponse<ISightingsResponse> = yield call(getSightingsService)
-        console.log(response,"response")
         if(response.data) {
             yield put(setAllSightings(response.data))
             yield put(setLoading(false))

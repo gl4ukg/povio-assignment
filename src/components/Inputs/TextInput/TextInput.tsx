@@ -20,6 +20,7 @@ interface Props{
   onChange?: (value: string) => void;
   isBirthdayLimit?: boolean;
   onClick?: () => void,
+  autocomplete?:string
 }
 
 const TextInput: React.FC<Props> = (props: Props) => {
@@ -57,6 +58,7 @@ const TextInput: React.FC<Props> = (props: Props) => {
     :
         <>
           <Field 
+            autoComplete={props.autocomplete}
             onClick={props.onClick}
             placeholder={props.placeholder} 
             name={props.name} 

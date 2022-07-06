@@ -17,6 +17,7 @@ interface Props{
     className?: string
     onChange?: () => void;
     validate?: any
+    autocomplete?:string
 }
 
 const PasswordInput: React.FC<Props> = (props: Props) => {
@@ -33,9 +34,23 @@ const PasswordInput: React.FC<Props> = (props: Props) => {
         [props.className as string]: props.className
     })}>
         { props.labelKey && <label> {props.labelKey}</label> }
-        <Field placeholder={props.placeholder} name={props.name} validate={props.validate} type={visiblePassword ? "text" : "password"}/>
-        <img src={EyeIcon} alt="" onClick={()=> setVisiblePassword(!visiblePassword) } className={`togglePasswordIcon ${visiblePassword && "notHidden"}`} />
-        <ErrorMessage name={props.name as string}>{(message: string) => returnErrorMessage(message)}</ErrorMessage>
+        <Field 
+            autoComplete={props.autocomplete}
+            placeholder={props.placeholder} 
+            name={props.name} 
+            validate={props.validate} 
+            type={visiblePassword ? "text" : "password"
+            }/>
+        <img 
+            src={EyeIcon} 
+            alt={EyeIcon} 
+            onClick={()=> setVisiblePassword(!visiblePassword) } 
+            className={`togglePasswordIcon ${visiblePassword && "notHidden"}`} 
+            />
+        <ErrorMessage 
+            name={props.name as string}>
+                {(message: string) => returnErrorMessage(message)}
+        </ErrorMessage>
     </div>
 }
 

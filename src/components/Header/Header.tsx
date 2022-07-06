@@ -5,7 +5,7 @@ import ModalComponent from "../Modal/ModalComponent";
 import { useSelector } from "react-redux";
 import { CombinedReducersState } from "../../store/combinedReducers";
 import { useDispatch } from "react-redux";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { 
     setLoginModal as setLoginModalAction,
     setProfileModal as setProfileModalAction,
@@ -17,82 +17,122 @@ import Profile from "../../containers/Profile/Profile.container";
 import { ProfileType } from "../../types/user.types";
 import NoImage from "../../assets/icons/no-image.webp"
 import { useNavigate } from "react-router-dom";
+import classNames from "classnames";
+import HamburgerIcon from "../../assets/icons/mm_hamburger.svg"
 
 const Header:React.FC = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
+    const [isNavCollapsed, setIsNavCollapsed] = useState<boolean>(true);
 	const token = localStorage.getItem('bearerToken')
+
 	const isLogin: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLogin)
     const isLoginModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isLoginModal)
     const isSignUpModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isSignUpModal)
     const isProfileModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app?.isProfileModal);
     const user: ProfileType | undefined = useSelector((state: CombinedReducersState) => state.user?.userAboutMe)
+
     const setLoginModal = useCallback((state: boolean) => dispatch(setLoginModalAction(state)), [dispatch])
     const setSignUpModal = useCallback((state: boolean) => dispatch(setSignUpModalAction(state)), [dispatch])
     const setProfileModal = useCallback((state: boolean) => dispatch(setProfileModalAction(state)), [dispatch])
 
     return (
-        <div>
-            <nav className="container-fluid default-container">
-                <div className="header">
+        <div className="header">
+            <div className="container-fluid default-container">
+                <nav className="navbar navbar-expand-lg ">
                     <div 
                         onClick={() => navigate("/")}
-                        className="logo-nav">
+                        className="navbar-brand">
                         <Logo />
                     </div>
-                    <div className="page-list">
-                        <ul>
+                    <button 
+                        onClick={() => setIsNavCollapsed(!isNavCollapsed)}
+                        className="navbar-toggler justify-content-end" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#menuItems" 
+                        aria-controls="menuItems" 
+                        aria-expanded={!isNavCollapsed ? true : false} 
+                        aria-label="Toggle Navigation">
+                        <img src={HamburgerIcon} alt={HamburgerIcon} />
+                    </button>
+                    <div className={classNames('navbar-collapse page-list justify-content-end', {
+                            "collapse": isNavCollapsed
+                        })} id="menuItems">
+                        <ul className={"navbar-nav align-items-center is-mobile"}>
                             <li 
-                                onClick={() => navigate("flowers")}
+                                onClick={() => {
+                                    navigate("flowers")
+                                    setIsNavCollapsed(true)
+                                }}
                                 className="header-link">
                                 Flowers
                             </li>
                             <li 
-                                onClick={() => navigate("sighting-list")}
+                                onClick={() => {
+                                    navigate("sighting-list")
+                                    setIsNavCollapsed(true)
+                                }}
                                 className="header-link">
                                 Latest Sightings
                             </li>
                             <li 
-                                onClick={() => navigate("favorite-flowers")}
+                                onClick={() => {
+                                    navigate("favorite-flowers")
+                                    setIsNavCollapsed(true)
+                                }}
                                 className="header-link">
                                 Favorites
                             </li>
                             {!(isLogin || token) && <li
                                 className="header-link" 
-                                onClick={() => setLoginModal(true)}>
+                                onClick={() => {
+                                    setLoginModal(true)
+                                    setIsNavCollapsed(true)
+                                }}>
                                 Login
                             </li>}
-                        </ul>
                         {
                             (isLogin || token) 
                                 ? <div className="d-flex align-items-center">
                                     <p 
-                                        onClick={() => navigate(`/user/${user?.id}`)}
+                                        onClick={() => {
+                                            navigate(`/user/${user?.id}`)
+                                            setIsNavCollapsed(true)
+                                        }}
                                         className="header-link" >{user?.first_name ?
                                         `${user?.first_name} ${user?.last_name}`
                                         : user?.email} </p>
                                     <img 
-                                        onClick={() => setProfileModal(true)}
+                                        onClick={() => {
+                                            setProfileModal(true)
+                                            setIsNavCollapsed(true)
+                                        }}
                                         className="header-profile-picture" 
                                         src={user?.profile_picture 
                                                 ? user?.profile_picture 
                                                 : NoImage
                                         } 
                                         alt="profile-picture"
-                                     />
+                                    />
                                 </div>
                                 : <Button 
                                     isSmall
                                     isColored
                                     isRounded
                                     text="New Account"
-                                    onClick={() => setSignUpModal(true)}
+                                    onClick={() => {
+                                        setSignUpModal(true)
+                                        setIsNavCollapsed(true)
+                                    }}
                                 />
                         }
+                        </ul>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
 			<ModalComponent
 				isModalHeader
 				isOpen={isLoginModal}

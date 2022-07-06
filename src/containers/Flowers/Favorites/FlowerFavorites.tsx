@@ -29,26 +29,31 @@ const FlowerFavorites:React.FC<Props> = (props: Props) => {
 
     return (
         <div className="container-fluid default-container">
-            <div className="flowers-favorite-container">
-                <div className="row">
-                {(flowers && flowers?.length > 0) && (
-                    flowers?.length > 0
-                        ? flowers?.map((flower: IFavorite) => {
-                            return (
-                                <div 
-                                    key={flower.id}
-                                    className="col-lg-3 col-md-4 col-sm-6"> 
-                                    <Card
-                                        className={"w-100"}
-                                        isLoading={isLoading}
-                                        item={flower?.flower} />
-                                </div>
-                            )})
-                        : (<p className="no-flowers text-center">0 Flowers</p>)
-                    )
-                }
+            {(isLogin || token)
+                ? <div className="flowers-favorite-container">
+                    <div className="row">
+                    {(flowers && flowers?.length > 0) && (
+                        flowers?.length > 0
+                            ? flowers?.map((flower: IFavorite) => {
+                                return (
+                                    <div 
+                                        key={flower.id}
+                                        className="col-lg-3 col-md-4 col-sm-6"> 
+                                        <Card
+                                            className={"w-100"}
+                                            isLoading={isLoading}
+                                            item={flower?.flower} />
+                                    </div>
+                                )})
+                            : (<p className="no-flowers text-center">0 Flowers</p>)
+                        )
+                    }
+                    </div>
                 </div>
-            </div>
+                : <div className="flowers-favorite-container">
+                    <h1 className="text-center mt-5"><b>You need to be logged in to see you favorites</b></h1>
+                </div>
+            }
         </div>
     )
 }

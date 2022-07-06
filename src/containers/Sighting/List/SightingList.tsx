@@ -20,7 +20,6 @@ const SightingList:React.FC = () => {
 
     useEffect(() => {
         loadAllSightings()
-        console.log(allSightings,"allSightings")
     }, [])
 
     return (
@@ -44,7 +43,9 @@ const SightingList:React.FC = () => {
                 <div className="row">
                     {allSightings?.map((item: ISighting) => {
                         return (
-                            <div className="col-lg-3 col-md-4 col-sm-6">
+                            <div 
+                                key={item.id}
+                                className="col-lg-3 col-md-4 col-sm-6">
                                 <SightingBox 
                                     isLoading={isLoading}
                                     goToItem={() => navigate(`/sighting/${item.id}`)}

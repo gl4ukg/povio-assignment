@@ -34,11 +34,13 @@ const Login:React.FC = () => {
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
                         <Form className="">
                             <TextInput
+                                autocomplete="email"
                                 className={"username-input"}
                                 name={'email'}
                                 bordered
                                 labelKey={'Email'}/>
                             <PasswordInput
+                                autocomplete="current-password"
                                 className="mb-4"
                                 name={'password'}
                                 bordered

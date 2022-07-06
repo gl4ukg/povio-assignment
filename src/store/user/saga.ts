@@ -69,7 +69,6 @@ function* loadUserInfo(action: IAction) {
     yield put(setLoading(true))
     try {
         const response: AxiosResponse<IUserInfoResponse> = yield call(showUserInfoService, action.payload)
-        console.log(response,"show user info")
         if(response.data.user) {
             yield put(setUserInfo(response.data.user))
         } else {

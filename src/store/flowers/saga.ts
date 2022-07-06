@@ -52,8 +52,6 @@ function* addFlowerAsFavorite(action: IAction) {
     yield put(setLoading(true))
     try {
         const response: AxiosResponse<IFavorite> = yield call(makeFlowerAsMyFavoriteService, action.payload)
-        // yield put(setFavoriteFlowers(response.data))
-        console.log(response, "add reponse")
         toast.info("Flower has been added as your favorite!")
         yield put(setLoading(false))
     } catch{

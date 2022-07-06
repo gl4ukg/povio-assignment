@@ -73,8 +73,8 @@ const FlowerDetail:React.FC<Props> = (props: Props) => {
                     <div className="row">
                         <div className="col-md-3">
                             <ul className="flower-detail__list">
-                                {flower?.features?.map((item) => {
-                                    return <li>{item}</li>
+                                {flower?.features?.map((item: string, idx: number) => {
+                                    return <li key={idx}>{item}</li>
                                 })}
                             </ul>
                         </div>
@@ -88,9 +88,11 @@ const FlowerDetail:React.FC<Props> = (props: Props) => {
                         </div>
                     </div>
                     <div className="row">
-                    {allSightings?.map((item: ISighting) => {
+                    {allSightings?.map((item: ISighting, idx: number) => {
                         return (
-                            <div className="col-lg-3 col-md-4 col-sm-6">
+                            <div 
+                                key={idx} 
+                                className="col-lg-3 col-md-4 col-sm-6">
                                 <SightingBox 
                                     isLoading={isLoading}
                                     goToItem={() => navigate(`/sighting/${item.id}`)}

@@ -54,11 +54,13 @@ const Signup:React.FC = () => {
                                 type="date"
                             />
                             <TextInput
+                                autocomplete="email"
                                 className={"username-input"}
                                 name={'email'}
                                 bordered
                                 labelKey={'Email'}/>
                             <PasswordInput
+                                autocomplete="current-password"
                                 name={'password'}
                                 className="mb-4"
                                 bordered
