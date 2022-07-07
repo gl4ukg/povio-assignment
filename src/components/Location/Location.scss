@@ -24,6 +24,12 @@
             position: absolute;
             bottom: 100px;
             right: 0px;
+            @media only screen and (max-width: 575px) {
+
+                top: 27%;
+                left: 25%;
+                transform: translateY(-50%);
+            }
         }
     }
 }

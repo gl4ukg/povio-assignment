@@ -19,6 +19,7 @@ const User:React.FC = () => {
 
     const userInfo: ProfileType | undefined = useSelector((state: CombinedReducersState) => state.user?.user)
     const sightings: ISightingsResponse | undefined = useSelector((state: CombinedReducersState) => state.sightings?.userSighting)
+    const isLoadingUser: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLoading)
     const isLoadingSightings: boolean | undefined = useSelector((state: CombinedReducersState) => state.sightings?.isLoading)
     const setUserInfo = useCallback((state: number) => dispatch(loadUserInfoAction(state)), [dispatch])
     const loadUserSightings = useCallback((state: number) => dispatch(loadUserSightingsAction(state)), [dispatch])
@@ -35,21 +36,20 @@ const User:React.FC = () => {
                 <UserProfile 
                     name={`${userInfo?.first_name} ${userInfo?.last_name}`}
                     sightings={`${sightings?.sightings?.length} sightings`}
-                    image={userInfo?.profile_picture} />
-                <div className="user-page__container">
+                    image={userInfo?.profile_picture}
+                    isLoading={isLoadingUser} />
+                <div className="user-page__container flowers-container">
                     <div className="row">
-                        {sightings?.sightings?.length > 0
+                        {(sightings?.sightings?.length >= 0 && !isLoadingSightings)
                             ? sightings?.sightings?.map((sighting: ISighting) => {
                                 return (
-                                    <div 
+                                    <SightingBox  
                                         key={sighting.id}
-                                        className="col-lg-3 col-md-4 col-sm-6" >    
-                                        <SightingBox  
-                                            item={sighting} 
-                                            isLoading={isLoadingSightings}
-                                            goToItem={() => navigate(`/sighting/${sighting.id}`)}
-                                        />
-                                    </div>
+                                        item={sighting} 
+                                        isLoading={isLoadingSightings}
+                                        goToItem={() => navigate(`/sighting/${sighting.id}`)}
+                                        className="col-lg-3 col-md-4 col-sm-6 col-12" 
+                                    />
                                 )
                             })
                             : <h1 className="text-center"><b>This user doesn't have any Sighting</b></h1>

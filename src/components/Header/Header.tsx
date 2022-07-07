@@ -19,6 +19,7 @@ import NoImage from "../../assets/icons/no-image.webp"
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import HamburgerIcon from "../../assets/icons/mm_hamburger.svg"
+import XIcon from "../../assets/icons/pl-icon-close.svg"
 
 const Header:React.FC = () => {
 
@@ -43,7 +44,10 @@ const Header:React.FC = () => {
             <div className="container-fluid default-container">
                 <nav className="navbar navbar-expand-lg ">
                     <div 
-                        onClick={() => navigate("/")}
+                        onClick={() => {
+                            navigate("/")
+                            setIsNavCollapsed(true)
+                        }}
                         className="navbar-brand">
                         <Logo />
                     </div>
@@ -56,12 +60,22 @@ const Header:React.FC = () => {
                         aria-controls="menuItems" 
                         aria-expanded={!isNavCollapsed ? true : false} 
                         aria-label="Toggle Navigation">
-                        <img src={HamburgerIcon} alt={HamburgerIcon} />
+                        <img 
+                            src={
+                            isNavCollapsed 
+                                ? HamburgerIcon 
+                                : XIcon
+                            } 
+                            alt={
+                            isNavCollapsed 
+                                ? HamburgerIcon 
+                                : XIcon
+                            } />
                     </button>
                     <div className={classNames('navbar-collapse page-list justify-content-end', {
                             "collapse": isNavCollapsed
                         })} id="menuItems">
-                        <ul className={"navbar-nav align-items-center is-mobile"}>
+                        <ul className={"navbar-nav align-items-lg-center align-items-start is-mobile"}>
                             <li 
                                 onClick={() => {
                                     navigate("flowers")
@@ -96,7 +110,7 @@ const Header:React.FC = () => {
                             </li>}
                         {
                             (isLogin || token) 
-                                ? <div className="d-flex align-items-center">
+                                ? <div className="d-flex flex-row-reverse flex-lg-row align-items-center  align-items-lg-center">
                                     <p 
                                         onClick={() => {
                                             navigate(`/user/${user?.id}`)
@@ -110,7 +124,7 @@ const Header:React.FC = () => {
                                             setProfileModal(true)
                                             setIsNavCollapsed(true)
                                         }}
-                                        className="header-profile-picture" 
+                                        className="header-profile-picture me-3" 
                                         src={user?.profile_picture 
                                                 ? user?.profile_picture 
                                                 : NoImage

@@ -38,7 +38,7 @@ const Card:React.FC<Props> = (props: Props) => {
                 className={styles.card__image}
             />
             <div className={classNames(styles.card__wrapper, {
-                "justify-content-end": !isLogin
+                "justify-content-end": !(token || isLogin)
             })}>
                 {(token || isLoading) &&
                     <button 

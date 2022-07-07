@@ -34,7 +34,7 @@ const FlowerFavorites:React.FC = () => {
                                 return (
                                     <div 
                                         key={flower.id}
-                                        className="col-lg-3 col-md-4 col-sm-6"> 
+                                        className="col-lg-3 col-md-4 col-6"> 
                                         <Card
                                             className={"w-100"}
                                             isLoading={isLoading}

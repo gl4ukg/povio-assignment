@@ -6,6 +6,7 @@ import SearchInput from "../../../components/Inputs/SearchInput/SearchInput"
 import { CombinedReducersState } from "../../../store/combinedReducers";
 import { searchFlowers as searchFlowersAction } from "../../../store/flowers/actions";
 import { ICard } from "../../../types/card.types";
+import "./FlowerList.scss"
 
 interface Props {
 
@@ -20,7 +21,7 @@ const FlowerList:React.FC<Props> = (props: Props) => {
     const searchFlowers = useCallback((state: string) => dispatch(searchFlowersAction(state)), [dispatch])
 
     return (
-        <div>
+        <div className="flower-list">
             <SearchInput 
                 searchValue={searchVal}
                 onChangeSearchValue={(e: ChangeEvent<HTMLInputElement>) => setSearchVal(e.target.value)}
@@ -37,7 +38,7 @@ const FlowerList:React.FC<Props> = (props: Props) => {
                                 return (
                                     <div 
                                         key={flower.id}
-                                        className="col-lg-3 col-md-4 col-sm-6"> 
+                                        className="col-lg-3 col-md-4 col-6"> 
                                         <Card 
                                             className={"w-100"}
                                             isLoading={isLoading}

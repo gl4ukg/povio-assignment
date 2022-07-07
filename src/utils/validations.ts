@@ -42,7 +42,7 @@ export const COMMENT_VALIDATION = Yup.string()
     .required("Comment is required field.");
 
 export function validationSchemeLogin() {
-    return Yup.object().shape({
+    return Yup.object({
         username: LOGIN_VALIDATION,
         password: LOGIN_PASSWORD_VALIDATION,
     });
@@ -50,7 +50,8 @@ export function validationSchemeLogin() {
 
 export function validationSchemeSignup() {
     return Yup.object().shape({
-        first_name: NAME_VALIDATION,
+        first_name: Yup.string()
+    .required("Username or email is required field."),
         last_name: LAST_NAME_VALIDATION,
         date_of_birth: BIRTHDAY_VALIDATION,
         email: EMAIL_VALIDATION,

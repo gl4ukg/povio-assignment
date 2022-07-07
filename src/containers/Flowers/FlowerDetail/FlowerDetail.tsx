@@ -39,11 +39,11 @@ const FlowerDetail:React.FC<Props> = (props: Props) => {
             <div className="container-fluid default-container">
                 <div className="flower-detail-container">
                     <div className="row">
-                        <div className="col-md-3">
+                        <div className="col-lg-3 col-md-4">
                             <img className="flower-detail__image" src={flower?.profile_picture} alt={flower?.profile_picture} />
                         </div>
-                        <div className="col-md-9">
-                            <div className="d-flex justify-content-between align-items-end h-75 ms-4">
+                        <div className="col-lg-9 col-md-8">
+                            <div className="d-flex flower-detail__names_buttons flex-column flex-sm-row justify-content-between align-items-start align-items-sm-end h-75 ms-4">
                                 <div className="flower-detail__names">
                                     <div className="d-flex align-items-center">
                                         {flower?.favorite
@@ -71,14 +71,14 @@ const FlowerDetail:React.FC<Props> = (props: Props) => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-3">
+                        <div className="col-lg-3 col-md-4">
                             <ul className="flower-detail__list">
                                 {flower?.features?.map((item: string, idx: number) => {
                                     return <li key={idx}>{item}</li>
                                 })}
                             </ul>
                         </div>
-                        <div className="col-md-9">
+                        <div className="col-lg-9 col-md-8">
                             <div className="d-flex ms-4">
                                 <p className="flower-detail__description-content">{flower?.content}</p>
                             </div>
@@ -90,14 +90,12 @@ const FlowerDetail:React.FC<Props> = (props: Props) => {
                     <div className="row">
                     {allSightings?.map((item: ISighting, idx: number) => {
                         return (
-                            <div 
-                                key={idx} 
-                                className="col-lg-3 col-md-4 col-sm-6">
-                                <SightingBox 
-                                    isLoading={isLoading}
-                                    goToItem={() => navigate(`/sighting/${item.id}`)}
-                                    item={item} />
-                            </div>
+                            <SightingBox 
+                                isLoading={isLoading}
+                                goToItem={() => navigate(`/sighting/${item.id}`)}
+                                item={item} 
+                                className="col-lg-3 col-md-4 col-sm-6 col-12" 
+                                />
                         )
                     })}
                     </div>

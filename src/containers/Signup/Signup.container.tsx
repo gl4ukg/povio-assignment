@@ -32,8 +32,9 @@ const Signup:React.FC = () => {
 
     const handleSubmit = (values: ProfileType, formikApi: FormikValues) => {
         signup(values)
+        formikApi.resetForm()
     }
-
+    
     return (
         <div className="signup">
             <p className="signup-title">Create an Account</p>

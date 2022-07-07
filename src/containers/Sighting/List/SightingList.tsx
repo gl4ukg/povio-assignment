@@ -43,14 +43,12 @@ const SightingList:React.FC = () => {
                 <div className="row">
                     {allSightings?.map((item: ISighting) => {
                         return (
-                            <div 
+                            <SightingBox 
                                 key={item.id}
-                                className="col-lg-3 col-md-4 col-sm-6">
-                                <SightingBox 
-                                    isLoading={isLoading}
-                                    goToItem={() => navigate(`/sighting/${item.id}`)}
-                                    item={item} />
-                            </div>
+                                isLoading={isLoading}
+                                className="col-lg-3 col-md-4 col-6"
+                                goToItem={() => navigate(`/sighting/${item.id}`)}
+                                item={item} />
                         )
                     })}
                 </div>

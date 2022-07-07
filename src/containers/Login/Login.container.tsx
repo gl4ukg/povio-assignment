@@ -31,6 +31,7 @@ const Login:React.FC = () => {
 
     const handleSubmit = (values: LoginType, formikApi: FormikValues) => {
         login(values)
+        formikApi.resetForm()
     }
     return (
         <div className="login">
@@ -72,7 +73,10 @@ const Login:React.FC = () => {
                             isColored
                             text="Ok"
                             className="col-md-6"
-                            onClick={() => setLoginModal(false)}
+                            onClick={() => {
+                                setLoginModal(false)
+                                setSuccessLoginModal(false)
+                            }}
                                 />
                         <Button
                             isSmall

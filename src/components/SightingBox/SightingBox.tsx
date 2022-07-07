@@ -24,7 +24,7 @@ const SightingBox:React.FC<Props> = (props: Props) => {
     return (
         <div 
             className={classNames("sighting-box", {
-                [className as string]: classNames
+                [className as string]: className
             })}>
             <img 
                 onClick={goToItem}

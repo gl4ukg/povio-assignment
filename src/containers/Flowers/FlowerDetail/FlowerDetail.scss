@@ -2,15 +2,36 @@
     .image-slider {
         img {
             width: 100%;
+            @media only screen and  (max-width: 992px) {
+                height: 400px;
+            }
+        }
+        @media only screen and  (max-width: 768px) {
+            display: none;
         }
     }
     .flower-detail-container {
         margin-top: -300px;
+        @media only screen and  (max-width: 768px) {
+            margin-top: 0px;        
+        }
     }
     &__image {
         width: 280px;
         height: 350px;
         border-radius: 3px;
+        @media only screen and  (max-width: 768px) {
+            width: 100%;       
+            object-fit: cover;
+        }
+    }
+    &__names_buttons {
+        @media only screen and  (max-width: 768px)  {
+            margin-top: -100px;
+        }
+        @media only screen and  (max-width: 575px)  {
+            margin-top: -180px;
+        }
     }
     &__names {
         img {
@@ -30,6 +51,9 @@
         font-size: 14px;
         color: var(--white);
         margin-bottom: 0px;
+        @media only screen and  (max-width: 575px)   {
+            margin-bottom: 20px;
+        }
     }
     &__list {
         font-family: "Ubuntu";
@@ -39,6 +63,13 @@
         list-style: none;
         margin-top: 50px;
         padding-left: 0;
+        @media only screen and  (max-width: 768px) {
+            margin-top: 0px;
+            margin-left: 20px;
+        }
+        @media only screen and  (max-width: 575px) {
+            margin-top: 20px;
+        }
     }
     &__description-content {
         font-family: "Ubuntu";
@@ -46,5 +77,10 @@
         font-size: 13px;
         color: var(--light-grey);
         margin-bottom: 0;
+    }
+    &__buttons {
+        @media only screen and  (max-width: 768px) {
+            margin-right: 24px;
+        }
     }
 }

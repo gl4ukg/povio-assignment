@@ -23,8 +23,6 @@ interface Props{
 
 const TextInput: React.FC<Props> = (props: Props) => {
 
-  let todayDate = new Date();
-
   function returnErrorMessage(errorMessage: string){
     return <p className='errorMessage'>{errorMessage}</p>
   }

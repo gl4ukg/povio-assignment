@@ -9,6 +9,12 @@
     @media only screen and (max-width: 1280px) {
         margin: 0 auto 20px;
     }
+    @media only screen and (max-width: 768px) {
+        height: 290px
+    }
+    @media only screen and (max-width: 450px) {
+        height: 230px
+    }
     &__wrapper {
         position: absolute;
         display: flex;
@@ -43,6 +49,9 @@
         text-align: center;
         color: #fff;
         cursor: pointer;
+        @media only screen and (max-width: 450px) {
+            font-size: 16px;
+        }
     }
     &__subTitle {
         font-family: "Ubuntu";
@@ -52,5 +61,8 @@
         text-align: center;
         color: #fff;
         margin-bottom: 20px;
+        @media only screen and (max-width: 450px) {
+            font-size: 10px;
+        }
     }
 }

@@ -92,7 +92,7 @@ const NewSighting:React.FC = () => {
                                         isSmall
                                         isColored
                                         text="Create New Sighting"
-                                        className="mt-4"
+                                        className="mt-4 new-sighting__buttons"
                                         isSubmit
                                     />
                                 </div>
