@@ -27,3 +27,17 @@ export const setProfileModal = (payload: boolean) => {
         payload
     }
 }
+
+export const setSuccessSignUpModal = (payload: boolean) => {
+    return {
+        type: constants.SET_SUCCESS_SIGN_UP_MODAL,
+        payload
+    }
+}
+
+export const setSuccessLoginModal = (payload: boolean) => {
+    return {
+        type: constants.SET_SUCCESS_LOGIN_MODAL,
+        payload
+    }
+}

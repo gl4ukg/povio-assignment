@@ -12,8 +12,6 @@ interface Props{
     type?: string;
     value?: any;
     placeholder?: string;
-    flat?: boolean,
-    bordered?: boolean,
     className?: string
     onChange?: () => void;
     validate?: any
@@ -27,10 +25,7 @@ const PasswordInput: React.FC<Props> = (props: Props) => {
         return <p className='errorMessage'>{errorMessage}</p>
     }
 
-    return <div className={classNames({
-        ['passwordInputWrapper']: true,
-        ['flat']: props.flat,
-        ['bordered']: props.bordered,
+    return <div className={classNames("passwordInputWrapper", {
         [props.className as string]: props.className
     })}>
         { props.labelKey && <label> {props.labelKey}</label> }

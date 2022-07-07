@@ -8,6 +8,8 @@ export interface IAppReducer {
     isLoginModal: boolean,
     isSignUpModal: boolean,
     isProfileModal: boolean,
+    isSuccessSignUpModal: boolean,
+    isSuccessLoginModal: boolean,
 }
 
 
@@ -32,6 +34,12 @@ export const appReducer = (state = initialState, action: IAction) =>
                 break;
             case constants.SET_PROFILE_MODAL:
                 draft.isProfileModal = action.payload;
+                break;
+            case constants.SET_SUCCESS_LOGIN_MODAL:
+                draft.isSuccessLoginModal = action.payload;
+                break;
+            case constants.SET_SUCCESS_SIGN_UP_MODAL:
+                draft.isSuccessSignUpModal = action.payload;
                 break;
         }
     })

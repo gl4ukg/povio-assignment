@@ -9,7 +9,6 @@ interface Props{
     name?: string;
     flat?: boolean;
     value: FileUpload;
-    bordered?: boolean;
     className?: string;
     multiple?: boolean
     setFiles: (file: FileUpload) => void;

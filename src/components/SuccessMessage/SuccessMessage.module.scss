@@ -1,0 +1,8 @@
+.successMessage {
+    margin: 20px 0 0;
+    &__text_succes {
+        text-align: center;
+        font-family: 'Ubuntu';
+        color: var(--grey);
+    }
+}

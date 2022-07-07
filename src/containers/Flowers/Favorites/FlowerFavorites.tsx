@@ -7,11 +7,7 @@ import { IFavorite } from "../../../types/flowers.types";
 import "./FlowerFavorites.scss"
 import { loadFavoriteFlowers as loadFavoriteFlowersAction } from '../../../store/flowers/actions';
 
-interface Props {
-    
-}
-
-const FlowerFavorites:React.FC<Props> = (props: Props) => {
+const FlowerFavorites:React.FC = () => {
 
 	const dispatch = useDispatch();
 	const token = localStorage.getItem('bearerToken')

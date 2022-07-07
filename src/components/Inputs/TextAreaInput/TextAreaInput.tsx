@@ -11,8 +11,6 @@ interface Props{
     type?: string;
     value?: any;
     placeholder?: string;
-    flat?: boolean,
-    bordered?: boolean,
     disabled?: boolean,
     className?: string,
     rows: string
@@ -33,8 +31,6 @@ const TextAreaInput: React.FC<Props> = (props: Props) => {
     }
 
     return <div className={classNames("textAreaWrapper", {
-        ['flat']: props.flat,
-        ['bordered']: props.bordered,
         [props.className as string]: props.className
     })}>
         { props.labelKey && <label> {props.labelKey}</label> }

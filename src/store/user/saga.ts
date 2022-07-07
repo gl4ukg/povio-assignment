@@ -9,6 +9,7 @@ import {
 } from "../../services/user.service";
 import { IAction } from "../../types/action.types";
 import { AuthResponse, IUserInfoResponse } from "../../types/user.types";
+import { setSuccessLoginModal, setSuccessSignUpModal } from "../app/action";
 import { setAboutMeInfo, setLoading, setLogin, setUserInfo } from "./actions";
 import * as constants from "./constants";
 
@@ -18,8 +19,8 @@ function* loadLogin(action: IAction){
         const response: AxiosResponse<AuthResponse> = yield call(loginService, action.payload)
         if(response.data.auth_token !== null) {
             localStorage.setItem('bearerToken', JSON.stringify(response.data.auth_token))
-            toast.info("Congratulations! You have successfully logged into FlowrSpot!")
             yield put(setLogin(true))
+            yield put(setSuccessLoginModal(true))
         } else {
             toast.error(response.data.error)
             yield put(setLogin(false))
@@ -39,7 +40,7 @@ function* loadSignUp(action: IAction){
     try {
         const response: AxiosResponse<AuthResponse> = yield call(registerService, action.payload)
         if(response.data.auth_token !== null) {
-            toast.info("Congratulations! You have successfully signed up for FlowrSpot!")
+            yield put(setSuccessSignUpModal(true))
         } else {
             toast.error(response.data.error)
         }

@@ -12,8 +12,6 @@ interface Props{
   type?: string;
   value?: any;
   placeholder?: string;
-  flat?: boolean,
-  bordered?: boolean,
   disabled?: boolean,
   className?: string,
   children?: JSX.Element | JSX.Element[];
@@ -26,7 +24,6 @@ interface Props{
 const TextInput: React.FC<Props> = (props: Props) => {
 
   let todayDate = new Date();
-  let fifteenYearsFromNow = todayDate.setFullYear(todayDate.getFullYear() -  15)
 
   function returnErrorMessage(errorMessage: string){
     return <p className='errorMessage'>{errorMessage}</p>
@@ -38,12 +35,8 @@ const TextInput: React.FC<Props> = (props: Props) => {
     }
   }
 
-  return <div className={classNames({
-    ['formikTextInputWrapper']: true,
-    ['flat']: props.flat,
-    ['bordered']: props.bordered,
-    [props.className as string
-    ]: props.className
+  return <div className={classNames("formikTextInputWrapper", {
+    [props.className as string]: props.className
   })}>
     { props.children && <span>{props.children}</span> }
     { props.labelKey && <label> {props.labelKey}</label> }

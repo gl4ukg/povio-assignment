@@ -9,19 +9,28 @@ import { loginInitialValues } from "./constants"
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";
 import { loadLogin } from "../../store/user/actions";
-import { setLoginModal as setLoginModalAction } from "../../store/app/action"
+import { 
+    setLoginModal as setLoginModalAction,
+    setProfileModal as setProfileModalAction,
+    setSuccessLoginModal as setSuccessLoginModalAction
+} from "../../store/app/action"
+import { useSelector } from "react-redux";
+import { CombinedReducersState } from "../../store/combinedReducers";
+import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
 
 
 const Login:React.FC = () => {
 
     const dispatch = useDispatch();
+    const isSuccessLoginModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app.isSuccessLoginModal)
+
     const login = useCallback((state: LoginType) => dispatch(loadLogin(state)), [dispatch])
     const setLoginModal = useCallback((state: boolean) => dispatch(setLoginModalAction(state)), [dispatch])
+    const setProfileModal = useCallback((state: boolean) => dispatch(setProfileModalAction(state)), [dispatch])
+    const setSuccessLoginModal = useCallback((state: boolean) => dispatch(setSuccessLoginModalAction(state)), [dispatch])
 
     const handleSubmit = (values: LoginType, formikApi: FormikValues) => {
         login(values)
-        formikApi.resetForm()
-        setLoginModal(false)
     }
     return (
         <div className="login">
@@ -37,13 +46,11 @@ const Login:React.FC = () => {
                                 autocomplete="email"
                                 className={"username-input"}
                                 name={'email'}
-                                bordered
                                 labelKey={'Email'}/>
                             <PasswordInput
                                 autocomplete="current-password"
                                 className="mb-4"
                                 name={'password'}
-                                bordered
                                 labelKey={'Password'}/>
                             <Button
                                 isDisabled={!formikProps.dirty}
@@ -56,6 +63,30 @@ const Login:React.FC = () => {
                     </div>
                 )}
             </Formik>
+            {isSuccessLoginModal &&  <SuccessMessage
+                text="Congratulations! You have successfully logged into FlowrSpot!" 
+                buttons={
+                    <div className="row">
+                        <Button
+                            isSmall
+                            isColored
+                            text="Ok"
+                            className="col-md-6"
+                            onClick={() => setLoginModal(false)}
+                                />
+                        <Button
+                            isSmall
+                            text="Profile"
+                            className="col-md-6"
+                            onClick={() => {
+                                setLoginModal(false)
+                                setProfileModal(true)
+                                setSuccessLoginModal(false)
+                            }} />
+                    </div>
+                }
+            />
+            }
         </div>
     )
 }

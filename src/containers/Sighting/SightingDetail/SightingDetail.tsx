@@ -127,7 +127,6 @@ const SightingDetail:React.FC = () => {
                                     <TextAreaInput
                                         className='w-100 mb-3'
                                         name={'message'}
-                                        bordered
                                         cols='100'
                                         rows='4'
                                         labelKey={"Write a comment…"} />

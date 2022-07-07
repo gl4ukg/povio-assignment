@@ -9,7 +9,7 @@ import {
     searchFlowers as searchFlowersService
 } from "../../services/flowers.service";
 import { IAction } from "../../types/action.types";
-import { IFavorite, IFlower, IFlowerResponse, IFlowers, IFlowersFavoriteResponse, IFlowersResponse } from "../../types/flowers.types";
+import { IFlowerResponse, IFlowers, IFlowersFavoriteResponse, IFlowersResponse } from "../../types/flowers.types";
 import { setFavoriteFlowers, setFlowerDetail, setFlowers, setLoading } from "./actions";
 import * as constants from "./constants"
 
@@ -51,7 +51,7 @@ function* loadFavoriteFlowers() {
 function* addFlowerAsFavorite(action: IAction) {
     yield put(setLoading(true))
     try {
-        const response: AxiosResponse<IFavorite> = yield call(makeFlowerAsMyFavoriteService, action.payload)
+        yield call(makeFlowerAsMyFavoriteService, action.payload)
         toast.info("Flower has been added as your favorite!")
         yield put(setLoading(false))
     } catch{

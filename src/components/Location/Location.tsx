@@ -1,10 +1,11 @@
 import "./Location.scss"
 import { LatLngExpression } from "leaflet"
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
+import { ReactElement } from "react"
 
 interface Props {
     position: LatLngExpression
-    buttons: any
+    buttons: ReactElement
 }
 
 const Location:React.FC<Props> = (props: Props) => {

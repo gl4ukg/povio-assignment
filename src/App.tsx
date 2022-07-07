@@ -44,7 +44,7 @@ const App:React.FC<Props> = (props: Props) => {
 			loadAboutMeInfo()
 			loadFavoriteFlowers()
 		}
-	}, [])
+	}, [token])
 
 	return (
 		<BrowserRouter>

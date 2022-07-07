@@ -1,4 +1,4 @@
-import { Form, Formik, FormikValues } from "formik";
+import { Form, Formik } from "formik";
 import { LatLngExpression } from "leaflet"
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -61,14 +61,12 @@ const NewSighting:React.FC = () => {
                                     <TextInput
                                         className={"username-input"}
                                         name={'name'}
-                                        bordered
                                         labelKey={'Title of the sighting'}/>
                                 </div>
                                 <div className="col-md-3">
                                     <TextInput
                                         className={"username-input"}
                                         name={'description'}
-                                        bordered
                                         onClick={getCurrentPosition}
                                         value={cordinates}
                                         labelKey={'Coordinates of the sighting'}/>
@@ -87,7 +85,6 @@ const NewSighting:React.FC = () => {
                                         rows="5"
                                         className={"mb-0"}
                                         name={'description'}
-                                        bordered
                                         labelKey={'Write a description…'}/>
                                 </div>
                                 <div className="col-md-12 d-flex justify-content-end">
