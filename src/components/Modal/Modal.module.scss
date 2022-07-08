@@ -8,6 +8,9 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     z-index: 99999999!important;
+    @media only screen and (max-width: 575px) {
+        background: none;
+    }
     .modalBody {
         position:fixed;
         background: white;
@@ -18,11 +21,11 @@
         left:50%;
         transform: translate(-50%,-50%);
         border-radius: 3px;
-        @media only screen and (max-width: 470px) {
-            width: 100%;
-            height: 100vh;
+        @media only screen and (max-width: 575px) {
+            width: 100% !important;
+            height: calc(100vh - 80px);
             max-height: 100vh;
-            top: 0;
+            top: 80px;
             left: 0;
             transform: none;
         }
@@ -32,6 +35,9 @@
             justify-content: center;
             align-items: center;
             padding:30px;
+            @media only screen and (max-width: 575px) {
+                padding: 0;
+            }
         }
     }
 
@@ -46,7 +52,7 @@
         background: transparent;
         border: 0;
         top: 10px;
-        right: 6px;
+        right: 15px;
         cursor: pointer;
     }
 }
