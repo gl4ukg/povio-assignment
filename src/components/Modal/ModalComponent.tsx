@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Modal.module.scss'
-import ModalFooterComponent from './ModalFooterComponent';
-import ModalHeaderComponent from './ModalHeaderComponent';
+import ModalFooterComponent from './ModalFooter/ModalFooterComponent';
+import ModalHeaderComponent from './ModalHeader/ModalHeaderComponent';
 import classNames from "classnames";
 
 interface Props {
@@ -13,11 +13,10 @@ interface Props {
     classNames?: string,
 }
 
-const ModalComponent:React.FC<Props> = (props:Props) => {
-
+const ModalComponent: React.FC<Props> = (props: Props) => {
     const showHideClassName = props.isOpen ? styles.displayBlock : styles.displayNone;
 
-    function closeModal () {
+    const closeModal = () => {
         props.close(false)
     }
 

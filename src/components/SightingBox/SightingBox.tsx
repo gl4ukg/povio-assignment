@@ -16,25 +16,23 @@ interface Props {
 }
 
 const SightingBox:React.FC<Props> = (props: Props) => {
-
-    const { item, isLoading, goToItem, className } = props;
-
-    if(isLoading) return <Skeleton count={1} />
-   
+    if(props.isLoading) {
+        return <Skeleton count={1} />;
+    }
     return (
         <div 
             className={classNames("sighting-box", {
-                [className as string]: className
+                [props.className as string]: props.className
             })}>
             <img 
-                onClick={goToItem}
+                onClick={props.goToItem}
                 className="sighting-box__image" 
-                src={item?.picture 
-                    ? `https://${item?.picture}`
+                src={props.item?.picture 
+                    ? `https://${props.item?.picture}`
                     : NoImage
                 }
-                alt={item?.picture 
-                    ? item?.picture
+                alt={props.item?.picture 
+                    ? props.item?.picture
                     : NoImage}
             />
             <Button
@@ -47,32 +45,32 @@ const SightingBox:React.FC<Props> = (props: Props) => {
                 <div className="sighting-box__about__icon">
                     <img 
                         className="sighting-box__about__icon__img" 
-                        src={item?.user?.profile_picture
-                            ? item?.user?.profile_picture
+                        src={props.item?.user?.profile_picture
+                            ? props.item?.user?.profile_picture
                             : NoImage
                         } 
-                        alt={item?.user?.profile_picture
-                            ? item?.user?.profile_picture
+                        alt={props.item?.user?.profile_picture
+                            ? props.item?.user?.profile_picture
                             : NoImage
                         }
                     />
                     <div className="d-flex flex-column">
-                        <p className="sighting-box__about__name">{item?.name}</p>
-                        <p className="sighting-box__about__username">by {item?.user?.full_name}</p>
+                        <p className="sighting-box__about__name">{props.item?.name}</p>
+                        <p className="sighting-box__about__username">by {props.item?.user?.full_name}</p>
                     </div>
                 </div>
                 <p className="sighting-box__about__description">
-                    {item?.description}
+                    {props.item?.description}
                 </p>
                 <hr />
                 <div className="d-flex align-items-center justify-content-between sighting-box__about__buttons">
                     <button className="comment">
                         <img src={ChatIcon} alt={ChatIcon} />
-                        <p>{item?.comments_count} Comments</p>
+                        <p>{props.item?.comments_count} Comments</p>
                     </button>
                     <button className="like">
                         <img src={HeartIcon} alt={HeartIcon} />
-                        <p>{item?.likes_count} Favorites</p>
+                        <p>{props.item?.likes_count} Favorites</p>
                     </button>
                 </div>
             </div>

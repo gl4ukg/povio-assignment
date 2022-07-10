@@ -13,16 +13,13 @@ import "./FlowerDetail.scss"
 import SightingBox from "../../../components/SightingBox/SightingBox";
 import { ISighting } from "../../../types/sigting.type";
 
-interface Props {
-
-}
-
-const FlowerDetail:React.FC<Props> = (props: Props) => {
-
+const FlowerDetail:React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
+
     const loadFlowerDetail = useCallback((state: number) => dispatch(loadFlowerDetailAction(state)), [dispatch])
+
     const flower: IFlower | undefined = useSelector((state: CombinedReducersState) => state.flowers?.flowerDetail)
     const allSightings: ISighting[] | undefined = useSelector((state: CombinedReducersState) => state.sightings?.sightings?.sightings)
     const isLoading: boolean | undefined = useSelector((state: CombinedReducersState) => state.sightings?.isLoading)

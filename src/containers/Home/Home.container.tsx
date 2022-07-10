@@ -9,10 +9,11 @@ import { useCallback } from "react";
 import { loadFavoriteFlower } from "../../store/flowers/actions";
 
 const Home:React.FC = () => {
-
     const dispatch = useDispatch();
+
     const isLoading: boolean | undefined = useSelector((state: CombinedReducersState) => state.flowers?.isLoading);
     const flowers: ICard[] | undefined = useSelector((state: CombinedReducersState) => state.flowers?.flowers?.flowers);
+
     const setFavoriteFlower = useCallback((state: number) => dispatch(loadFavoriteFlower(state)), [dispatch])
 
     return (
@@ -29,7 +30,7 @@ const Home:React.FC = () => {
                                         key={flower.id}
                                         className="col-lg-3 col-md-4 col-6"> 
                                         <Card 
-                                            className={"w-100"}
+                                            className="w-100"
                                             isLoading={isLoading}
                                             item={flower}
                                             setFavoriteFlower={() => setFavoriteFlower(flower.id)}

@@ -7,7 +7,7 @@ import HeartIcon from "../../../assets/icons/heart.svg"
 import CommentBox from "../../../components/CommentBox/CommentBox";
 import TextAreaInput from "../../../components/Inputs/TextAreaInput/TextAreaInput";
 import { Form, Formik } from "formik";
-import { commentInitialValue } from "./constants";
+import { commentInitialValue, SIGHTING_DETAIL_COORDINATES } from "./constants";
 import { validateField } from "../../../utils/validations";
 import { useState } from "react";
 import Location from "../../../components/Location/Location";
@@ -16,14 +16,12 @@ import { commentBoxes } from "../../../constants/fakeData";
 import { ICommentBox } from "../../../types/app.types";
 
 const SightingDetail:React.FC = () => {
-
     const [isAddCommentView, addCommentView] = useState<boolean>(false);
-    const position = [42.389017, 20.432032];
 
     return (
         <div className="sighting-detail">
             <Location 
-                position={position as LatLngExpression}
+                position={SIGHTING_DETAIL_COORDINATES as LatLngExpression}
                 buttons={
                     <>
                         <Button
@@ -105,7 +103,8 @@ const SightingDetail:React.FC = () => {
                                     image={item.image}
                                     name={item.name}
                                     days={item.days}
-                                    comment={item.comment}/>
+                                    comment={item.comment}
+                                />
                             </div>
                         )
                     })}
@@ -117,15 +116,15 @@ const SightingDetail:React.FC = () => {
                             {({errors, touched, dirty}) => (
                                 <Form className="">
                                     <TextAreaInput
-                                        className='w-100 mb-3'
-                                        name={'comment'}
+                                        className="w-100 mb-3"
+                                        name="comment"
                                         cols='100'
                                         rows='4'
-                                        labelKey={"Write a comment…"}
+                                        labelKey="Write a comment…"
                                         errors={errors.comment}
                                         touched={touched.comment}
                                         validate={validateField}
-                                         />
+                                    />
                                     <div className="d-flex justify-content-end">
                                         <Button
                                             isDisabled={!dirty}
@@ -133,7 +132,7 @@ const SightingDetail:React.FC = () => {
                                             isColored
                                             text="Publish Comment" 
                                             onClick={() => console.log("button")}
-                                                />
+                                        />
                                     </div>
                                 </Form>
                             )}

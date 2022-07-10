@@ -11,25 +11,24 @@ interface Props {
 }
 
 const UserProfile:React.FC<Props> = (props: Props) => {
-
-    const { image, name, sightings, isLoading } = props;
-
-    if(isLoading) return <Skeleton count={1} />
+    if(props.isLoading) {
+        return <Skeleton count={1} />
+    }
     return (
         <div className="user-profile d-flex justify-content-between">
             <div className="col d-flex flex-column flex-sm-row">
                 <img className="user-profile__image" 
-                    src={image 
-                        ? image
+                    src={props.image 
+                        ? props.image
                         : NoImage
                     } 
-                    alt={image 
-                        ? image
+                    alt={props.image 
+                        ? props.image
                         : NoImage
                     } />
                 <div className="d-flex flex-column justify-content-center mt-2 mt-sm-0">
-                    <p className="user-profile__name">{name}</p>
-                    <p className="user-profile__sightings">{sightings}</p>
+                    <p className="user-profile__name">{props.name}</p>
+                    <p className="user-profile__sightings">{props.sightings}</p>
                 </div>
             </div>
             <div className="col d-flex align-items-start align-items-sm-center justify-content-end">

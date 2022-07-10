@@ -8,16 +8,14 @@ import { searchFlowers as searchFlowersAction } from "../../../store/flowers/act
 import { ICard } from "../../../types/card.types";
 import "./FlowerList.scss"
 
-interface Props {
-
-}
-
-const FlowerList:React.FC<Props> = (props: Props) => {
-
+const FlowerList:React.FC = () => {
     const dispatch = useDispatch();
+
     const [searchVal, setSearchVal] = useState<string>("");
+
     const isLoading: boolean | undefined = useSelector((state: CombinedReducersState) => state.flowers?.isLoading);
     const flowers: ICard[] | undefined = useSelector((state: CombinedReducersState) => state.flowers?.flowers?.flowers);
+
     const searchFlowers = useCallback((state: string) => dispatch(searchFlowersAction(state)), [dispatch])
 
     return (
@@ -40,7 +38,7 @@ const FlowerList:React.FC<Props> = (props: Props) => {
                                         key={flower.id}
                                         className="col-lg-3 col-md-4 col-6"> 
                                         <Card 
-                                            className={"w-100"}
+                                            className="w-100"
                                             isLoading={isLoading}
                                             item={flower} />
                                     </div>

@@ -1,5 +1,3 @@
-
-
 interface INewSightingInitalValues {
     name: string,
     description: "",
@@ -13,3 +11,6 @@ export const newSightingInitalValues = {
     latLong: "",
     picture:"",
 } as INewSightingInitalValues
+
+
+export const NEW_SIGHTING_COORDINATES = [42.389017, 20.432032];

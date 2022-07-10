@@ -5,7 +5,7 @@ import * as constants from "./constants";
 
 export interface IAppReducer {
     isLoading: boolean,
-    isLoginModal: boolean,
+    isLoggedInModal: boolean,
     isSignUpModal: boolean,
     isProfileModal: boolean,
     isSuccessSignUpModal: boolean,
@@ -15,7 +15,7 @@ export interface IAppReducer {
 
 const initialState = {
     isLoading: false,
-    isLoginModal: false,
+    isLoggedInModal: false,
     isSignUpModal: false,
     isProfileModal: false,
 } as IAppReducer
@@ -27,7 +27,7 @@ export const appReducer = (state = initialState, action: IAction) =>
                 draft.isLoading = action.payload;
                 break;
             case constants.SET_LOGIN_MODAL:
-                draft.isLoginModal = action.payload;
+                draft.isLoggedInModal = action.payload;
                 break;
             case constants.SET_SIGN_UP_MODAL:
                 draft.isSignUpModal = action.payload;

@@ -1,5 +1,5 @@
 import {CSSProperties, useState} from 'react';
-import {ErrorMessage, Field} from 'formik';
+import {Field} from 'formik';
 import EyeIcon from '../../../assets/icons/view.png'
 import './PasswordInput.scss'
 import classNames from "classnames";
@@ -23,7 +23,7 @@ interface Props{
 const PasswordInput: React.FC<Props> = (props: Props) => {
     const [ visiblePassword, setVisiblePassword ] = useState<boolean>(false)
 
-    function returnErrorMessage(errorMessage: string){
+    const returnErrorMessage = (errorMessage: string) => {
         return <p className='errorMessage'>{errorMessage}</p>
     }
 
@@ -36,14 +36,16 @@ const PasswordInput: React.FC<Props> = (props: Props) => {
             placeholder={props.placeholder} 
             name={props.name} 
             validate={props.validate} 
-            type={visiblePassword ? "text" : "password"
-            }/>
+            type={visiblePassword ? "text" : "password"}
+        />
         <img 
             src={EyeIcon} 
             alt={EyeIcon} 
             onClick={()=> setVisiblePassword(!visiblePassword) } 
-            className={`togglePasswordIcon ${visiblePassword && "notHidden"}`} 
-            />
+            className={classNames('togglePasswordIcon', {
+                "notHidden": visiblePassword
+            })} 
+        />
         {props.errors && props.touched && returnErrorMessage(props.errors)}
     </div>
 }

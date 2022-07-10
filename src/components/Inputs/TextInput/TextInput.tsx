@@ -26,11 +26,11 @@ interface Props{
 
 const TextInput: React.FC<Props> = (props: Props) => {
 
-  function returnErrorMessage(errorMessage: string){
+  const returnErrorMessage = (errorMessage: string) => {
     return <p className='errorMessage'>{errorMessage}</p>
   }
 
-  function onChangeEvent(textValue: string) {
+  const onChangeEvent = (textValue: string) => {
     if(props?.onChange){
       props?.onChange(textValue)
     }
@@ -45,7 +45,8 @@ const TextInput: React.FC<Props> = (props: Props) => {
         <input 
             onClick={props.onClick}
             value={(props.type == "date" ? formatDate(props?.value) : props?.value) || ''}
-            onChange={(inputElement: React.ChangeEvent<HTMLInputElement>)=> onChangeEvent(inputElement.target.value)} placeholder={props.placeholder} 
+            onChange={(e: React.ChangeEvent<HTMLInputElement>)=> onChangeEvent(e.target.value)} 
+            placeholder={props.placeholder} 
             name={props.name} 
             type={props.type ? props.type : "text"}
             disabled={props.disabled}  />

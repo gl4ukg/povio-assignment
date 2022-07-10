@@ -14,9 +14,9 @@ import { ISighting } from "../../types/sigting.type"
 
 
 const Profile:React.FC = () => {
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const user: ProfileType | undefined = useSelector((state: CombinedReducersState) => state.user?.userAboutMe);
     const userSighting: ISighting[] | undefined = useSelector((state: CombinedReducersState) => state.sightings?.userSighting?.sightings)
 
@@ -30,7 +30,7 @@ const Profile:React.FC = () => {
         }
     }, [])
 
-    function logOut() {
+    const logOut = () => {
         localStorage.removeItem('bearerToken')
         setLogin(false)
         setProfileModal(false)
@@ -100,9 +100,9 @@ const Profile:React.FC = () => {
                             isSubmit
                             isColored
                             isSmall
-                            text={'LogOut'}
+                            text="LogOut"
                             onClick={logOut}
-                            className={"about-profile__info__button"}
+                            className="about-profile__info__button"
                         />
                     </div>
                 </div>

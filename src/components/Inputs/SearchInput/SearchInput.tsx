@@ -13,21 +13,19 @@ interface Props {
 
 const SearchInput:React.FC<Props> = (props: Props) =>  {
 
-    const { searchValue, onChangeSearchValue, search, onKeyDown, className } = props;
-
     return (
         <div className={classNames("search-input-container", {
-            [props.className as string]: className
+            [props.className as string]: props.className
         })}>
             <input 
                 className="search-input"
                 type="text"
-                value={searchValue}
-                onChange={onChangeSearchValue}
-                onKeyDown={onKeyDown}
+                value={props.searchValue}
+                onChange={props.onChangeSearchValue}
+                onKeyDown={props.onKeyDown}
                 placeholder="Looking for something specific?" />
             <button
-                onClick={search}>
+                onClick={props.search}>
                 <SearchIcon/>
             </button>
         </div>

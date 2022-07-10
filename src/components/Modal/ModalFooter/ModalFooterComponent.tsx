@@ -7,7 +7,7 @@ interface Props {
 const ModalFooterComponent:React.FC<Props> = (props:Props) => {
     return (
         <div className={style.modalFooterComponent}>
-            {/* <p>{props.title}</p> */}
+            <p>{props.title}</p>
         </div>
     )
 }

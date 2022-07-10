@@ -20,7 +20,6 @@ interface Props{
 }
 
 const FileInput: React.FC<Props> = (props: Props) => {
-
     const [fileLabel, setFileLabel] = useState<string>( props.labelKey ? props.labelKey : "Add a Photo")
 
     useEffect(() => {
@@ -31,7 +30,7 @@ const FileInput: React.FC<Props> = (props: Props) => {
         }
     }, [props.value])
 
-    function setFileOnChange(files: any){
+    const setFileOnChange = (files: any) => {
 
         if(files.length !== 0){
             if(props.multiple){
@@ -55,20 +54,20 @@ const FileInput: React.FC<Props> = (props: Props) => {
         }
     }
     
-    function returnErrorMessage(errorMessage: string){
+    const returnErrorMessage = (errorMessage: string) => {
         return <p className='errorMessage'>{errorMessage}</p>
     }
 
     return <div className={`inputFileWrapper ${props.className}`}>
         <input 
             type="file" 
-            id={'fileInput'} 
+            id="fileInput"
             name={props?.name} 
             accept={props?.accept} 
             onChange={(e:ChangeEvent<HTMLInputElement>) => {setFileOnChange(e.target.files)}} 
             multiple={props.multiple} />
         <img src={PicIcon} alt="plus-icon" />
-        <p className={'m-0'}>{ fileLabel }</p>
+        <p className="m-0">{ fileLabel }</p>
         {props.errors && props.touched && returnErrorMessage(props.errors)}
     </div>
 }

@@ -11,21 +11,19 @@ import { CombinedReducersState } from "../../../store/combinedReducers";
 import { FileUpload } from "../../../types/fileUpload.types";
 import { ISighting } from "../../../types/sigting.type";
 import { validateField } from "../../../utils/validations";
-import { newSightingInitalValues } from "./constants";
+import { newSightingInitalValues, NEW_SIGHTING_COORDINATES } from "./constants";
 import "./NewSighting.scss"
 
 const NewSighting:React.FC = () => {
-
-    const position = [42.389017, 20.432032];
     const [cordinates, setCordinates] = useState<string>("");
     const [image, setImage] = useState<FileUpload>({} as FileUpload);
+
     const allSightings: ISighting[] | undefined = useSelector((state: CombinedReducersState) => state.sightings?.sightings?.sightings)
 
-
-    function getCurrentPosition() {
+    const getCurrentPosition = () => {
         let currentLocation = ''
 
-        navigator.geolocation.getCurrentPosition(function (position) {
+        navigator.geolocation.getCurrentPosition((position) => {
             currentLocation = `${position.coords.latitude},${position.coords.longitude}`
             setCordinates(currentLocation)
         });
@@ -34,7 +32,7 @@ const NewSighting:React.FC = () => {
     return (
         <div className="new-sighting">
             <Location
-                position={position as LatLngExpression}
+                position={NEW_SIGHTING_COORDINATES as LatLngExpression}
                 buttons={
                     <>
                         <Button
@@ -58,21 +56,21 @@ const NewSighting:React.FC = () => {
                             <Form className="row">
                                 <div className="col-md-6">
                                     <TextInput
-                                        className={"username-input"}
-                                        name={'name'}
-                                        labelKey={'Title of the sighting'}
+                                        className="username-input"
+                                        name="name"
+                                        labelKey="Title of the sighting"
                                         errors={errors.name}
                                         touched={touched.name}
                                         validate={validateField}
-                                        />
+                                    />
                                 </div>
                                 <div className="col-md-3">
                                     <TextInput
-                                        className={"username-input"}
-                                        name={'description'}
+                                        className="username-input"
+                                        name="description"
                                         onClick={getCurrentPosition}
                                         value={cordinates}
-                                        labelKey={'Coordinates of the sighting'}
+                                        labelKey="Coordinates of the sighting"
                                         errors={errors.description}
                                         touched={touched.description}
                                         validate={validateField}
@@ -81,9 +79,9 @@ const NewSighting:React.FC = () => {
                                 <div className="col-md-3">
                                     <FileInput 
                                         value={image}
-                                        name={"picture"}
+                                        name="picture"
                                         className="change-avatar-input"
-                                        labelKey={"Add a Photo"}
+                                        labelKey="Add a Photo"
                                         setFiles={setImage}
                                         errors={errors.picture}
                                         touched={touched.picture}
@@ -94,9 +92,9 @@ const NewSighting:React.FC = () => {
                                     <TextAreaInput
                                         cols="100"
                                         rows="5"
-                                        className={"mb-0"}
-                                        name={'description'}
-                                        labelKey={'Write a description…'}
+                                        className="mb-0"
+                                        name="description"
+                                        labelKey="Write a description…"
                                         errors={errors.description}
                                         touched={touched.description}
                                         validate={validateField}

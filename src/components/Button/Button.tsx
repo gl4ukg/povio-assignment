@@ -15,23 +15,22 @@ interface Props {
 }
 
 const Button:React.FC<Props> = (props: Props) => {
-    const { isRounded, isColored, isSmall, text, isBlack, isSubmit, isDisabled, onClick, className, isIcon } = props;
     return (
         <button 
-            disabled={isDisabled}
-            type={isSubmit ? 'submit': 'button'}
+            disabled={props.isDisabled}
+            type={props.isSubmit ? 'submit': 'button'}
             className={classNames(styles.button, {
-                [styles.button__isColored]: isColored,
-                [styles.button__isRounded]: isRounded,
-                [styles.button__isSmall]: isSmall,
-                [styles.button__isBlack]: isBlack,
-                [props.className as string]: className,
-                [styles.button__isIcon]: isIcon
+                [styles.button__isColored]: props.isColored,
+                [styles.button__isRounded]: props.isRounded,
+                [styles.button__isSmall]: props.isSmall,
+                [styles.button__isBlack]: props.isBlack,
+                [props.className as string]: props.className,
+                [styles.button__isIcon]: props.isIcon
             })}
-            onClick={onClick}
+            onClick={props.onClick}
             >
-            {isIcon && <img src={isIcon} alt={isIcon} />}
-            {text}
+            {props.isIcon && <img src={props.isIcon} alt={props.isIcon} />}
+            {props.text}
         </button>
     )
 }

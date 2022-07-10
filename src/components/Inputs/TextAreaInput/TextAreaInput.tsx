@@ -1,8 +1,7 @@
 import React, {CSSProperties, useState} from 'react';
-import {ErrorMessage, Field} from 'formik';
+import {Field} from 'formik';
 import './TextAreaInput.scss'
 import classNames from "classnames";
-
 
 interface Props{
     style?: CSSProperties;
@@ -22,11 +21,11 @@ interface Props{
 }
 
 const TextAreaInput: React.FC<Props> = (props: Props) => {
-    function returnErrorMessage(errorMessage: string){
+    const returnErrorMessage = (errorMessage: string) => {
         return <p className='errorMessage'>{errorMessage}</p>
     }
 
-    function onChangeEvent(textValue: string) {
+    const onChangeEvent = (textValue: string) => {
         if(props?.onChange){
             props?.onChange(textValue)
         }
@@ -42,7 +41,7 @@ const TextAreaInput: React.FC<Props> = (props: Props) => {
                 value={props?.value || ""} 
                 onChange={(e: React.ChangeEvent<HTMLInputElement>)=> onChangeEvent(e.target.value)} 
                 name={props.name} 
-                as={"textarea"}  
+                as="textarea" 
                 disabled={props.disabled} 
                 rows={props.rows} 
                 cols={props.cols}  />
@@ -51,7 +50,7 @@ const TextAreaInput: React.FC<Props> = (props: Props) => {
                 <Field 
                     placeholder={props.placeholder} 
                     name={props.name} 
-                    as={"textarea"}  
+                    as="textarea"
                     disabled={props.disabled} 
                     rows={props.rows} 
                     cols={props.cols}

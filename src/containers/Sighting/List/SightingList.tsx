@@ -10,9 +10,9 @@ import "./SightingList.scss"
 import { loadAllSightings as loadAllSightingsAction } from '../../../store/sighting/actions';
 
 const SightingList:React.FC = () => {
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
     const allSightings: ISighting[] | undefined = useSelector((state: CombinedReducersState) => state.sightings?.sightings?.sightings)
     const isLoading: boolean | undefined = useSelector((state: CombinedReducersState) => state.sightings?.isLoading)
     

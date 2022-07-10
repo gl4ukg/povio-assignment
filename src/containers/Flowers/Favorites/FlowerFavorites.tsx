@@ -6,26 +6,26 @@ import { CombinedReducersState } from "../../../store/combinedReducers";
 import { IFavorite } from "../../../types/flowers.types";
 import "./FlowerFavorites.scss"
 import { loadFavoriteFlowers as loadFavoriteFlowersAction } from '../../../store/flowers/actions';
+import { useIsLoggedIn } from "../../../customHooks/auth";
 
 const FlowerFavorites:React.FC = () => {
-
 	const dispatch = useDispatch();
-	const token = localStorage.getItem('bearerToken')
-	const isLogin: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLogin)
+
+	const isLoggedIn: boolean = useIsLoggedIn();
     const isLoading: boolean | undefined = useSelector((state: CombinedReducersState) => state.flowers?.isLoading);
     const flowers: IFavorite[] | undefined = useSelector((state: CombinedReducersState) => state.flowers?.favoriteFlowers?.fav_flowers);
 
 	const loadFavoriteFlowers = useCallback(() => dispatch(loadFavoriteFlowersAction()), [])
 
     useEffect(() => {
-		if(isLogin || token) {
+		if(isLoggedIn) {
 			loadFavoriteFlowers()
 		}
     }, [])
 
     return (
         <div className="container-fluid default-container">
-            {(isLogin || token)
+            {(isLoggedIn)
                 ? <div className="flowers-favorite-container">
                     <div className="row">
                     {(flowers && flowers?.length > 0) && (
@@ -36,7 +36,7 @@ const FlowerFavorites:React.FC = () => {
                                         key={flower.id}
                                         className="col-lg-3 col-md-4 col-6"> 
                                         <Card
-                                            className={"w-100"}
+                                            className="w-100"
                                             isLoading={isLoading}
                                             item={flower?.flower} />
                                     </div>

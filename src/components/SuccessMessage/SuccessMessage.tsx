@@ -4,17 +4,13 @@ import styles from "./SuccessMessage.module.scss"
 interface Props {
     text: string,
     buttons: ReactElement
-
 }
 
-const SuccessMessage:React.FC<Props> = (props: Props) => {
-    
-    const { text, buttons } = props;
-
+const SuccessMessage: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles.successMessage}>
-            <p className={styles.successMessage__text_succes}>{text}</p>
-            {buttons}
+            <p className={styles.successMessage__text_succes}>{props.text}</p>
+            {props.buttons}
         </div>
     )
 }

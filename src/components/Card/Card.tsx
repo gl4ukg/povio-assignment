@@ -6,9 +6,8 @@ import Button from "../Button/Button"
 import Skeleton from "react-loading-skeleton"
 import classNames from "classnames"
 import { useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux"
-import { CombinedReducersState } from "../../store/combinedReducers"
-
+import { useIsLoggedIn } from "../../customHooks/auth"
+import { getBearerToken } from "../../utils/auth"
 
 interface Props {
     item?: ICard,
@@ -19,32 +18,33 @@ interface Props {
 }
 
 const Card:React.FC<Props> = (props: Props) => {
-
+    const token = getBearerToken();
     const navigate = useNavigate()
-	const token = localStorage.getItem('bearerToken')
-	const isLogin: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLogin)
-    const { item, isLoading, className, setFavoriteFlower } = props;
+	const isLoggedIn: boolean = useIsLoggedIn();
 
-    if(isLoading) return <Skeleton count={1} />
+    if(props.isLoading) {
+        return <Skeleton count={1} />
+    }
 
     return (
         <div
             className={classNames(styles.card, {
-            [props.className as string]: className
+            [props.className as string]: props.className
         })}>
             <img 
-                src={item?.profile_picture} 
-                alt={item?.profile_picture}
+                src={props.item?.profile_picture} 
+                alt={props.item?.profile_picture}
                 className={styles.card__image}
             />
             <div className={classNames(styles.card__wrapper, {
-                "justify-content-end": !(token || isLogin)
-            })}>
-                {(token || isLoading) &&
+                    "justify-content-end": !isLoggedIn
+                })}
+            >
+                {(token || props.isLoading) &&
                     <button 
-                        onClick={setFavoriteFlower}
+                        onClick={props.setFavoriteFlower}
                         className={styles.card__favoriteButton}>
-                        {item?.favorite
+                        {props.item?.favorite
                             ? <BackgroundedStarIcon />
                             : <StarIcon />
                         }
@@ -52,16 +52,16 @@ const Card:React.FC<Props> = (props: Props) => {
                 }
                 <div className={styles.card__description}>
                     <p 
-                        onClick={() => navigate(`/flower/${item?.id}`)} 
-                        className={styles.card__title}>{item?.name}</p>
+                        onClick={() => navigate(`/flower/${props.item?.id}`)} 
+                        className={styles.card__title}>{props.item?.name}</p>
                     <p
-                        onClick={() => navigate(`/flower/${item?.id}`)} 
-                        className={styles.card__subTitle}>{item?.latin_name}</p>
+                        onClick={() => navigate(`/flower/${props.item?.id}`)} 
+                        className={styles.card__subTitle}>{props.item?.latin_name}</p>
                     <Button 
                         isSmall
                         isRounded
                         isBlack
-                        text={`${item?.sightings} sightings`}
+                        text={`${props.item?.sightings} sightings`}
                         />
                 </div>
             </div>

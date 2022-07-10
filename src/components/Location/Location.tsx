@@ -16,17 +16,14 @@ L.Icon.Default.mergeOptions({
 });
 
 const Location:React.FC<Props> = (props: Props) => {
-
-    const { position, buttons } = props;
-
     return (
         <div className="location">
-            <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+            <MapContainer center={props.position} zoom={13} scrollWheelZoom={false}>
                 <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker position={position}>
+                <Marker position={props.position}>
                     <Popup>
                         A pretty CSS3 popup. <br /> Easily customizable.
                     </Popup>
@@ -35,7 +32,7 @@ const Location:React.FC<Props> = (props: Props) => {
             <div className="location-layer">
                 <div className="container-fluid default-container position-relative h-100">
                     <div className="d-flex location-layer__button">
-                        {buttons}
+                        {props.buttons}
                     </div>
                 </div>
             </div>

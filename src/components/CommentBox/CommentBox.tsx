@@ -9,30 +9,27 @@ interface Props {
 }
 
 const CommentBox:React.FC<Props> = (props: Props) => {
-
-    const { image, name, days, comment } = props;
-
     return (
         <div className="comment-box">
             <div className="sighting-box__about">
                 <div className="sighting-box__about__icon">
                     <img 
                         className="sighting-box__about__icon__img" 
-                        src={image
-                            ? image
+                        src={props.image
+                            ? props.image
                             : NoImage
                         } 
-                        alt={image
-                            ? image
+                        alt={props.image
+                            ? props.image
                             : NoImage}
                     />
                     <div className="d-flex flex-column">
-                        <p className="sighting-box__about__name">{name}</p>
-                        <p className="sighting-box__about__username">{days}</p>
+                        <p className="sighting-box__about__name">{props.name}</p>
+                        <p className="sighting-box__about__username">{props.days}</p>
                     </div>
                 </div>
                 <p className="sighting-box__about__description">
-                {comment}
+                {props.comment}
                 </p>
                 <hr className="my-4" />
             </div>

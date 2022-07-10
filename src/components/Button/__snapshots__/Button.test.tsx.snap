@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`button snapshots should render correctly with isIcon value and have img tag 1`] = `
+<button
+  class="button button__isIcon"
+  type="button"
+>
+  <img
+    alt="test"
+    src="test"
+  />
+  Testing
+</button>
+`;
+
+exports[`button snapshots should render correctly with text value 1`] = `
+<button
+  class="button"
+  type="button"
+>
+  Testing
+</button>
+`;

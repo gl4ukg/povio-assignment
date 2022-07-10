@@ -5,14 +5,14 @@ import { ProfileType } from "../../types/user.types"
 
 export interface IUserReducer {
     isLoading: boolean,
-    isLogin: boolean,
+    isLoggedIn: boolean,
     userAboutMe: ProfileType,
     user: ProfileType,
 }
 
 const initialState = {
     isLoading: false,
-    isLogin: false,
+    isLoggedIn: false,
     userAboutMe: {},
     user: {},
 
@@ -25,7 +25,7 @@ export const userReducer = (state = initialState, action: IAction) =>
                 draft.isLoading = action.payload
                 break;
             case constants.IS_LOGIN:
-                draft.isLogin = action.payload
+                draft.isLoggedIn = action.payload
                 break;
             case constants.SET_ABOUT_ME_INFO:
                 draft.userAboutMe = action.payload.user

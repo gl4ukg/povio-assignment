@@ -20,8 +20,8 @@ import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
 
 
 const Login:React.FC = () => {
-
     const dispatch = useDispatch();
+
     const isSuccessLoginModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app.isSuccessLoginModal)
 
     const login = useCallback((state: LoginType) => dispatch(loadLogin(state)), [dispatch])
@@ -31,7 +31,6 @@ const Login:React.FC = () => {
 
     const handleSubmit = (values: LoginType, formikApi: FormikValues) => {
         login(values)
-        formikApi.resetForm()
     } 
 
     return (
@@ -46,9 +45,9 @@ const Login:React.FC = () => {
                         <Form className="">
                             <TextInput
                                 autocomplete="email"
-                                className={"username-input"}
-                                name={'email'}
-                                labelKey={'Email'}
+                                className="username-input"
+                                name="email"
+                                labelKey="Email"
                                 errors={errors.email}
                                 touched={touched.email}
                                 validate={validateEmail}
@@ -56,8 +55,8 @@ const Login:React.FC = () => {
                             <PasswordInput
                                 autocomplete="current-password"
                                 className="mb-4"
-                                name={'password'}
-                                labelKey={'Password'}
+                                name="password"
+                                labelKey="Password"
                                 errors={errors.password}
                                 touched={touched.password}
                                 validate={validateField}
@@ -67,7 +66,7 @@ const Login:React.FC = () => {
                                 isSubmit
                                 isColored
                                 className="w-100"
-                                text={'Login to your Account'}
+                                text="Login to your Account"
                             />
                         </Form>
                     </div>

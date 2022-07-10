@@ -1,4 +1,4 @@
-export function validateEmail(value:string) {
+export const validateEmail = (value:string): string | undefined => {
    let error;
    if (!value) {
      error = 'Field is required!';
@@ -8,7 +8,7 @@ export function validateEmail(value:string) {
    return error;
 }
 
-export function validateName(value:string) {
+export const validateName = (value:string): string | undefined => {
    let error;
    if (!value) {
      error = 'Field is required!';
@@ -18,7 +18,7 @@ export function validateName(value:string) {
    return error;
 }
 
-export function validateLastName(value:string) {
+export const validateLastName = (value:string): string | undefined => {
    let error;
    if (!value) {
      error = 'Field is required!';
@@ -28,7 +28,7 @@ export function validateLastName(value:string) {
    return error;
 }
 
-export function validateField(value:string) {
+export const validateField = (value:string): string | undefined => {
    let error;
    if (!value) {
      error = 'Field is required!';
@@ -36,7 +36,7 @@ export function validateField(value:string) {
    return error;
 }
 
-export function validateCreationPassword(value:string) {
+export const validateCreationPassword = (value:string): string | undefined => {
    let error;
    if (!value) {
      error = 'Field is required!';

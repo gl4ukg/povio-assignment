@@ -12,7 +12,6 @@ import { ISighting, ISightingsResponse } from "../../types/sigting.type"
 import "./User.scss"
 
 const User:React.FC = () => {
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -21,6 +20,7 @@ const User:React.FC = () => {
     const sightings: ISightingsResponse | undefined = useSelector((state: CombinedReducersState) => state.sightings?.userSighting)
     const isLoadingUser: boolean | undefined = useSelector((state: CombinedReducersState) => state.user?.isLoading)
     const isLoadingSightings: boolean | undefined = useSelector((state: CombinedReducersState) => state.sightings?.isLoading)
+    
     const setUserInfo = useCallback((state: number) => dispatch(loadUserInfoAction(state)), [dispatch])
     const loadUserSightings = useCallback((state: number) => dispatch(loadUserSightingsAction(state)), [dispatch])
 
@@ -29,7 +29,6 @@ const User:React.FC = () => {
         loadUserSightings(Number(id))
     }, [])
 
-    
     return (
         <div className="user-page">
             <div className="container-fluid default-container">

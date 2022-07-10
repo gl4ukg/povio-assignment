@@ -18,9 +18,7 @@ import { validateCreationPassword, validateEmail, validateField, validateLastNam
 import { signUpInitialValues } from "./constants"
 import "./Signup.scss"
 
-
-const Signup:React.FC = () => {
-
+const Signup: React.FC = () => {
     const dispatch = useDispatch();
     
     const isSuccessSignUpModal: boolean | undefined = useSelector((state: CombinedReducersState) => state.app.isSuccessSignUpModal)
@@ -32,7 +30,6 @@ const Signup:React.FC = () => {
 
     const handleSubmit = (values: ProfileType, formikApi: FormikValues) => {
         signup(values)
-        formikApi.resetForm()
     }
     
     return (
@@ -46,26 +43,26 @@ const Signup:React.FC = () => {
                         <Form className="">
                             <div className="d-flex">
                                 <TextInput
-                                    className={"username-input me-1"}
-                                    name={'first_name'}
-                                    labelKey={'First Name'}
+                                    className="username-input me-1"
+                                    name="first_name"
+                                    labelKey="First Name"
                                     errors={errors.first_name}
                                     touched={touched.first_name}
                                     validate={validateName}
                                     />
                                 <TextInput
-                                    className={"username-input ms-1"}
-                                    name={'last_name'}
-                                    labelKey={'Last Name'}
+                                    className="username-input ms-1"
+                                    name="last_name"
+                                    labelKey="Last Name"
                                     errors={errors.last_name}
                                     touched={touched.last_name}
                                     validate={validateLastName}
                                     />
                             </div>
                             <TextInput
-                                className={"username-input"}
-                                name={'date_of_birth'}
-                                labelKey={'Date of Birth'}
+                                className="username-input"
+                                name="date_of_birth"
+                                labelKey="Date of Birth"
                                 type="date"
                                 errors={errors.date_of_birth}
                                 touched={touched.date_of_birth}
@@ -73,18 +70,18 @@ const Signup:React.FC = () => {
                             />
                             <TextInput
                                 autocomplete="email"
-                                className={"username-input"}
-                                name={'email'}
-                                labelKey={'Email'}
+                                className="username-input"
+                                name="email"
+                                labelKey="Email"
                                 errors={errors.email}
                                 touched={touched.email}
                                 validate={validateEmail}
                                 />
                             <PasswordInput
                                 autocomplete="current-password"
-                                name={'password'}
+                                name="password"
                                 className="mb-4"
-                                labelKey={'Password'}
+                                labelKey="Password"
                                 errors={errors.password}
                                 touched={touched.password}
                                 validate={validateCreationPassword}
@@ -93,8 +90,8 @@ const Signup:React.FC = () => {
                                 isDisabled={!dirty}
                                 isSubmit
                                 isColored
-                                text={'Create Account'}
-                                className={"w-100"}
+                                text="Create Account"
+                                className="w-100"
                             />
                         </Form>
                     </div>

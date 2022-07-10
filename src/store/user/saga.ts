@@ -30,8 +30,8 @@ function* loadLogin(action: IAction){
     } catch {
         yield put(setLoading(false))
         yield put(setLogin(false))
-        toast.error("Invalid email/password");
         localStorage.removeItem('bearerToken');
+        toast.error("Invalid email/password");
     }
 }
 
@@ -46,6 +46,7 @@ function* loadSignUp(action: IAction){
         }
         yield put(setLoading(false))
     } catch {
+        toast.error('Something went wrong!')
         yield put(setLoading(false))
     }
 }
@@ -62,6 +63,7 @@ function* loadAboutMeInfo(){
         }
         yield put(setLoading(false))
     } catch {
+        toast.error('Something went wrong!')
         yield put(setLoading(false))
     }
 }
@@ -77,6 +79,7 @@ function* loadUserInfo(action: IAction) {
         }
         yield put(setLoading(false))
     } catch {
+        toast.error('Something went wrong!')
         yield put(setLoading(false))
     }
 }
