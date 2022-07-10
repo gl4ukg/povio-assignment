@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button"
 import PasswordInput from "../../components/Inputs/PasswordInput/PasswordInput"
 import TextInput from "../../components/Inputs/TextInput/TextInput"
 import { LoginType } from "../../types/user.types"
-import { validationSchemeLogin } from "../../utils/validations"
+import { validateEmail, validateField } from "../../utils/validations"
 import { loginInitialValues } from "./constants"
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";
@@ -32,29 +32,38 @@ const Login:React.FC = () => {
     const handleSubmit = (values: LoginType, formikApi: FormikValues) => {
         login(values)
         formikApi.resetForm()
-    }
+    } 
+
     return (
         <div className="login">
             <p className="login-title">Welcome Back</p>
             <Formik
                 initialValues={loginInitialValues}
-                validationScheme={validationSchemeLogin}
                 onSubmit={handleSubmit as () => void}>
-                {(formikProps) => (
+                {({errors, touched, dirty }) => {
+                    return(
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
                         <Form className="">
                             <TextInput
                                 autocomplete="email"
                                 className={"username-input"}
                                 name={'email'}
-                                labelKey={'Email'}/>
+                                labelKey={'Email'}
+                                errors={errors.email}
+                                touched={touched.email}
+                                validate={validateEmail}
+                                />
                             <PasswordInput
                                 autocomplete="current-password"
                                 className="mb-4"
                                 name={'password'}
-                                labelKey={'Password'}/>
+                                labelKey={'Password'}
+                                errors={errors.password}
+                                touched={touched.password}
+                                validate={validateField}
+                                />
                             <Button
-                                isDisabled={!formikProps.dirty}
+                                isDisabled={!dirty}
                                 isSubmit
                                 isColored
                                 className="w-100"
@@ -62,7 +71,7 @@ const Login:React.FC = () => {
                             />
                         </Form>
                     </div>
-                )}
+                )}}
             </Formik>
             {isSuccessLoginModal &&  <SuccessMessage
                 text="Congratulations! You have successfully logged into FlowrSpot!" 

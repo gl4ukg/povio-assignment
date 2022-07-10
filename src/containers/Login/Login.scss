@@ -1,5 +1,8 @@
 .login {
     width: 100%;
+    @media only screen and (max-width: 575px) {
+        padding: 20px;
+    }
     .login-title {
         font-family: "Ubuntu";
         font-size: 20px;

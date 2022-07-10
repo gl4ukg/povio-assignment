@@ -14,6 +14,9 @@ interface Props{
     setFiles: (file: FileUpload) => void;
     onChange?: () => void;
     accept?: string,
+    errors?: string
+    touched?: boolean
+    validate?: (value: string) => string | undefined
 }
 
 const FileInput: React.FC<Props> = (props: Props) => {
@@ -51,6 +54,10 @@ const FileInput: React.FC<Props> = (props: Props) => {
             setFileLabel(props.labelKey ? props.labelKey : "Asnje file i selektuar")
         }
     }
+    
+    function returnErrorMessage(errorMessage: string){
+        return <p className='errorMessage'>{errorMessage}</p>
+    }
 
     return <div className={`inputFileWrapper ${props.className}`}>
         <input 
@@ -62,6 +69,7 @@ const FileInput: React.FC<Props> = (props: Props) => {
             multiple={props.multiple} />
         <img src={PicIcon} alt="plus-icon" />
         <p className={'m-0'}>{ fileLabel }</p>
+        {props.errors && props.touched && returnErrorMessage(props.errors)}
     </div>
 }
 

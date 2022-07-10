@@ -8,3 +8,10 @@ export interface IPagination {
     prev_page: number,
     total_pages: number
 }
+
+export interface ICommentBox {
+    image: string,
+    name: string,
+    comment: string,
+    days: string
+}

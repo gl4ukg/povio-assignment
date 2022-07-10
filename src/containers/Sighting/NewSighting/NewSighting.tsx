@@ -10,7 +10,7 @@ import Location from "../../../components/Location/Location"
 import { CombinedReducersState } from "../../../store/combinedReducers";
 import { FileUpload } from "../../../types/fileUpload.types";
 import { ISighting } from "../../../types/sigting.type";
-import { validationSchemeNewSighting } from "../../../utils/validations";
+import { validateField } from "../../../utils/validations";
 import { newSightingInitalValues } from "./constants";
 import "./NewSighting.scss"
 
@@ -53,15 +53,18 @@ const NewSighting:React.FC = () => {
                     <p className="new-sighting__subtitle">Explore between more than {allSightings?.length} sightings</p>
                     <Formik
                         initialValues={newSightingInitalValues}
-                        validationScheme={validationSchemeNewSighting}
                         onSubmit={{} as () => void}>
-                        {(formikProps) => (
+                        {({errors, touched, dirty}) => (
                             <Form className="row">
                                 <div className="col-md-6">
                                     <TextInput
                                         className={"username-input"}
                                         name={'name'}
-                                        labelKey={'Title of the sighting'}/>
+                                        labelKey={'Title of the sighting'}
+                                        errors={errors.name}
+                                        touched={touched.name}
+                                        validate={validateField}
+                                        />
                                 </div>
                                 <div className="col-md-3">
                                     <TextInput
@@ -69,14 +72,22 @@ const NewSighting:React.FC = () => {
                                         name={'description'}
                                         onClick={getCurrentPosition}
                                         value={cordinates}
-                                        labelKey={'Coordinates of the sighting'}/>
+                                        labelKey={'Coordinates of the sighting'}
+                                        errors={errors.description}
+                                        touched={touched.description}
+                                        validate={validateField}
+                                    />
                                 </div>
                                 <div className="col-md-3">
                                     <FileInput 
                                         value={image}
+                                        name={"picture"}
                                         className="change-avatar-input"
                                         labelKey={"Add a Photo"}
                                         setFiles={setImage}
+                                        errors={errors.picture}
+                                        touched={touched.picture}
+                                        validate={validateField}
                                     />
                                 </div>
                                 <div className="col-md-12">
@@ -85,7 +96,11 @@ const NewSighting:React.FC = () => {
                                         rows="5"
                                         className={"mb-0"}
                                         name={'description'}
-                                        labelKey={'Write a description…'}/>
+                                        labelKey={'Write a description…'}
+                                        errors={errors.description}
+                                        touched={touched.description}
+                                        validate={validateField}
+                                        />
                                 </div>
                                 <div className="col-md-12 d-flex justify-content-end">
                                     <Button
@@ -94,6 +109,7 @@ const NewSighting:React.FC = () => {
                                         text="Create New Sighting"
                                         className="mt-4 new-sighting__buttons"
                                         isSubmit
+                                        isDisabled={!dirty}
                                     />
                                 </div>
                             </Form>

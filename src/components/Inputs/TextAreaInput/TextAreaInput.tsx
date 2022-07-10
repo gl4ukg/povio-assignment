@@ -15,8 +15,10 @@ interface Props{
     className?: string,
     rows: string
     cols: string
-
     onChange?: (value: string) => void;
+    errors?: string
+    touched?: boolean
+    validate?: (value: string) => string | undefined
 }
 
 const TextAreaInput: React.FC<Props> = (props: Props) => {
@@ -45,16 +47,19 @@ const TextAreaInput: React.FC<Props> = (props: Props) => {
                 rows={props.rows} 
                 cols={props.cols}  />
             :
-            <Field 
-                placeholder={props.placeholder} 
-                name={props.name} 
-                as={"textarea"}  
-                disabled={props.disabled} 
-                rows={props.rows} 
-                cols={props.cols}  />
+            <>
+                <Field 
+                    placeholder={props.placeholder} 
+                    name={props.name} 
+                    as={"textarea"}  
+                    disabled={props.disabled} 
+                    rows={props.rows} 
+                    cols={props.cols}
+                    validate={props.validate}   />
+                {props.errors && props.touched && returnErrorMessage(props.errors)}
+            </>
         }
 
-        <ErrorMessage name={props.name as string}>{(message: string) => returnErrorMessage(message)}</ErrorMessage>
     </div>
 }
 

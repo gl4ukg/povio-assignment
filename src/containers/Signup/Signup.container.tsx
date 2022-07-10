@@ -14,7 +14,7 @@ import {
 import { CombinedReducersState } from "../../store/combinedReducers"
 import { loadSignUp } from "../../store/user/actions"
 import { ProfileType } from "../../types/user.types"
-import { validationSchemeSignup } from "../../utils/validations"
+import { validateCreationPassword, validateEmail, validateField, validateLastName, validateName } from "../../utils/validations"
 import { signUpInitialValues } from "./constants"
 import "./Signup.scss"
 
@@ -40,39 +40,57 @@ const Signup:React.FC = () => {
             <p className="signup-title">Create an Account</p>
             <Formik
                 initialValues={signUpInitialValues}
-                validationScheme={validationSchemeSignup}
                 onSubmit={handleSubmit as () => void}>
-                {(formikProps) => (
+                {({errors, touched, dirty}) => (
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
                         <Form className="">
                             <div className="d-flex">
                                 <TextInput
                                     className={"username-input me-1"}
                                     name={'first_name'}
-                                    labelKey={'First Name'}/>
+                                    labelKey={'First Name'}
+                                    errors={errors.first_name}
+                                    touched={touched.first_name}
+                                    validate={validateName}
+                                    />
                                 <TextInput
                                     className={"username-input ms-1"}
                                     name={'last_name'}
-                                    labelKey={'Last Name'}/>
+                                    labelKey={'Last Name'}
+                                    errors={errors.last_name}
+                                    touched={touched.last_name}
+                                    validate={validateLastName}
+                                    />
                             </div>
                             <TextInput
                                 className={"username-input"}
                                 name={'date_of_birth'}
                                 labelKey={'Date of Birth'}
                                 type="date"
+                                errors={errors.date_of_birth}
+                                touched={touched.date_of_birth}
+                                validate={validateField}
                             />
                             <TextInput
                                 autocomplete="email"
                                 className={"username-input"}
                                 name={'email'}
-                                labelKey={'Email'}/>
+                                labelKey={'Email'}
+                                errors={errors.email}
+                                touched={touched.email}
+                                validate={validateEmail}
+                                />
                             <PasswordInput
                                 autocomplete="current-password"
                                 name={'password'}
                                 className="mb-4"
-                                labelKey={'Password'}/>
+                                labelKey={'Password'}
+                                errors={errors.password}
+                                touched={touched.password}
+                                validate={validateCreationPassword}
+                                />
                             <Button
-                                isDisabled={!formikProps.dirty}
+                                isDisabled={!dirty}
                                 isSubmit
                                 isColored
                                 text={'Create Account'}

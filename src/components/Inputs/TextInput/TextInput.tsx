@@ -6,19 +6,22 @@ import {formatDate} from "../../../utils/utils";
 
 
 interface Props{
-  style?: CSSProperties;
-  labelKey?: string;
-  name?: string;
-  type?: string;
-  value?: any;
-  placeholder?: string;
-  disabled?: boolean,
-  className?: string,
-  children?: JSX.Element | JSX.Element[];
-  onChange?: (value: string) => void;
-  isBirthdayLimit?: boolean;
-  onClick?: () => void,
-  autocomplete?:string
+    style?: CSSProperties;
+    labelKey?: string;
+    name?: string;
+    type?: string;
+    value?: any;
+    placeholder?: string;
+    disabled?: boolean,
+    className?: string,
+    children?: JSX.Element | JSX.Element[];
+    onChange?: (value: string) => void;
+    isBirthdayLimit?: boolean;
+    onClick?: () => void,
+    autocomplete?:string
+    errors?: string
+    touched?: boolean
+    validate?: (value: string) => string | undefined
 }
 
 const TextInput: React.FC<Props> = (props: Props) => {
@@ -54,10 +57,9 @@ const TextInput: React.FC<Props> = (props: Props) => {
             placeholder={props.placeholder} 
             name={props.name} 
             type={props.type ? props.type : "text"}
-            disabled={props.disabled} />
-            <ErrorMessage name={props.name as string}>
-                {(message: string) => returnErrorMessage(message)}
-            </ErrorMessage>
+            disabled={props.disabled}
+            validate={props.validate} />
+           {props.errors && props.touched && returnErrorMessage(props.errors)}
         </>
     }
   </div>

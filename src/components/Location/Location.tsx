@@ -2,11 +2,18 @@ import "./Location.scss"
 import { LatLngExpression } from "leaflet"
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
 import { ReactElement } from "react"
+import L from 'leaflet';
 
 interface Props {
     position: LatLngExpression
     buttons: ReactElement
 }
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
 
 const Location:React.FC<Props> = (props: Props) => {
 

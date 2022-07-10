@@ -8,10 +8,12 @@ import CommentBox from "../../../components/CommentBox/CommentBox";
 import TextAreaInput from "../../../components/Inputs/TextAreaInput/TextAreaInput";
 import { Form, Formik } from "formik";
 import { commentInitialValue } from "./constants";
-import { validationSchemeComment } from "../../../utils/validations";
+import { validateField } from "../../../utils/validations";
 import { useState } from "react";
 import Location from "../../../components/Location/Location";
 import { LatLngExpression } from "leaflet";
+import { commentBoxes } from "../../../constants/fakeData";
+import { ICommentBox } from "../../../types/app.types";
 
 const SightingDetail:React.FC = () => {
 
@@ -95,43 +97,38 @@ const SightingDetail:React.FC = () => {
                                 onClick={() => addCommentView(!isAddCommentView)}/>
                         </div>
                     </div>
-                    <div className="col-md-8 offset-md-2">
-                        <CommentBox
-                            image={Image}
-                            name="Balcony Flower"
-                            days="4 days ago"
-                            comment="So strongly and metaphysically did I conceive of my situation then, that while earnestly watching his motions, I seemed distinctly to perceive that my own individuality was now merged in a joint stock company of two; that my free will had received a mortal wound; and that another's mistake or misfortune might plunge innocent me into unmerited disaster and death." />
-                    </div>
-                    <div className="col-md-8 offset-md-2">
-                        <CommentBox
-                            image={Image}
-                            name="Balcony Flower"
-                            days="4 days ago"
-                            comment="So strongly and metaphysically did I conceive of my situation then, that while earnestly watching his motions, I seemed distinctly to perceive that my own individuality was now merged in a joint stock company of two; that my free will had received a mortal wound; and that another's mistake or misfortune might plunge innocent me into unmerited disaster and death." />
-                    </div>
-                    <div className="col-md-8 offset-md-2">
-                        <CommentBox
-                            image={Image}
-                            name="Balcony Flower"
-                            days="4 days ago"
-                            comment="So strongly and metaphysically did I conceive of my situation then, that while earnestly watching his motions, I seemed distinctly to perceive that my own individuality was now merged in a joint stock company of two; that my free will had received a mortal wound; and that another's mistake or misfortune might plunge innocent me into unmerited disaster and death." />
-                    </div>
+                    {commentBoxes?.map((item: ICommentBox, idx: number) => {
+                        return (
+                            <div className="col-md-8 offset-md-2">
+                                <CommentBox
+                                    key={idx}
+                                    image={item.image}
+                                    name={item.name}
+                                    days={item.days}
+                                    comment={item.comment}/>
+                            </div>
+                        )
+                    })}
                     {isAddCommentView &&
                     <div className="col-md-8 offset-md-2">
                         <Formik
                             initialValues={commentInitialValue}
-                            validationScheme={validationSchemeComment}
                             onSubmit={{} as () => void}>
-                            {(formikProps) => (
+                            {({errors, touched, dirty}) => (
                                 <Form className="">
                                     <TextAreaInput
                                         className='w-100 mb-3'
-                                        name={'message'}
+                                        name={'comment'}
                                         cols='100'
                                         rows='4'
-                                        labelKey={"Write a comment…"} />
+                                        labelKey={"Write a comment…"}
+                                        errors={errors.comment}
+                                        touched={touched.comment}
+                                        validate={validateField}
+                                         />
                                     <div className="d-flex justify-content-end">
                                         <Button
+                                            isDisabled={!dirty}
                                             isSmall
                                             isColored
                                             text="Publish Comment" 

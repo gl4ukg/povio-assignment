@@ -1,84 +1,47 @@
-import * as Yup from "yup";
-
-export const LOGIN_VALIDATION =  Yup.string()
-    .required("Username or email is required field.")
-
-export const NAME_VALIDATION = Yup.string()
-    .min(2, "Too Short!")
-    .required("Name is too short.");
-
-export const LAST_NAME_VALIDATION = Yup.string()
-    .min(2, "Too Short!")
-    .required("Last name is too short.");
-
-export const EMAIL_VALIDATION = Yup.string()
-    .email()
-    .required("Email is required field.");
-
-export const LOGIN_PASSWORD_VALIDATION =  Yup.string()
-    .required("Password is required field.");
-
-    
-export const BIRTHDAY_VALIDATION =  Yup.string()
-    .required("Birthday is required field.")
-    
-export const SIGNUP_PASSWORD_VALIDATION =  Yup.string()
-    .min(8, 'Password is too short - should be 8 chars minimum.')
-    .matches(/[a-zA-Z0-9]/, 'Password can only contain Latin letters and numbers.')
-    
-export const SIGHTING_TITLE_VALIDATION = Yup.string()
-    .required("Sighting Title is required field.");
-
-export const LAT_LONG_VALIDATION = Yup.string()
-    .required("Lat and Long is required field.");
-
-export const DESCRIPTION_VALIDATION = Yup.string()
-    .required("Description is required field."); 
-
-export const PICTURE_VALIDATION = Yup.string()
-    .required("Picture is required field.");
-
-export const COMMENT_VALIDATION = Yup.string()
-    .required("Comment is required field.");
-
-export function validationSchemeLogin() {
-    return Yup.object({
-        username: LOGIN_VALIDATION,
-        password: LOGIN_PASSWORD_VALIDATION,
-    });
+export function validateEmail(value:string) {
+   let error;
+   if (!value) {
+     error = 'Field is required!';
+   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+     error = 'Invalid email address';
+   }
+   return error;
 }
 
-export function validationSchemeSignup() {
-    return Yup.object().shape({
-        first_name: Yup.string()
-    .required("Username or email is required field."),
-        last_name: LAST_NAME_VALIDATION,
-        date_of_birth: BIRTHDAY_VALIDATION,
-        email: EMAIL_VALIDATION,
-        password: SIGNUP_PASSWORD_VALIDATION
-    });
+export function validateName(value:string) {
+   let error;
+   if (!value) {
+     error = 'Field is required!';
+   } else if(value.length < 2) {
+    error = 'Name is too short!'
+   } 
+   return error;
 }
 
-export function validationSchemeProfile() {
-    return Yup.object().shape({
-        first_name: NAME_VALIDATION,
-        last_name: LAST_NAME_VALIDATION,
-        date_of_birth: BIRTHDAY_VALIDATION,
-        email: EMAIL_VALIDATION
-    });
+export function validateLastName(value:string) {
+   let error;
+   if (!value) {
+     error = 'Field is required!';
+   } else if(value.length < 2) {
+    error = 'Last name is too short!'
+   } 
+   return error;
 }
 
-export function validationSchemeComment() {
-    return Yup.object().shape({
-        comment: COMMENT_VALIDATION
-    });
+export function validateField(value:string) {
+   let error;
+   if (!value) {
+     error = 'Field is required!';
+   }
+   return error;
 }
 
-export function validationSchemeNewSighting() {
-    return Yup.object().shape({
-        name: SIGHTING_TITLE_VALIDATION,
-        description: DESCRIPTION_VALIDATION,
-        latLong: LAT_LONG_VALIDATION,
-        picture: PICTURE_VALIDATION,
-    });
+export function validateCreationPassword(value:string) {
+   let error;
+   if (!value) {
+     error = 'Field is required!';
+   } else if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value)) {
+    error = 'Minimum eight characters, at least one letter and one number'
+   } 
+   return error;
 }
