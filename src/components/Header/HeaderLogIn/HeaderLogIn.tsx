@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux"
 import { CombinedReducersState } from "../../../store/combinedReducers"
 import { ProfileType } from "../../../types/user.types";
-import { getBearerToken } from "../../../utils/auth"
 import NoImage from "../../../assets/icons/no-image.webp"
 import Button from "../../Button/Button";
 import { 

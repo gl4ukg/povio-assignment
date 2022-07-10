@@ -11,6 +11,7 @@ import { setLogin as setLoginAction } from "../../store/user/actions"
 import { useNavigate } from "react-router-dom"
 import { loadUserSightings as loadUserSightingsAction } from "../../store/sighting/actions"
 import { ISighting } from "../../types/sigting.type"
+import { toast } from "react-toastify"
 
 
 const Profile:React.FC = () => {
@@ -35,6 +36,7 @@ const Profile:React.FC = () => {
         setLogin(false)
         setProfileModal(false)
         navigate("/")
+        toast.info("Thank you for your time!")
     }
 
     return (

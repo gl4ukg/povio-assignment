@@ -4,15 +4,11 @@
     align-content: space-between;
     position: relative;
     width: 280px;
-    height: 500px;
+    height: auto;
     margin-bottom: 25px;
     cursor: pointer;
     @media only screen and (max-width: 992px) {
         margin-bottom:20px;
-    }
-    @media only screen and (max-width: 575px){ 
-        margin-bottom: 0;
-        height: 575px;
     }
     &__image {
         width: 100%;

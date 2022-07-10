@@ -7,7 +7,7 @@ import Skeleton from "react-loading-skeleton"
 import classNames from "classnames"
 import { useNavigate } from "react-router-dom"
 import { useIsLoggedIn } from "../../customHooks/auth"
-import { getBearerToken } from "../../utils/auth"
+import { getBearerToken } from "../../utils/auth.util"
 
 interface Props {
     item?: ICard,

@@ -1,6 +1,6 @@
 import React from 'react';
-import XIcon  from '../../assets/icons/close-icon.svg'
-import styles from './Modal.module.scss'
+import XIcon  from '../../../assets/icons/close-icon.svg'
+import styles from '../Modal.module.scss'
 
 interface Props {
     title?: string;

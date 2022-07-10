@@ -85,9 +85,10 @@ const FlowerDetail:React.FC = () => {
                         </div>
                     </div>
                     <div className="row">
-                    {allSightings?.map((item: ISighting, idx: number) => {
+                    {allSightings?.map((item: ISighting) => {
                         return (
                             <SightingBox 
+                                key={item.id}
                                 isLoading={isLoading}
                                 goToItem={() => navigate(`/sighting/${item.id}`)}
                                 item={item} 

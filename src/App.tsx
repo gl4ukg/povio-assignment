@@ -20,7 +20,7 @@ import NewSighting from './containers/Sighting/NewSighting/NewSighting';
 import { loadAboutMeInfo as loadAboutMeInfoAction } from './store/user/actions';
 import { loadAllSightings as loadAllSightingsAction } from './store/sighting/actions';
 import { useIsLoggedIn } from './customHooks/auth';
-import { getBearerToken } from './utils/auth';
+import { getBearerToken } from './utils/auth.util';
 
 const App:React.FC = () => {
 	const token = getBearerToken();

@@ -10,7 +10,7 @@ import Location from "../../../components/Location/Location"
 import { CombinedReducersState } from "../../../store/combinedReducers";
 import { FileUpload } from "../../../types/fileUpload.types";
 import { ISighting } from "../../../types/sigting.type";
-import { validateField } from "../../../utils/validations";
+import { validateField } from "../../../utils/validations.util";
 import { newSightingInitalValues, NEW_SIGHTING_COORDINATES } from "./constants";
 import "./NewSighting.scss"
 

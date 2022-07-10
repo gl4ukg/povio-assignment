@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button"
 import PasswordInput from "../../components/Inputs/PasswordInput/PasswordInput"
 import TextInput from "../../components/Inputs/TextInput/TextInput"
 import { LoginType } from "../../types/user.types"
-import { validateEmail, validateField } from "../../utils/validations"
+import { validateEmail, validateField } from "../../utils/validations.util"
 import { loginInitialValues } from "./constants"
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";

@@ -14,13 +14,15 @@
 
 .flowers-container {
     .row {
-        .col-6 {
-            &:nth-child(odd) {
-                padding-right: 6px;
-            }
-
-            &:nth-child(even) {
-                padding-left: 6px;
+        @media only screen and (max-width: 575px) {     
+            .col-6 {
+                &:nth-child(odd) {
+                    padding-right: 6px;
+                }
+    
+                &:nth-child(even) {
+                    padding-left: 6px;
+                }
             }
         }
     }

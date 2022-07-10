@@ -1,4 +1,4 @@
-import React, {CSSProperties, useState} from 'react';
+import React, {CSSProperties} from 'react';
 import {Field} from 'formik';
 import './TextAreaInput.scss'
 import classNames from "classnames";

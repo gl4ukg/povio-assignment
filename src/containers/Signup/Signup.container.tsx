@@ -14,7 +14,7 @@ import {
 import { CombinedReducersState } from "../../store/combinedReducers"
 import { loadSignUp } from "../../store/user/actions"
 import { ProfileType } from "../../types/user.types"
-import { validateCreationPassword, validateEmail, validateField, validateLastName, validateName } from "../../utils/validations"
+import { validateCreationPassword, validateEmail, validateField, validateLastName, validateName } from "../../utils/validations.util"
 import { signUpInitialValues } from "./constants"
 import "./Signup.scss"
 

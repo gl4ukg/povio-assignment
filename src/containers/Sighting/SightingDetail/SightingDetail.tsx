@@ -8,7 +8,7 @@ import CommentBox from "../../../components/CommentBox/CommentBox";
 import TextAreaInput from "../../../components/Inputs/TextAreaInput/TextAreaInput";
 import { Form, Formik } from "formik";
 import { commentInitialValue, SIGHTING_DETAIL_COORDINATES } from "./constants";
-import { validateField } from "../../../utils/validations";
+import { validateField } from "../../../utils/validations.util";
 import { useState } from "react";
 import Location from "../../../components/Location/Location";
 import { LatLngExpression } from "leaflet";

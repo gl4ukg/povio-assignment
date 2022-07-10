@@ -1,8 +1,8 @@
-import React, {CSSProperties, useEffect, useState} from 'react';
-import {ErrorMessage, Field} from 'formik';
+import React, {CSSProperties} from 'react';
+import {Field} from 'formik';
 import './TextInput.scss'
 import classNames from "classnames";
-import {formatDate} from "../../../utils/utils";
+import {formatDate} from "../../../utils/main.util";
 
 
 interface Props{
@@ -44,7 +44,7 @@ const TextInput: React.FC<Props> = (props: Props) => {
     { props.value !== undefined ?
         <input 
             onClick={props.onClick}
-            value={(props.type == "date" ? formatDate(props?.value) : props?.value) || ''}
+            value={(props.type === "date" ? formatDate(props?.value) : props?.value) || ''}
             onChange={(e: React.ChangeEvent<HTMLInputElement>)=> onChangeEvent(e.target.value)} 
             placeholder={props.placeholder} 
             name={props.name} 

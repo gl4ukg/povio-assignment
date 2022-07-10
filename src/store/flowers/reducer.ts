@@ -1,10 +1,7 @@
 import { IAction } from "../../types/action.types";
-import { IFlower, IFlowers, IFlowersFavoriteResponse, IFlowersResponse } from "../../types/flowers.types";
+import { IFlower, IFlowersFavoriteResponse, IFlowersResponse } from "../../types/flowers.types";
 import * as constants from "./constants"
 import produce from "immer"
-import { ICard } from "../../types/card.types";
-import { IPagination } from "../../types/app.types";
-import FlowerDetail from "../../containers/Flowers/FlowerDetail/FlowerDetail";
 
 
 export interface IFlowersReducer {

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { CombinedReducersState } from "../store/combinedReducers";
-import { getBearerToken } from "../utils/auth"
+import { getBearerToken } from "../utils/auth.util"
 
 
 export const useIsLoggedIn = (): boolean => {
